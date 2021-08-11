@@ -1,0 +1,82 @@
+@import "../../../../sass/colors";
+@import "../../../../sass/font-size";
+
+#header {
+  background-color: #373B53;
+  width: 100%;
+  height: clamp(6rem, 19.185vw, 6.25rem);
+
+  .logo {
+    position: relative;
+    height: 100%;
+    width: clamp(6rem, 19.185vw, 6.25rem);
+    background-color: $violet-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 20px 20px 0px;
+
+    img {
+      z-index: 5;
+      position: absolute;
+    }
+
+    &::before {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background-color: $violet-1;
+      border-radius: 0px 20px 0px 0px;
+    }
+
+    &::after {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background-color: $violet-2;
+      border-radius: 20px 0px 20px 0px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #header {
+    background-color: #373B53;
+    width: 100%;
+    height: clamp(6rem, 19.185vw, 8.333rem);
+  
+    .logo {
+      position: relative;
+      width: clamp(6rem, 19.185vw, 8.333rem);
+  
+      img {
+        width: 3.33rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #header {
+    background-color: #373B53;
+    width: 100%;
+    height: clamp(6rem, 19.185vw, 10rem);
+  
+    .logo {
+      position: relative;
+      width: clamp(6rem, 19.185vw, 10rem);
+  
+      img {
+        width: 5rem;
+      }
+    }
+  }
+}
