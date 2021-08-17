@@ -1,0 +1,135 @@
+@import '../../../../sass/colors';
+@import '../../../../sass/font-size';
+@import '../../../../sass/global';
+@import '../../../../sass/mixins';
+
+#sign-up {
+  padding: 2.666rem 1.83rem;
+
+  &>p {
+    margin-bottom: 2.75rem;
+    font-weight: 700;
+
+    &::before {
+      content: url("../../../../assets/icon-arrow-left.svg");
+      margin-right: 2rem;
+    }
+  }
+
+  &>p>a:hover {
+    color: $violet-2;
+  }
+
+  h1 {
+    font-size: $mobile-h1;
+    margin-bottom: 2.75rem;
+  }
+
+  .input-group {
+    &__title {
+      @include input-group-title;
+    }
+
+    &__fields {
+      .fields__field {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          @include label-for-mobile;
+        }
+
+        input {
+          @include input-for-mobile;
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+
+  .address>.input-group__fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2rem;
+    grid-template-areas:
+      "street   street"
+      "city     postCode"
+      "country  country";
+
+    .street-field {
+      grid-area: street;
+    }
+
+    .city-field {
+      grid-area: city;
+    }
+
+    .postCode-field {
+      grid-area: postCode;
+    }
+
+    .country-field {
+      grid-area: country;
+    }
+  }
+
+  .identity>.input-group__fields .fields__field:last-child {
+    position: relative;
+
+    &>div {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      input[type="text"] {
+        width: 100%;
+      }
+
+      button {
+        position: absolute;
+        top: 0.5rem;
+        right: 5%;
+        color: $violet-2;
+        padding: 0.5rem 1.5rem;
+        background-color: $light-bg;
+        border-radius: 4px;
+        border: 1px solid transparent;
+      }
+
+      button i {
+        font-size: 1.5rem;
+      }
+
+      button:hover {
+        color: $light-bg;
+        background-color: $violet-2;
+      }
+    }
+
+    input[type="file"] {
+      position: absolute;
+      visibility: hidden;
+    }
+  }
+
+  .form-cta {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      @include button-for-mobile;
+    }
+
+    .save {
+      background-color: $violet-1;
+      color: #fff;
+      margin-left: 0.66rem;
+
+    }
+
+    .clear-form {
+      color: $violet-1;
+    }
+  }
+}
