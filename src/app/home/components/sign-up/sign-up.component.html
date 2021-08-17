@@ -1,1 +1,115 @@
-<p>sign-up works!</p>
+<section id="sign-up">
+  <p>
+    <a [routerLink]="['/home']">Retourner à la page d'inscription</a>
+  </p>
+  <h1>Sign Up</h1>
+  <section class="sign-up__form">
+    <form>
+      <!-- Identity -->
+      <div class="input-group identity">
+        <p class="input-group__title">Identity</p>
+        <div class="input-group__fields">
+          <div class="fields__field">
+            <label for="firstname">Firstname</label>
+            <input type="text" id="firstname">
+          </div>
+          <div class="fields__field">
+            <label for="lastname">Lastname</label>
+            <input type="text" id="lastname">
+          </div>
+          <div class="fields__field">
+            <label for="profileImage">Profile Image</label>
+            <div>
+                <input type="text" id="image-name" disabled>
+                <button><i class="fas fa-file-upload"></i></button>
+            </div>
+            <input type="file" name="profileImage" id="profileImage" hidden>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="input-group contact">
+        <p class="input-group__title">Contact</p>
+        <div class="input-group__fields">
+          <div class="fields__field">
+            <label for="email">Email</label>
+            <input type="text" id="email">
+          </div>
+          <div class="fields__field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phonenumber">
+          </div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="input-group address">
+        <p class="input-group__title">Address</p>
+        <div class="input-group__fields">
+          <div class="fields__field street-field">
+            <label for="street">Street</label>
+            <input type="text" id="street">
+          </div>
+          <div class="fields__field city-field">
+            <label for="city">City</label>
+            <input type="text" id="city">
+          </div>
+          <div class="fields__field postCode-field">
+            <label for="postCode">Post Code</label>
+            <input type="text" id="postCode">
+          </div>
+          <div class="fields__field country-field">
+            <label for="country">Country</label>
+            <input type="text" id="country">
+          </div>
+        </div>
+      </div>
+
+      <!-- Credentials -->
+      <div class="input-group credentials">
+        <p class="input-group__title">Credentials</p>
+        <div class="input-group__fields">
+          <div class="fields__field">
+            <label for="password">Password</label>
+            <input type="text" id="password">
+          </div>
+          <div class="fields__field">
+            <label for="passwordConfirmed">Confirm password</label>
+            <input type="text" id="passwordConfirmed">
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="form-cta">
+        <button class="clear-form">Clear Formulaire</button>
+        <button class="save">Save</button>
+      </div>
+    </form>
+  </section>
+</section>
+
+<!-- 
+     {
+    "id": "FV2353",
+    "createdAt": "2021-11-05",
+    "paymentDue": "2021-11-12",
+    "description": "Logo Re-design",
+    "paymentTerms": 7,
+    "clientName": "Anita Wainwright",
+    "clientEmail": "",
+    "status": "draft",
+    "senderAddress": {
+      "street": "19 Union Terrace",
+      "city": "London",
+      "postCode": "E1 3EZ",
+      "country": "United Kingdom"
+    },
+    "clientAddress": {
+      "street": "",
+      "city": "",
+      "postCode": "",
+      "country": ""
+    },
+ -->

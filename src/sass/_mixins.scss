@@ -1,0 +1,39 @@
+// Form Elements
+@mixin input-group-title {
+  font-weight: 700;
+  color: $violet-1;
+  margin-bottom: 2.333rem;
+}
+
+@mixin label-for-mobile {
+  color: $blue-violet;
+  font-weight: 500;
+  margin-bottom: 1.166rem;
+}
+
+@mixin label-for-mobile {
+  color: $blue-violet;
+  font-weight: 500;
+  margin-bottom: 1.166rem;
+}
+
+@mixin input-for-mobile {
+  border: 1px solid $blue-gray-light;
+  padding: 2rem;
+  font-weight: 700;
+  height: 4rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+}
+// Form Elements
+
+// Button 
+@mixin button-for-mobile {
+  font-weight: 700;
+  font-family: "Spartan", sans-serif;
+  padding: 1.417em 2em;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2rem;
+}
+// Button 
