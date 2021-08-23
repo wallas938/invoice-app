@@ -4,23 +4,37 @@
   </p>
   <h1>Sign Up</h1>
   <section class="sign-up__form">
-    <form>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <!-- Identity -->
       <div class="input-group identity">
         <p class="input-group__title">Identity</p>
         <div class="input-group__fields">
           <div class="fields__field">
             <label for="firstname">Firstname</label>
-            <input type="text" id="firstname">
+            <input 
+              [ngStyle]="wrongInput('firstName')"
+              type="text" 
+              id="firstname"
+              formControlName="firstName">
+              <small 
+                [hidden]="signUpForm.get('firstName')?.valid || 
+                signUpForm.get('firstName')?.untouched">Please verifie your input!</small>
           </div>
           <div class="fields__field">
             <label for="lastname">Lastname</label>
-            <input type="text" id="lastname">
+            <input 
+              [ngStyle]="wrongInput('lastName')"
+              type="text" 
+              id="lastname" 
+              formControlName="lastName">
+            <small 
+            [hidden]="signUpForm.get('lastName')?.valid || 
+            signUpForm.get('lastName')?.untouched">Please verifie your input!</small>
           </div>
           <div class="fields__field">
             <label for="profileImage">Profile Image</label>
             <div>
-                <input type="text" id="image-name" disabled>
+                <input type="text" id="image-name" formControlName="profileImage">
                 <button><i class="fas fa-file-upload"></i></button>
             </div>
             <input type="file" name="profileImage" id="profileImage" hidden>
@@ -34,11 +48,25 @@
         <div class="input-group__fields">
           <div class="fields__field">
             <label for="email">Email</label>
-            <input type="text" id="email">
+            <input 
+              [ngStyle]="wrongInput('email')"
+              type="email" 
+              id="email" 
+              formControlName="email">
+            <small 
+            [hidden]="signUpForm.get('email')?.valid || 
+            signUpForm.get('email')?.untouched">Please verifie your email!</small>
           </div>
           <div class="fields__field">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phonenumber">
+            <label for="phoneNumber">Phone Number</label>
+            <input 
+              [ngStyle]="wrongInput('phoneNumber')"
+              type="text" 
+              id="phoneNumber" 
+              formControlName="phoneNumber">
+            <small 
+                [hidden]="signUpForm.get('phoneNumber')?.valid || 
+                signUpForm.get('phoneNumber')?.untouched">A wrong phone number was entered!</small>
           </div>
         </div>
       </div>
@@ -49,19 +77,47 @@
         <div class="input-group__fields">
           <div class="fields__field street-field">
             <label for="street">Street</label>
-            <input type="text" id="street">
+            <input 
+              [ngStyle]="wrongInput('street')"
+              type="text" 
+              id="street" 
+              formControlName="street">
+            <small 
+            [hidden]="signUpForm.get('street')?.valid || 
+            signUpForm.get('street')?.untouched">Please verifie your address!</small>
           </div>
           <div class="fields__field city-field">
             <label for="city">City</label>
-            <input type="text" id="city">
+            <input 
+              [ngStyle]="wrongInput('city')"
+              type="text" 
+              id="city" 
+              formControlName="city">
+            <small 
+                [hidden]="signUpForm.get('city')?.valid || 
+                signUpForm.get('city')?.untouched">Please verifie your city!</small>
           </div>
           <div class="fields__field postCode-field">
             <label for="postCode">Post Code</label>
-            <input type="text" id="postCode">
+            <input
+              [ngStyle]="wrongInput('postCode')"
+              type="text" 
+              id="postCode" 
+              formControlName="postCode">
+            <small 
+                [hidden]="signUpForm.get('postCode')?.valid || 
+                signUpForm.get('postCode')?.untouched">Please verifie your post code!</small>
           </div>
           <div class="fields__field country-field">
             <label for="country">Country</label>
-            <input type="text" id="country">
+            <input 
+              [ngStyle]="wrongInput('country')"
+              type="text" 
+              id="country" 
+              formControlName="country">
+            <small 
+                [hidden]="signUpForm.get('country')?.valid || 
+                signUpForm.get('country')?.untouched">Please verifie your country</small>
           </div>
         </div>
       </div>
@@ -72,19 +128,32 @@
         <div class="input-group__fields">
           <div class="fields__field">
             <label for="password">Password</label>
-            <input type="text" id="password">
+            <input 
+              [ngStyle]="wrongInput('password')"
+              type="password" 
+              id="password" 
+              formControlName="password">
+            <small 
+                [hidden]="signUpForm.get('password')?.valid || 
+                signUpForm.get('password')?.untouched">Veuillez entrer un mot de passe avec 8 caracteres dont une majuscule et un chiffre!</small>
           </div>
           <div class="fields__field">
-            <label for="passwordConfirmed">Confirm password</label>
-            <input type="text" id="passwordConfirmed">
+            <label for="confirmedPassword">Confirmed password</label>
+            <input 
+              [ngStyle]="wrongInput('confirmedPassword')"
+              type="password" 
+              id="confirmedPassword" 
+              formControlName="confirmedPassword">
+            <small 
+            [hidden]="verifyPassword()">Les deux mots de passe ne sont pas identiques!</small>
           </div>
         </div>
       </div>
 
       <!-- CTA -->
       <div class="form-cta">
-        <button class="clear-form">Clear Formulaire</button>
-        <button class="save">Save</button>
+        <button class="clear-form" type="button" (click)="clearForm()">Clear Formulaire</button>
+        <button class="save" type="submit" [disabled]="signUpForm.invalid">Save</button>
       </div>
     </form>
   </section>

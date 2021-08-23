@@ -41,7 +41,13 @@
 
         input {
           @include input-for-mobile;
-          margin-bottom: 2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        small {
+          margin-bottom: 1.5rem;
+          color: $red;
+          font-weight: 700;
         }
       }
     }
