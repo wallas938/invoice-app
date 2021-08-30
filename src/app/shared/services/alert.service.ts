@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { StoreService } from 'src/app/core/service/store/store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class AlertService {
   private message: string = "";
   private class: string = "";
 
-  constructor() { }
+  constructor(private store: StoreService) { }
 
   setMessage(message: string, type: string) {
     this.message = message;
