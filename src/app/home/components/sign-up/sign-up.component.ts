@@ -6,6 +6,8 @@ import { UserService } from '../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup = this.fb.group({
     firstName: ['', [
       Validators.required,
-      Validators.minLength(2)
+      Validators.minLength(1)
     ]],
     lastName: ['', [
       Validators.required,
@@ -46,7 +48,7 @@ export class SignUpComponent implements OnInit {
     ]],
     postCode: ['', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(5)
     ]],
     country: ['', [
       Validators.required,
@@ -66,7 +68,8 @@ export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private userService: UserService,
     private _snackBar: MatSnackBar,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -84,14 +87,20 @@ export class SignUpComponent implements OnInit {
       country: this.signUpForm.get('country')?.value.trim(),
       password: this.signUpForm.get('password')?.value.trim()
     };
-    console.log(data);
     
     this.verifyInput(data);
 
     if (!this.inputError) {
       this.userService.saveUser(data)
-        .subscribe((result) => {
-          console.log(result);
+        .subscribe(({ message }: any) => {
+          this.alertService.setMessage(message, "success");
+          this.userService.setUserSignUpStatus(true);
+          this.router.navigate(['/home']);
+        },
+        ({ error }: HttpErrorResponse) => {
+          this.alertService.setMessage(error.message, "error");
+          this.userService.setUserSignUpStatus(false);
+          this.openSnackBar();
         });
     } else {
       this.alertService.setMessage('One or many of the entered inputs is wrong!', 'error');
