@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Utils  from '../../../shared/utils/index';
-import { UserCreateDto }  from '../../../models/user/userCreateDto';
+import Utils from '../../../shared/utils/index';
+import { UserCreateDto } from '../../../models/user/userCreateDto';
 import { UserService } from '../../services/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ElementRef } from '@angular/core';
 
 
 @Component({
@@ -17,7 +18,10 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  inputError: boolean = false;
+  hasError: boolean = false;
+  profileImage: any = null;
+  isImageAdded: boolean = false;
+  isProfileImageIsValid: boolean = false;
 
   signUpForm: FormGroup = this.fb.group({
     firstName: ['', [
@@ -28,7 +32,7 @@ export class SignUpComponent implements OnInit {
       Validators.required,
       Validators.minLength(2)
     ]],
-    profileImage: [''],
+    profileImage: [{ value: '', disabled: true }],
     email: ['', [
       Validators.required,
       Validators.pattern(Utils.Regex.emailRegex)
@@ -65,20 +69,21 @@ export class SignUpComponent implements OnInit {
     ]]
   });
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
     private userService: UserService,
     private _snackBar: MatSnackBar,
     private alertService: AlertService,
     private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
   onSubmit() {
     const data: UserCreateDto = {
       firstName: this.signUpForm.get('firstName')?.value.trim(),
       lastName: this.signUpForm.get('lastName')?.value.trim(),
-      profileImage: null,
+      profileImage: this.profileImage || null,
       email: this.signUpForm.get('email')?.value.trim(),
       phoneNumber: this.signUpForm.get('phoneNumber')?.value.trim(),
       street: this.signUpForm.get('street')?.value.trim(),
@@ -87,10 +92,15 @@ export class SignUpComponent implements OnInit {
       country: this.signUpForm.get('country')?.value.trim(),
       password: this.signUpForm.get('password')?.value.trim()
     };
-    
-    this.verifyInput(data);
 
-    if (!this.inputError) {
+    this.verifyInput(data);
+    
+    if (this.profileImage) {
+      this.imageValidation(this.profileImage);
+    }
+    console.log(!this.hasError);
+    
+    if (!this.hasError) {
       this.userService.saveUser(data)
         .subscribe(({ message }: any) => {
           this.alertService.setMessage(message, "success");
@@ -108,12 +118,34 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  imageValidation(image: File): boolean {
+    const mimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    if (mimeTypes.includes(image.type) && (image.size <= 1000000)) {
+      this.isProfileImageIsValid = true;
+      return true;
+    }
+    this.hasError = true;
+    this.isProfileImageIsValid = false;
+    return false;
+  }
+
+  onFileChange(event: any) {
+    this.isImageAdded = true;
+    if (this.imageValidation(event.target['files'].item(0))) {
+      this.signUpForm.get('profileImage')?.setValue(event.target['files'].item(0).name);
+      this.profileImage = event.target['files'].item(0);
+    } else {
+      this.signUpForm.get('profileImage')?.setValue(null);
+      this.profileImage = null;
+    }
+  }
+
   verifyInput(inputs: any) {
-    this.inputError = false;
+    this.hasError = false;
     for (const input in inputs) {
       if (input !== 'profileImage') {
         if (inputs[input] === "") {
-          this.inputError = true;
+          this.hasError = true;
         }
       }
     }
@@ -137,9 +169,9 @@ export class SignUpComponent implements OnInit {
   }
 
   verifyPassword() {
-    if ((this.signUpForm.get('confirmedPassword')?.value === 
-        this.signUpForm.get('password')?.value) ||
-        this.signUpForm.get('confirmedPassword')?.untouched) {
+    if ((this.signUpForm.get('confirmedPassword')?.value ===
+      this.signUpForm.get('password')?.value) ||
+      this.signUpForm.get('confirmedPassword')?.untouched) {
       return true;
     }
     return false;

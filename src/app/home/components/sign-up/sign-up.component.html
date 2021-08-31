@@ -35,9 +35,12 @@
             <label for="profileImage">Profile Image</label>
             <div>
                 <input type="text" id="image-name" formControlName="profileImage">
-                <button><i class="fas fa-file-upload"></i></button>
+                <button (click)="profileImage.click()" type="button">
+                  <i class="fas fa-file-upload"></i>
+                </button>
             </div>
-            <input type="file" name="profileImage" id="profileImage" hidden>
+            <small [hidden]="isProfileImageIsValid || (!isImageAdded && !isProfileImageIsValid)">The size or the type of your image is invalid (jpg, jpeg and png and 1 Mo max)</small>
+            <input type="file" (change)="onFileChange($event)" name="profileImage" id="profileImage"  #profileImage hidden>
           </div>
         </div>
       </div>
@@ -153,7 +156,7 @@
       <!-- CTA -->
       <div class="form-cta">
         <button class="clear-form" type="button" (click)="clearForm()">Clear Formulaire</button>
-        <button class="save" type="submit" [disabled]="signUpForm.invalid">Save</button>
+        <button class="save" type="submit" [disabled]="signUpForm.invalid && hasError">Save</button>
       </div>
     </form>
   </section>
