@@ -14,7 +14,17 @@ export class UserService {
               private store: StoreService) { }
 
   saveUser(user: UserCreateDto) {
-    return this.http.post(`${this.userUrl}/post`, user, { responseType: "json" });
+    const formData = this.initFormData(user);
+
+    return this.http.post(`${this.userUrl}/post`, formData, { responseType: "json" });
+  }
+
+  initFormData(data: any): FormData {
+    const formData = new FormData();
+    for (let d in data) {
+      formData.append(d, data[d]);
+    }
+    return formData;
   }
 
   setUserSignUpStatus(status: boolean) {
