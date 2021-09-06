@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { StoreService } from 'src/app/core/service/store/store.service';
+import { StoreService } from 'src/app/core/services/store/store.service';
 import { UserCreateDto } from 'src/app/models/user/userCreateDto';
 
 @Injectable({
@@ -15,8 +15,12 @@ export class UserService {
 
   saveUser(user: UserCreateDto) {
     const formData = this.initFormData(user);
-
     return this.http.post(`${this.userUrl}/post`, formData, { responseType: "json" });
+  }
+
+  getUser(userId: string) {
+    // TokenInterceptor
+    return this.http.get(`${this.userUrl}/${userId}`, { responseType: 'json' })
   }
 
   initFormData(data: any): FormData {

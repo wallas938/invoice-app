@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StoreService } from 'src/app/core/service/store/store.service';
+import { StoreService } from 'src/app/core/services/store/store.service';
 
 @Injectable({
   providedIn: 'root'

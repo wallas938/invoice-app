@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-snack-bar',
@@ -15,7 +15,7 @@ export class SnackBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = this.alertMessage.getMessage();
-    this.className = this.alertMessage.getClass();
+    this.className = this.alertMessage.getClass() + " alert";
   }
 
 }

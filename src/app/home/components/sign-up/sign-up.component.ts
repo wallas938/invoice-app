@@ -5,7 +5,7 @@ import { UserCreateDto } from '../../../models/user/userCreateDto';
 import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
-import { AlertService } from 'src/app/shared/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ElementRef } from '@angular/core';
@@ -98,7 +98,6 @@ export class SignUpComponent implements OnInit {
     if (this.profileImage) {
       this.imageValidation(this.profileImage);
     }
-    console.log(!this.hasError);
     
     if (!this.hasError) {
       this.userService.saveUser(data)
@@ -144,7 +143,7 @@ export class SignUpComponent implements OnInit {
     this.hasError = false;
     for (const input in inputs) {
       if (input !== 'profileImage') {
-        if (inputs[input] === "") {
+        if (inputs[input].trim() === "") {
           this.hasError = true;
         }
       }

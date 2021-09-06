@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreService } from './service/store/store.service';
+import { StoreService } from './services/store/store.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './TokenInterceptor';
 
 
 
@@ -9,6 +11,11 @@ import { StoreService } from './service/store/store.service';
   imports: [
     CommonModule
   ],
-  providers: [StoreService]
+  providers: [StoreService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+  }]
 })
 export class CoreModule { }
