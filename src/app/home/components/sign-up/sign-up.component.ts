@@ -94,17 +94,17 @@ export class SignUpComponent implements OnInit {
     };
 
     this.verifyInput(data);
-    
+
     if (this.profileImage) {
       this.imageValidation(this.profileImage);
     }
-    
+    console.log(data.profileImage)
     if (!this.hasError) {
       this.userService.saveUser(data)
         .subscribe(({ message }: any) => {
           this.alertService.setMessage(message, "success");
           this.userService.setUserSignUpStatus(true);
-          this.router.navigate(['/home']);
+          /* this.router.navigate(['/home']); */
         },
         ({ error }: HttpErrorResponse) => {
           this.alertService.setMessage(error.message, "error");

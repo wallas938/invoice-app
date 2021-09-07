@@ -34,4 +34,6 @@ export class UserService {
   setUserSignUpStatus(status: boolean) {
     this.store.setUserSignUpStatus(status);
   }
+
+
 }
