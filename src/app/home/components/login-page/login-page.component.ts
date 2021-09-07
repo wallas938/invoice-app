@@ -60,7 +60,7 @@ export class LoginPageComponent implements OnInit {
         .subscribe((data: any) => {
           this.authService.setLoginStatus(true);
           this.authService.setToken(data.token);
-          this.router.navigate(["/user-account"])
+          this.router.navigate(["/user-account"]);
         },
           ({ error }: HttpErrorResponse) => {
             this.alertService.setMessage(error.message, "error");
