@@ -63,6 +63,12 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate(["/user-account"]);
         },
           ({ error }: HttpErrorResponse) => {
+            if (!error.message) {
+              this.alertService.setMessage("An server error occurs...", "error");
+              this.userService.setUserSignUpStatus(false);
+              this.openSnackBar();
+              return;
+            }
             this.alertService.setMessage(error.message, "error");
             this.authService.setLoginStatus(false);
             this.openSnackBar();

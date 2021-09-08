@@ -98,19 +98,24 @@ export class SignUpComponent implements OnInit {
     if (this.profileImage) {
       this.imageValidation(this.profileImage);
     }
-    console.log(data.profileImage)
     if (!this.hasError) {
       this.userService.saveUser(data)
         .subscribe(({ message }: any) => {
           this.alertService.setMessage(message, "success");
           this.userService.setUserSignUpStatus(true);
-          /* this.router.navigate(['/home']); */
+          this.router.navigate(['/home']);
         },
-        ({ error }: HttpErrorResponse) => {
-          this.alertService.setMessage(error.message, "error");
-          this.userService.setUserSignUpStatus(false);
-          this.openSnackBar();
-        });
+          ({ error }: HttpErrorResponse) => {
+            if (!error.message) {
+              this.alertService.setMessage("An server error occurs...", "error");
+              this.userService.setUserSignUpStatus(false);
+              this.openSnackBar();
+              return;
+            }
+            this.alertService.setMessage(error.message, "error");
+            this.userService.setUserSignUpStatus(false);
+            this.openSnackBar();
+          });
     } else {
       this.alertService.setMessage('One or many of the entered inputs is wrong!', 'error');
       this.openSnackBar();
