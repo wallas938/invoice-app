@@ -13,14 +13,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: InvoiceListComponent,
-        resolve: {
-          user: UserResolver
-        }
+        component: InvoiceListComponent
       },
     ]
   }
-];/* 
+];/*
     { path: '', redirectTo: 'invoices', pathMatch: 'full' },
     { path: '/invoices', component: InvoiceListComponent, pathMatch: 'full' },
     { path: '**', redirectTo: '/user-account', pathMatch: 'full' }

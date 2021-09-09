@@ -1,9 +1,37 @@
+@import "../sass/mixins";
+@import "../sass/helpers";
+@import "../sass/variables";
+
 #invoice-app {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .main-container {
+    flex: 1;
+    padding-top: 2.666666rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (min-width: $tablet-down) {
+  #invoice-app {
 
     .main-container {
-        flex: 1;
+      padding-top: 4.666666rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
     }
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  #invoice-app {
+    .main-container {
+      padding-top: 6rem;
+      padding-left: 29.583333rem;
+      padding-right: 29.583333rem;
+    }
+  }
 }

@@ -2,6 +2,15 @@
 @import "./sass/colors";
 @import "./sass/font-size";
 @import "./sass/global";
+@import "./sass/mixins";
+@import "./sass/helpers";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
