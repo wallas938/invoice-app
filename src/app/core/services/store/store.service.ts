@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
 
 @Injectable({
@@ -12,16 +12,16 @@ export class StoreService {
   /** User properties */
   private userId!: string;
 
-  private loggedUser = new BehaviorSubject<UserGetDto | null>(null);
+  private loggedUser = new Subject<UserGetDto>();
   public readonly loggedUser$ = this.loggedUser.asObservable();
 
-  private userSignUpStatus = new BehaviorSubject(false);
+  private userSignUpStatus = new BehaviorSubject<boolean>(false);
   public readonly userSignUpStatus$ = this.userSignUpStatus.asObservable();
 
-  private loginStatus = new BehaviorSubject(false);
+  private loginStatus = new BehaviorSubject<boolean>(false);
   public readonly loginStatus$ = this.loginStatus.asObservable();
 
-  private isConnected = new BehaviorSubject(false);
+  private isConnected = new BehaviorSubject<boolean>(false);
   public readonly isConnected$ = this.isConnected.asObservable();
 
   constructor() { }
@@ -42,6 +42,10 @@ export class StoreService {
   setLoggedUser(loggedUser: UserGetDto) {
     this.loggedUser.next(loggedUser)
   }
+/*
+  getLoggedUser(): UserGetDto | null {
+    return this.loggedUser;
+  } */
 
   setUserId(id: string) {
     this.userId = id;
@@ -63,7 +67,7 @@ export class StoreService {
   }
 
   getToken() {
-    return this.token ? this.token : localStorage.getItem("token") ? localStorage.getItem("token") : null;
+    return this.token ? this.token : localStorage.getItem("token");
   }
 
   resetToken() {

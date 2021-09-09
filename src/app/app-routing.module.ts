@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InvoiceListComponent } from './user-account/components/invoice-list/invoice-list.component';
-import { UserAccountModule } from './user-account/user-account.module';
+
 const routes: Routes = [
-  // { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-  { path: 'home', component: InvoiceListComponent},
+ { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), UserAccountModule], // ***Enlever UserAccountModule
+  imports: [RouterModule.forRoot(routes)], // ***Enlever UserAccountModule
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

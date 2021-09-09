@@ -61,7 +61,7 @@ export class LoginPageComponent implements OnInit {
     }
 
     this.store.userSignUpStatus$
-      .subscribe((status: boolean) => {
+      .subscribe((status: Boolean) => {
         if (status) {
           this.openSnackBar();
           this.userService.setUserSignUpStatus(false);
@@ -80,6 +80,8 @@ export class LoginPageComponent implements OnInit {
     if (email && password) {
       this.authService.login({ email, password })
         .subscribe((data: any) => {
+          console.log(data);
+          this.userService.setLoggedUser(data.user);
           this.authService.setLoginStatus(true);
           this.authService.setToken(data.token);
           this.router.navigate(["/user-account"]);
@@ -87,7 +89,7 @@ export class LoginPageComponent implements OnInit {
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {
               this.alertService.setMessage("An server error occurs...", "error");
-              this.userService.setUserSignUpStatus(false);
+              this.authService.setLoginStatus(false);
               this.openSnackBar();
               return;
             }
