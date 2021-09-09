@@ -1,10 +1,12 @@
 @import "../../../../sass/colors";
 @import "../../../../sass/font-size";
+@import "../../../../sass/variables";
 
 #header {
   background-color: #373B53;
   width: 100%;
   height: clamp(6rem, 19.185vw, 6.25rem);
+  display: flex;
 
   .logo {
     position: relative;
@@ -15,6 +17,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 0px 20px 20px 0px;
+    margin-right: 14.833333rem; // 178px
 
     img {
       z-index: 5;
@@ -45,6 +48,23 @@
       border-radius: 20px 0px 20px 0px;
     }
   }
+
+  .switch-theme {
+    width: 1.666666rem;
+    margin-right: 2rem;
+    align-self: center;
+  }
+
+  .user-profile-image {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #494E6E;
+    img {
+      width: 2.666666rem;
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -52,13 +72,31 @@
     background-color: #373B53;
     width: 100%;
     height: clamp(6rem, 19.185vw, 8.333rem);
-  
+
     .logo {
       position: relative;
       width: clamp(6rem, 19.185vw, 8.333rem);
-  
+      margin-right: 44.916666rem; // 539px
       img {
         width: 3.33rem;
+      }
+    }
+
+    .switch-theme {
+      width: 1.666666rem;
+      margin-right: 2.666666rem;
+      align-self: center;
+    }
+
+    .user-profile-image {
+      flex-grow: 1;
+      padding: 2rem 2.666666rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid #494E6E;
+      img {
+        width: 2.666666rem;
       }
     }
   }
@@ -66,16 +104,42 @@
 
 @media screen and (min-width: 1440px) {
   #header {
+    justify-content: space-between;
+    position: absolute;
     background-color: #373B53;
-    width: 100%;
-    height: clamp(6rem, 19.185vw, 10rem);
-  
+    width: 8.583333rem;
+    height: 100vh;
+    flex-direction: column;
+    border-radius: 0px 20px 20px 0px;
     .logo {
       position: relative;
-      width: clamp(6rem, 19.185vw, 10rem);
-  
+      width: 100%;
+      height: 8.583333rem;
+      margin-right: 0;
+      margin-bottom: 46.333333rem;
       img {
         width: 5rem;
+      }
+    }
+
+    .switch-theme {
+      width: 1.666666rem;
+      margin-right: 0;
+      margin-bottom: 2.666666rem;
+      align-self: center;
+    }
+
+    .user-profile-image {
+      flex-grow: unset;
+      padding: 2rem 2.666666rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: unset;
+      border-top: 2px solid #494E6E;
+      height: 7.333333rem;
+      img {
+        width: 3.333333rem;
       }
     }
   }

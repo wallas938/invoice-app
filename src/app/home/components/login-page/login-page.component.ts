@@ -5,8 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StoreService } from 'src/app/core/services/store/store.service';
+import { UserGetDto } from 'src/app/models/user/userGetDto';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
+import { CacheService } from 'src/app/shared/services/cache/cache.service';
 import Utils from 'src/app/shared/utils';
 import { UserService } from '../../services/user.service';
 
@@ -34,17 +36,37 @@ export class LoginPageComponent implements OnInit {
     private authService: AuthService,
     private _snackBar: MatSnackBar,
     private alertService: AlertService,
+    private cacheService: CacheService,
     private router: Router,
     private userService: UserService) { }
 
   ngOnInit(): void {
+
+    if (this.cacheService.getToken()) {
+      this.authService.autoLogin()
+        .subscribe((data: any) => {
+          if (data.user) {
+            this.userService.setLoggedUser(data.user);
+            this.authService.setLoginStatus(true);
+            this.router.navigate(["/user-account"]);
+            return;
+          }
+          this.authService.setLoginStatus(false);
+          this.router.navigate(["/home"]);
+        },
+        ({ error }: HttpErrorResponse) => {
+          console.log("No user Token");
+        })
+
+    }
+
     this.store.userSignUpStatus$
       .subscribe((status: boolean) => {
         if (status) {
           this.openSnackBar();
           this.userService.setUserSignUpStatus(false);
         }
-      })
+      });
   }
 
   openSnackBar() {

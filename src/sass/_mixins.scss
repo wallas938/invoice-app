@@ -1,3 +1,18 @@
+// Responsive
+
+@mixin breakpoint-up($size) {
+  @media screen and (max-width: $size) {
+      @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media screen and (min-width: $size) {
+      @content;
+  }
+}
+
+
 // Form Elements
 @mixin input-group-title {
   font-weight: 700;
@@ -27,7 +42,7 @@
 }
 // Form Elements
 
-// Button 
+// Button
 @mixin button-for-mobile {
   font-weight: 700;
   font-family: "Spartan", sans-serif;
@@ -36,4 +51,4 @@
   border: none;
   border-radius: 2rem;
 }
-// Button 
+// Button

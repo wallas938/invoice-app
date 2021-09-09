@@ -12,6 +12,6 @@ export class CacheService {
   }
 
   getToken() {
-    localStorage.getItem('token_id')
+    return localStorage.getItem('token_id');
   }
 }

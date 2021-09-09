@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StoreService } from 'src/app/core/services/store/store.service';
 import { UserCreateDto } from 'src/app/models/user/userCreateDto';
+import { UserGetDto } from 'src/app/models/user/userGetDto';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,8 @@ export class UserService {
     this.store.setUserSignUpStatus(status);
   }
 
+  setLoggedUser(loggedUser: UserGetDto) {
+    this.store.setLoggedUser(loggedUser);
+  }
 
 }
