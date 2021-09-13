@@ -9,7 +9,7 @@ import { UserGetDto } from 'src/app/models/user/userGetDto';
 })
 export class HeaderComponent implements OnInit {
 
-  profileImage: string = "assets/camera.svg"
+  profileImage: string = "assets/image-avatar.jpg"
   user!: UserGetDto;
   isConnected: boolean = false;
   constructor(private store: StoreService) { }
