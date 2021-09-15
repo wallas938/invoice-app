@@ -47,11 +47,11 @@ export class LoginPageComponent implements OnInit {
         .subscribe((data: any) => {
           if (data.user) {
             this.userService.setLoggedUser(data.user);
-            this.authService.setLoginStatus(true);
+            this.authService.setUserConnectionStatus(true);
             this.router.navigate(["/user-account"]);
             return;
           }
-          this.authService.setLoginStatus(false);
+          this.authService.setUserConnectionStatus(false);
           this.router.navigate(["/home"]);
         },
         ({ error }: HttpErrorResponse) => {
@@ -82,19 +82,19 @@ export class LoginPageComponent implements OnInit {
         .subscribe((data: any) => {
           console.log(data);
           this.userService.setLoggedUser(data.user);
-          this.authService.setLoginStatus(true);
+          this.authService.setUserConnectionStatus(true);
           this.authService.setToken(data.token);
           this.router.navigate(["/user-account"]);
         },
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {
               this.alertService.setMessage("An server error occurs...", "error");
-              this.authService.setLoginStatus(false);
+              this.authService.setUserConnectionStatus(false);
               this.openSnackBar();
               return;
             }
             this.alertService.setMessage(error.message, "error");
-            this.authService.setLoginStatus(false);
+            this.authService.setUserConnectionStatus(false);
             this.openSnackBar();
           })
     }

@@ -14,4 +14,8 @@ export class CacheService {
   getToken() {
     return localStorage.getItem('token_id');
   }
+
+  removeToken() {
+    localStorage.removeItem('token_id');
+  }
 }
