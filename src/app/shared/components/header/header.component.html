@@ -1,9 +1,10 @@
 <header id="header">
     <div class="logo">
-        <img src="assets/logo.svg" alt="" srcset="">
+        <img src="assets/logo.svg" alt="invoice app logo">
     </div>
-    <img *ngIf="isConnected" class="switch-theme" src="assets/icon-moon.svg" alt="">
+    <img *ngIf="isConnected" (click)="logout()"  src="assets/logout.png" alt="logout button" id="logout">
+    <img *ngIf="isConnected" class="switch-theme" src="assets/icon-moon.svg" alt="moon icon for switching to dark mode">
     <div *ngIf="isConnected" class="user-profile-image">
-      <img [src]="profileImage" alt="" srcset="">
+      <img [src]="profileImage" alt="user profile image" >
     </div>
 </header>

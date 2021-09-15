@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 0px 20px 20px 0px;
-    margin-right: 14.833333rem; // 178px
+    margin-right: 11.5rem; // 138 - 178px
 
     img {
       z-index: 5;
@@ -49,7 +49,9 @@
     }
   }
 
+  #logout,
   .switch-theme {
+    cursor: pointer;
     width: 1.666666rem;
     margin-right: 2rem;
     align-self: center;
@@ -80,16 +82,16 @@
 
     .logo {
       width: clamp(6rem, 19.185vw, 8.333rem);
-      margin-right: 44.916666rem; // 539px
+      margin-right: 35rem; // 539px
 
       img {
         width: 3.33rem;
       }
     }
 
-    .switch-theme {
+    .switch-theme,
+    #logout {
       margin-right: 2.666666rem;
-      align-self: center;
     }
 
     .user-profile-image {
@@ -114,15 +116,15 @@
       width: 100%;
       height: 8.583333rem;
       margin-right: 0;
-      margin-bottom: 46.333333rem;
+      margin-bottom: 36.166666rem; // 556
 
       img {
         width: 5rem;
       }
     }
 
-    .switch-theme {
-      width: 1.666666rem;
+    .switch-theme,
+    #logout {
       margin-right: 0;
       margin-bottom: 2.666666rem;
       align-self: center;

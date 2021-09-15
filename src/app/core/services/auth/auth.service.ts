@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.get(`${this.authUrl}/${this.cacheService.getToken()}`, { responseType: 'json' })
   }
 
-  setLoginStatus(status: boolean) {
+  setUserConnectionStatus(status: boolean) {
     this.store.setLoginStatus(status);
     this.store.setUserConnectionStatus(status);
   }
