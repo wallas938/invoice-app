@@ -112,13 +112,13 @@
 @media screen and (min-width: 1440px) {
   #header {
     justify-content: space-between;
-    position: absolute;
+    position: fixed;
     background-color: #373B53;
     width: 8.583333rem;
     height: 100vh;
     flex-direction: column;
     border-radius: 0px 20px 20px 0px;
-
+    z-index: 5;
     .logo {
       position: relative;
       width: 100%;

@@ -34,7 +34,7 @@
       .fields__field {
         display: flex;
         flex-direction: column;
-        margin-bottom: 2rem;
+
         label {
           @include label-for-mobile;
         }
