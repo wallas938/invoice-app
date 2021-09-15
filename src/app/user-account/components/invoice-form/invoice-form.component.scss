@@ -1,0 +1,665 @@
+@import '../../../../sass/colors';
+@import '../../../../sass/font-size';
+@import '../../../../sass/variables';
+@import '../../../../sass/global';
+@import '../../../../sass/mixins';
+
+section#invoice-form {
+  padding: 2.666rem 1.83rem 14.916666rem 1.83rem;
+  background-color: #F2F2F2;
+  position: relative;
+
+  &>p {
+    margin-bottom: 2.75rem;
+    font-weight: 700;
+
+    &::before {
+      content: url("../../../../assets/icon-arrow-left.svg");
+      margin-right: 2rem;
+    }
+  }
+
+  &>p>a:hover {
+    color: $violet-2;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .input-group {
+    &__title {
+      @include input-group-title;
+    }
+
+    &__fields {
+
+      .fields__field {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          @include label-for-mobile;
+          margin-bottom: 1.333rem;
+        }
+
+        input {
+          @include input-for-mobile;
+          margin-bottom: 2rem;
+        }
+
+        .select-wrapper {
+          @include selectWrapper;
+
+          select {
+            @include selectInput;
+          }
+
+          select::-ms-expand {
+            display: none;
+          }
+        }
+
+        .date-wrapper {
+          position: relative;
+
+          @include dateWrapper;
+
+          input[type='date'] {
+            @include dateInput;
+          }
+
+          .date::-ms-expand {
+            display: none;
+          }
+        }
+
+        .date-wrapper::after {
+          position: absolute;
+          content: url("../../../../assets/icon-calendar.svg");
+          right: 1.45rem;
+        }
+
+        small {
+          margin-bottom: 1.5rem;
+          color: $red;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .from>.input-group__fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 2rem;
+    grid-template-areas:
+      "street   street"
+      "city     postCode"
+      "country  country";
+
+    .street-field {
+      grid-area: street;
+    }
+
+    .city-field {
+      grid-area: city;
+    }
+
+    .postCode-field {
+      grid-area: postCode;
+    }
+
+    .country-field {
+      grid-area: country;
+    }
+  }
+
+  .to>.input-group__fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: repeat(1fr, 8);
+    column-gap: 2rem;
+    grid-template-areas:
+      "name         name"
+      "email        email"
+      "street       street"
+      "city         postCode"
+      "country      country"
+      "date         date"
+      "terms         terms"
+      "description  description";
+
+    .client-name-field {
+      grid-area: name;
+    }
+
+    .client-email-field {
+      grid-area: email;
+    }
+
+    .client-str-field {
+      grid-area: street;
+    }
+
+    .client-city-field {
+      grid-area: city;
+    }
+
+    .client-pstC-field {
+      grid-area: postCode;
+    }
+
+    .client-ctry-field {
+      grid-area: country;
+    }
+
+    .date {
+      grid-area: date;
+      margin-bottom: 2rem;
+    }
+
+    .terms {
+      grid-area: terms;
+      margin-bottom: 2rem;
+    }
+
+    .description {
+      grid-area: description;
+      margin-bottom: 2rem; // si aucun formValidation n'est t'ajouter sinon a margin a retirer
+    }
+  }
+
+  .item-fields {
+
+    h2.item-fields__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #777F98;
+      margin-bottom: 2rem;
+    }
+
+    .rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row.item-name {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+
+      label {
+        @include label-for-mobile;
+        margin-bottom: 1.333333rem;
+      }
+
+      input {
+        @include input-for-mobile;
+        margin-bottom: unset;
+      }
+
+      small {
+        margin-bottom: unset;
+        color: $red;
+        font-weight: 700;
+      }
+    }
+
+    .row.item-data {
+      display: flex;
+      align-items: last baseline;
+      position: relative;
+
+      .row__field {
+        width: min-content;
+        margin-bottom: 4rem;
+      }
+
+      .row__field>label {
+        @include label-for-mobile;
+        margin-bottom: 1.333333rem;
+      }
+
+      .row__field>input {
+        @include input-for-mobile;
+        margin: 0.833333rem 1.333333rem 0 0;
+      }
+
+      .row__field>small {
+        color: $red;
+        font-weight: 700;
+      }
+
+      .row__field.quantity>input {
+        width: clamp(5.333333rem, 17.055vw, 10rem);
+      }
+
+      .row__field.price>input,
+      .row__field.total>input {
+        width: clamp(8.333333rem, 26.645vw, 15rem);
+      }
+
+      .row__field.total>input {
+        border: none;
+        background-color: transparent;
+        padding-left: unset;
+        color: $violet-gray;
+      }
+
+      .remove-icon {
+        position: absolute;
+        top: 37%;
+        right: 0;
+      }
+    }
+  }
+
+  .item-cta {
+    text-align: center;
+
+    .new-item-btn {
+      border: none;
+      color: $blue-violet;
+      font-size: 1rem;
+      background-color: transparent;
+    }
+  }
+
+  .form-cta {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.833333rem 2rem;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0px 0px 20px 0px;
+
+    button {
+      @include button-for-mobile;
+    }
+
+    .save {
+      background-color: $violet-1;
+      color: #fff;
+      margin-left: 0.66rem;
+    }
+
+    .draft {
+      background-color: #373B53;
+      color: $violet-gray;
+      margin-left: 0.66rem;
+    }
+
+    .discard {
+      color: $violet-1;
+      background-color: #F9FAFE;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-down) {
+  section#invoice-form {
+    padding: 4.666666rem 4.666666rem 11.666666rem 4.666666rem;
+    width: 51.333333rem;
+    border-radius: 0px 20px 20px 0px;
+
+    .input-group {
+
+      &__fields {
+
+        input {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .from>.input-group__fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: 1fr 1fr;
+      column-gap: 2rem;
+      grid-template-areas:
+        "street   street   street"
+        "city     postCode country";
+
+      .street-field {
+        grid-area: street;
+      }
+
+      .city-field {
+        grid-area: city;
+      }
+
+      .postCode-field {
+        grid-area: postCode;
+      }
+
+      .country-field {
+        grid-area: country;
+      }
+    }
+
+    .to>.input-group__fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      column-gap: 2rem;
+      grid-template-areas:
+        "name         name        name        name        name        name"
+        "email        email       email       email       email       email"
+        "street       street      street      street      street      street"
+        "city         city        postCode    postCode    country     country"
+        "date         date        date        terms        terms        terms"
+        "description  description description description description description";
+
+      .client-name-field {
+        grid-area: name;
+      }
+
+      .client-email-field {
+        grid-area: email;
+      }
+
+      .client-str-field {
+        grid-area: street;
+      }
+
+      .client-city-field {
+        grid-area: city;
+      }
+
+      .client-pstC-field {
+        grid-area: postCode;
+      }
+
+      .client-ctry-field {
+        grid-area: country;
+      }
+
+      .date {
+        grid-area: date;
+        margin-bottom: 2rem;
+      }
+
+      .terms {
+        grid-area: terms;
+        margin-bottom: 2rem;
+      }
+
+      .description {
+        grid-area: description;
+        margin-bottom: 2rem; // si aucun formValidation n'est t'ajouter sinon a margin a retirer
+      }
+    }
+
+    .item-fields {
+
+      .rows {
+        flex-direction: row;
+        margin-bottom: 2.916666rem;
+        position: relative;
+      }
+
+      .row.item-name {
+        flex-direction: column;
+        width: min-content;
+
+
+        input {
+          @include input-for-mobile;
+          margin-right: 1.333333rem;
+          width: clamp(17.833333rem, 27.866vw, 20rem);
+        }
+
+        small {
+          margin-bottom: unset;
+          color: $red;
+          font-weight: 700;
+        }
+      }
+
+      .row.item-data {
+        align-items: unset;
+        position: unset;
+
+        .row__field {
+          width: min-content;
+          margin-bottom: unset;
+        }
+
+        .row__field>input {
+          margin: 1.333rem 1.333333rem 0 0;
+        }
+
+        .row__field>small {
+          color: $red;
+          font-weight: 700;
+        }
+
+        .row__field.quantity>input {
+          width: 3.833333rem;
+        }
+
+        .row__field.price>input {
+          width: 8.333333rem;
+        }
+
+        .row__field.total>input {
+          width: 6.833333rem;
+        }
+
+        .remove-icon {
+          top: 45%;
+        }
+      }
+    }
+
+    .form-cta {
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 4.666666rem;
+      padding-right: 4.666666rem;
+
+      button {
+        @include button-for-tablet;
+      }
+
+      .save {
+        background-color: $violet-1;
+        color: #fff;
+        margin-left: 0.66rem;
+      }
+
+      .discard {
+        color: $violet-1;
+        background-color: #F9FAFE;
+        margin-right: 11.583333rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  section#invoice-form {
+    padding: 4.666666rem 4.666666rem 11.666666rem 4.666666rem;
+
+    .input-group {
+
+      &__fields {
+
+        input {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .from>.input-group__fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: 1fr 1fr;
+      column-gap: 2rem;
+      grid-template-areas:
+        "street   street   street"
+        "city     postCode country";
+
+      .street-field {
+        grid-area: street;
+      }
+
+      .city-field {
+        grid-area: city;
+      }
+
+      .postCode-field {
+        grid-area: postCode;
+      }
+
+      .country-field {
+        grid-area: country;
+      }
+    }
+
+    .to>.input-group__fields {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      column-gap: 2rem;
+      grid-template-areas:
+        "name         name        name        name        name        name"
+        "email        email       email       email       email       email"
+        "street       street      street      street      street      street"
+        "city         city        postCode    postCode    country     country"
+        "date         date        date        terms        terms        terms"
+        "description  description description description description description";
+
+      .client-name-field {
+        grid-area: name;
+      }
+
+      .client-email-field {
+        grid-area: email;
+      }
+
+      .client-str-field {
+        grid-area: street;
+      }
+
+      .client-city-field {
+        grid-area: city;
+      }
+
+      .client-pstC-field {
+        grid-area: postCode;
+      }
+
+      .client-ctry-field {
+        grid-area: country;
+      }
+
+      .date {
+        grid-area: date;
+        margin-bottom: 2rem;
+      }
+
+      .terms {
+        grid-area: terms;
+        margin-bottom: 2rem;
+      }
+
+      .description {
+        grid-area: description;
+        margin-bottom: 2rem; // si aucun formValidation n'est t'ajouter sinon a margin a retirer
+      }
+    }
+
+    .item-fields {
+
+      .rows {
+        flex-direction: row;
+        margin-bottom: 2.916666rem;
+        position: relative;
+      }
+
+      .row.item-name {
+        flex-direction: column;
+        width: min-content;
+
+
+        input {
+          @include input-for-mobile;
+          margin-right: 1.333333rem;
+          width: clamp(17.833333rem, 27.866vw, 20rem);
+        }
+
+        small {
+          margin-bottom: unset;
+          color: $red;
+          font-weight: 700;
+        }
+      }
+
+      .row.item-data {
+        align-items: unset;
+        position: unset;
+
+        .row__field {
+          width: min-content;
+          margin-bottom: unset;
+        }
+
+        .row__field>input {
+          margin: 1.333rem 1.333333rem 0 0;
+        }
+
+        .row__field>small {
+          color: $red;
+          font-weight: 700;
+        }
+
+        .row__field.quantity>input {
+          width: 3.833333rem;
+        }
+
+        .row__field.price>input {
+          width: 8.333333rem;
+        }
+
+        .row__field.total>input {
+          width: 6.833333rem;
+        }
+
+        .remove-icon {
+          top: 45%;
+        }
+      }
+    }
+
+    .form-cta {
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 4.666666rem;
+      padding-right: 4.666666rem;
+
+      button {
+        @include button-for-tablet;
+      }
+
+      .save {
+        background-color: $violet-1;
+        color: #fff;
+        margin-left: 0.66rem;
+      }
+
+      .discard {
+        color: $violet-1;
+        background-color: #F9FAFE;
+        margin-right: 11.583333rem;
+      }
+    }
+  }
+}

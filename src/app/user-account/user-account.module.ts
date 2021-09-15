@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { UserAccountComponent } from './user-account.component';
 import { UserResolver } from './resolvers/user.resolver';
 
-
 @NgModule({
   declarations: [
     InvoiceListComponent,

@@ -1,0 +1,131 @@
+<section id="invoice-form">
+  <p>
+    <a>Go back</a> <!-- retirer a partir de 768px -->
+  </p>
+  <h1>New Invoice</h1>
+
+  <form>
+    <!-- From -->
+    <div class="input-group from">
+      <p class="input-group__title">Bill From</p>
+      <div class="input-group__fields">
+        <div class="fields__field street-field">
+          <label for="street">Street Address</label>
+          <input type="text" id="street">
+        </div>
+        <div class="fields__field city-field">
+          <label for="city">City</label>
+          <input type="text" id="city">
+        </div>
+        <div class="fields__field postCode-field">
+          <label for="postCode">Post Code</label>
+          <input type="text" id="postCode">
+        </div>
+        <div class="fields__field country-field">
+          <label for="country">Country</label>
+          <input type="text" id="country">
+        </div>
+      </div>
+    </div>
+
+    <!-- To -->
+    <div class="input-group to">
+      <p class="input-group__title">Bill To</p>
+      <div class="input-group__fields">
+        <div class="fields__field client-name-field">
+          <label for="clientName">Client's Name</label>
+          <input type="text" id="clientName">
+        </div>
+        <div class="fields__field client-email-field">
+          <label for="clientEmail">Client's Email</label>
+          <input type="text" id="clientEmail">
+        </div>
+        <div class="fields__field client-str-field">
+          <label for="clientStr">Street Address</label>
+          <input type="text" id="clientStr">
+        </div>
+        <div class="fields__field client-city-field">
+          <label for="clientCty">City</label>
+          <input type="text" id="clientCty">
+        </div>
+        <div class="fields__field client-pstC-field">
+          <label for="clientPstC">Post Code</label>
+          <input type="text" id="clientPstC">
+        </div>
+        <div class="fields__field client-ctry-field">
+          <label for="clientCtry">Country</label>
+          <input type="text" id="clientCtry">
+        </div>
+        <div class="fields__field client-name-field">
+          <label for="clientName">Client's Name</label>
+          <input type="text" id="clientName">
+        </div>
+        <div class="fields__field date">
+          <label for="paymentDate">Payment Date</label>
+          <div class="date-wrapper">
+            <input type="date" id="paymentDate">
+          </div>
+        </div>
+        <div class="fields__field terms">
+          <label for="terms">Payment Terms</label>
+          <div class="select-wrapper">
+            <select name="terms" [value]="1" id="">
+              <option value="1">Net 1 Day</option>
+              <option value="7">Net 7 Day</option>
+              <option value="14">Net 14 Day</option>
+              <option value="30">Net 30 Day</option>
+            </select>
+            <img src="assets/icon-arrow-down.svg" alt="" srcset="">
+          </div>
+        </div>
+        <div class="fields__field description">
+          <label for="description">Payment Description</label>
+          <input type="text" id="description">
+        </div>
+      </div>
+    </div>
+
+    <!-- Items -->
+    <div class="item-fields">
+      <h2 class="item-fields__title">Item List</h2>
+      <div class="rows">
+        <div class="row item-name">
+          <label for="itemName">Item Name</label>
+          <input type="text" id="itemName">
+        </div>
+        <div class="row item-data">
+          <div class="row__field quantity">
+            <label for="quantity">Qty.</label>
+            <input type="text" id="quantity">
+
+          </div>
+          <div class="row__field price">
+            <label for="price">Price</label>
+            <input type="text" id="price">
+
+          </div>
+          <div class="row__field total">
+            <label for="total">Total</label>
+            <input type="text" id="total">
+          </div>
+          <img src="assets/icon-delete.svg" alt="trash" class="remove-icon">
+        </div>
+      </div>
+    </div>
+
+    <!-- New Item CTA -->
+
+    <div class="item-cta">
+      <button type="button" class="new-item-btn">
+        + Add New Item
+      </button>
+    </div>
+
+    <!-- FORM CTA -->
+    <div class="form-cta">
+      <button class="discard" type="button">Discard</button>
+      <button class="draft" type="button">Save as Draft</button>
+      <button class="save" type="button">Save & Send</button>
+    </div>
+  </form>
+</section>

@@ -7,11 +7,24 @@
   flex-direction: column;
   height: 100%;
 
+
   .main-container {
     flex: 1;
     padding-top: 2.666666rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    position: relative;
+
+    aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      overflow-y: scroll;
+      width: 100%;
+      z-index: 2;
+      background-color: rgba($color: (#000), $alpha: 0.5);
+    }
   }
 }
 
@@ -32,6 +45,10 @@
       padding-top: 6rem;
       padding-left: 29.583333rem;
       padding-right: 29.583333rem;
+
+      aside {
+        left: 8.583333rem;
+      }
     }
   }
 }
