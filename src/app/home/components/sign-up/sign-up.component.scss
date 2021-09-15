@@ -37,11 +37,12 @@
 
         label {
           @include label-for-mobile;
+          margin-bottom: 1.333333rem;
         }
 
         input {
           @include input-for-mobile;
-          margin-bottom: 0.5rem;
+          margin-bottom: 2rem;
         }
 
         small {
