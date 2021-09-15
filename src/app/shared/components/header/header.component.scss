@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #494E6E;
+    border-left: 2px solid #494E6E;
 
     img {
       width: 2.666666rem;
@@ -79,7 +79,6 @@
     height: clamp(6rem, 19.185vw, 8.333rem);
 
     .logo {
-      position: relative;
       width: clamp(6rem, 19.185vw, 8.333rem);
       margin-right: 44.916666rem; // 539px
 
@@ -89,22 +88,12 @@
     }
 
     .switch-theme {
-      width: 1.666666rem;
       margin-right: 2.666666rem;
       align-self: center;
     }
 
     .user-profile-image {
-      flex-grow: 1;
       padding: 2rem 2.666666rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-left: 1px solid #494E6E;
-
-      img {
-        width: 2.666666rem;
-      }
     }
   }
 }
@@ -119,6 +108,7 @@
     flex-direction: column;
     border-radius: 0px 20px 20px 0px;
     z-index: 5;
+
     .logo {
       position: relative;
       width: 100%;
@@ -145,7 +135,6 @@
       align-items: center;
       justify-content: center;
       border-left: unset;
-      border-top: 2px solid #494E6E;
       height: 7.333333rem;
 
       img {

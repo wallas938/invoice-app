@@ -1,11 +1,11 @@
 <div id="invoice-app">
-  <div class="header">
+  <div *ngIf="isConnected" class="header">
     <app-header></app-header>
   </div>
   <div class="main-container">
-    <aside>
+    <aside *ngIf="isConnected">
       <app-invoice-form></app-invoice-form>
     </aside>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet> <!-- login, ect -->
   </div>
 </div>
