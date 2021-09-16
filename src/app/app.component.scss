@@ -41,13 +41,15 @@
 
 @media screen and (min-width: $desktop) {
   #invoice-app {
+    flex-direction: row;
+
     .main-container {
       padding-top: 6rem;
       padding-left: 29.583333rem;
       padding-right: 29.583333rem;
 
       aside {
-        left: 8.583333rem;
+        padding-left: 8.583333rem;
       }
     }
   }

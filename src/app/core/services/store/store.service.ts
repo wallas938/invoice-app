@@ -24,6 +24,10 @@ export class StoreService {
   private isConnected = new BehaviorSubject<boolean>(false);
   public readonly isConnected$ = this.isConnected.asObservable();
 
+  //** Invoice properties */
+  private isInvoiceFormIsDisplayed = new BehaviorSubject<boolean>(false);
+  public readonly isInvoiceFormIsDisplayed$ = this.isInvoiceFormIsDisplayed.asObservable();
+
   constructor() { }
 
   //// USER METHODS////
@@ -42,10 +46,6 @@ export class StoreService {
   setLoggedUser(loggedUser: UserGetDto) {
     this.loggedUser.next(loggedUser)
   }
-/*
-  getLoggedUser(): UserGetDto | null {
-    return this.loggedUser;
-  } */
 
   setUserId(id: string) {
     this.userId = id;
@@ -55,6 +55,14 @@ export class StoreService {
     return this.userId;
   }
   //// END USER METHODS ////
+
+  //// INVOICE METHODS ////
+
+  setInvoiceFormDisplayStatus(status: boolean) {
+    this.isInvoiceFormIsDisplayed.next(status);
+  }
+
+  //// END INVOICE METHODS ////
 
   //// TOKEN METHODS ////
 
