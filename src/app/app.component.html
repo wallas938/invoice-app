@@ -3,7 +3,7 @@
     <app-header></app-header>
   </div>
   <div class="main-container">
-    <aside *ngIf="isConnected">
+    <aside (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus">
       <app-invoice-form></app-invoice-form>
     </aside>
     <router-outlet></router-outlet> <!-- login, ect -->

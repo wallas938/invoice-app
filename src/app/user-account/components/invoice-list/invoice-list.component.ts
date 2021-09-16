@@ -4,6 +4,7 @@ import { StoreService } from 'src/app/core/services/store/store.service';
 import { UserService } from 'src/app/home/services/user.service';
 import { ProfileImage } from 'src/app/models/picture/pictureDto';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
+import { InvoiceFormService } from '../../services/invoice-form.service';
 
 @Component({
   selector: 'app-invoice-list',
@@ -16,18 +17,21 @@ export class InvoiceListComponent implements OnInit {
   imageSrc: string = 'assets/camera.svg';
 
   constructor(private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private store: StoreService) { }
+              private invoiceFormService: InvoiceFormService,
+              private storeService: StoreService) { }
 
   ngOnInit(): void {
-    this.store.loggedUser$
+    this.storeService.loggedUser$
       .subscribe((user: UserGetDto | null) => {
         this.user = user!;
         if (this.user?.profileImage) {
           this.imageSrc = this.getProfileImage();
         }
       })
+  }
+
+  openInvoiceForm() {
+    this.invoiceFormService.setInvoiceFormDisplayStatus(true);
   }
 
   getProfileImage(): string {
