@@ -30,9 +30,7 @@ export class AppComponent {
   ngOnInit() {
     this.storeService.isConnected$
       .subscribe((isConnected) => {
-        if (isConnected) {
           this.isConnected = isConnected;
-        }
       })
 
     this.storeService.isInvoiceFormIsDisplayed$

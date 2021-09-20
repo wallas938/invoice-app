@@ -26,14 +26,15 @@ export class HeaderComponent implements OnInit {
         this.user = user!;
         if (this.user?.profileImage) {
           this.profileImage = `http://localhost:3200/images/${this.user.profileImage.filename}`;
+          return;
         }
+
+        this.profileImage = "assets/image-avatar.jpg";
       });
 
       this.store.isConnected$
           .subscribe((isConnected: boolean) => {
-            if (isConnected) {
               this.isConnected = isConnected;
-            }
           })
   }
 
