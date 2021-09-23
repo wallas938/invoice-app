@@ -12,7 +12,7 @@ export class UserService {
   private userUrl = "http://localhost:3200/users"
 
   constructor(private http: HttpClient,
-              private store: StoreService) { }
+              private storeService: StoreService) { }
 
   saveUser(user: UserCreateDto) {
     const formData = this.initFormData(user);
@@ -33,11 +33,11 @@ export class UserService {
   }
 
   setUserSignUpStatus(status: boolean) {
-    this.store.setUserSignUpStatus(status);
+    this.storeService.setUserSignUpStatus(status);
   }
 
   setLoggedUser(loggedUser: UserGetDto) {
-    this.store.setLoggedUser(loggedUser);
+    this.storeService.setLoggedUser(loggedUser);
   }
 
 }
