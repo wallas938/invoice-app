@@ -125,7 +125,7 @@ export class InvoiceFormComponent implements OnInit {
       .subscribe((displayStatus) => {
         this.displayStatus = displayStatus ? 'open' : 'close';
       });
-  }
+  };
 
   submit() {
     if (this.invoiceForm.invalid) {
@@ -171,7 +171,7 @@ export class InvoiceFormComponent implements OnInit {
       this.alertService.setMessage('One or many of the entered inputs is wrong!', 'error');
       this.openSnackBar();
     }
-  }
+  };
 
   onAddList() {
     if (this.getFormsItems().invalid) {
@@ -186,16 +186,20 @@ export class InvoiceFormComponent implements OnInit {
     }));
 
     this.errors = this.errors.filter((message) => message !== this.itemsErrorMessage);
-  }
+  };
 
   getFormsItems() {
     return (<FormArray>this.invoiceForm.get('items'));
-  }
+  };
 
   closeInvoiceForm() {
     this.invoiceFormService.setInvoiceFormDisplayStatus(false);
     this.invoiceForm.reset();
-  }
+  };
+
+  deleteItem(itemIndex: number) {
+    this.getFormsItems().removeAt(itemIndex);
+  };
 
   verifyInput(inputs: any) {
     this.hasError = false;
@@ -219,12 +223,11 @@ export class InvoiceFormComponent implements OnInit {
         }
       }
     }
-  }
+  };
 
   openSnackBar() {
     this._snackBar.openFromComponent(SnackBarComponent, {
       duration: 2000
     });
-  }
-
+  };
 }
