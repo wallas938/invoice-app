@@ -75,9 +75,6 @@
 }
 
 @mixin selectWrapper {
-  /* width: 100%;
-  min-width: 15ch;
-  max-width: 30ch; */
   position: relative;
   border: 1px solid $blue-gray-light;
   border-radius: 4px;
@@ -95,9 +92,7 @@
 @mixin dateInput {
   padding: 1.666666rem;
   font-weight: 700;
-  // A reset of styles, including removing the default dropdown arrow
   appearance: none;
-  // Additional resets for further consistency
   border: none;
   padding: 0 1em 0 0;
   margin: 0;
@@ -111,9 +106,6 @@
 }
 
 @mixin dateWrapper {
-  /* width: 100%;
-  min-width: 15ch;
-  max-width: 30ch; */
   position: relative;
   border: 1px solid $blue-gray-light;
   border-radius: 4px;

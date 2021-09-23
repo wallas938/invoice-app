@@ -5,15 +5,20 @@
 @import '../../../../sass/mixins';
 
 section#invoice-form {
-  padding: 2.666rem 1.83rem 14.916666rem 1.83rem;
+  padding-top: 2.666rem;
   background-color: #F2F2F2;
-  position: relative;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+  left: 0;
+  top: 0;
   /* transform: translateX(0px);
   transition: transform ease-in 350; */
 
   &>p {
     margin-bottom: 2.75rem;
     font-weight: 700;
+    padding: 0 1.83rem;
 
     &::before {
       content: url("../../../../assets/icon-arrow-left.svg");
@@ -28,9 +33,21 @@ section#invoice-form {
   h1 {
     font-size: 2rem;
     margin-bottom: 2.75rem;
+    padding: 0 1.83rem;
+  }
+
+  small {
+    color: $red;
+    font-weight: 700;
+  }
+
+  .errors-container>small {
+    display: block;
   }
 
   .input-group {
+    padding: 0 1.83rem;
+
     &__title {
       @include input-group-title;
     }
@@ -40,6 +57,7 @@ section#invoice-form {
       .fields__field {
         display: flex;
         flex-direction: column;
+        position: relative;
 
         label {
           @include label-for-mobile;
@@ -61,6 +79,16 @@ section#invoice-form {
           select::-ms-expand {
             display: none;
           }
+
+          option:hover,
+          option:focus,
+          option:checked {
+            color: $violet-1 !important;
+          }
+        }
+
+        .select-wrapper:hover {
+          border: 1px solid $violet-1;
         }
 
         .date-wrapper {
@@ -85,8 +113,9 @@ section#invoice-form {
 
         small {
           margin-bottom: 1.5rem;
-          color: $red;
-          font-weight: 700;
+          position: absolute;
+          top: 0;
+          right: 0;
         }
       }
     }
@@ -175,6 +204,7 @@ section#invoice-form {
   }
 
   .item-fields {
+    padding: 0 1.83rem;
 
     h2.item-fields__title {
       font-size: 1.5rem;
@@ -249,6 +279,7 @@ section#invoice-form {
         background-color: transparent;
         padding-left: unset;
         color: $violet-gray;
+        pointer-events: none;
       }
 
       .remove-icon {
@@ -261,6 +292,11 @@ section#invoice-form {
 
   .item-cta {
     text-align: center;
+    padding: 1.333333rem 0;
+    margin: 0 2rem 7.333333rem 2rem;
+    border: 1px solid transparent;
+    border-radius: 2rem;
+    font-weight: 700;
 
     .new-item-btn {
       border: none;
@@ -270,15 +306,20 @@ section#invoice-form {
     }
   }
 
+  .item-cta:hover {
+    background-color: $blue-gray-light;
+  }
+
+  .errors-container {
+    margin-bottom: 2.916666rem;
+    padding: 0 2rem;
+  }
+
   .form-cta {
     display: flex;
     justify-content: flex-end;
     padding: 1.833333rem 2rem;
     background-color: #fff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     border-radius: 0px 0px 20px 0px;
 
     button {
@@ -306,15 +347,23 @@ section#invoice-form {
 
 @media screen and (min-width: $tablet-down) {
   section#invoice-form {
-    padding: 4.666666rem 4.666666rem 11.666666rem 4.666666rem;
+    padding-top: 4.666666rem;
     width: 51.333333rem;
+    height: 100vh;
+    overflow-y: scroll;
     border-radius: 0px 20px 20px 0px;
 
     &>p {
       display: none;
     }
 
+    h1 {
+      padding: 0 4.666666rem;
+      margin-bottom: 4rem;
+    }
+
     .input-group {
+      padding: 0 4.666666rem;
 
       &__fields {
 
@@ -404,6 +453,7 @@ section#invoice-form {
     }
 
     .item-fields {
+      padding: 0 4.666666rem;
 
       .rows {
         flex-direction: row;
@@ -465,6 +515,14 @@ section#invoice-form {
       }
     }
 
+    .item-cta {
+      margin: 0 4.666666rem 3.916666rem 4.666666rem;
+    }
+
+    .errors-container {
+      padding: 0 4.666666rem;
+    }
+
     .form-cta {
       display: flex;
       justify-content: flex-start;
@@ -492,9 +550,11 @@ section#invoice-form {
 
 @media screen and (min-width: $desktop) {
   section#invoice-form {
-    padding: 4.666666rem 4.666666rem 11.666666rem 4.666666rem;
+    padding-top: 4.666666rem;
+    left: 8.583333rem;
 
     .input-group {
+      padding: 0 4.666666rem;
 
       &__fields {
 
@@ -584,6 +644,7 @@ section#invoice-form {
     }
 
     .item-fields {
+      padding: 0 4.666666rem;
 
       .rows {
         flex-direction: row;

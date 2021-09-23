@@ -1,29 +1,44 @@
+<!-- <section click-stop-propagation [@formState]="displayStatus" id="invoice-form"> -->
 <section [@formState]="displayStatus" id="invoice-form">
   <p (click)="closeInvoiceForm()">
     <a>Go back</a> <!-- retirer a partir de 768px -->
   </p>
   <h1>New Invoice</h1>
 
-  <form>
+  <form [formGroup]="invoiceForm" (ngSubmit)="submit()">
     <!-- From -->
     <div class="input-group from">
       <p class="input-group__title">Bill From</p>
       <div class="input-group__fields">
         <div class="fields__field street-field">
           <label for="street">Street Address</label>
-          <input type="text" id="street">
+          <input type="text" id="street" formControlName="fromStreet" [ngStyle]="{
+              'border-color': (invoiceForm.get('fromStreet')!.invalid &&
+              invoiceForm.get('fromStreet')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          <small *ngIf=" invoiceForm.get('fromStreet')!.invalid &&
+                    invoiceForm.get('fromStreet')!.touched">can't be empty</small>
         </div>
         <div class="fields__field city-field">
           <label for="city">City</label>
-          <input type="text" id="city">
+          <input type="text" id="city" formControlName="fromCity" [ngStyle]="{
+              'border-color': (invoiceForm.get('fromCity')!.invalid &&
+              invoiceForm.get('fromCity')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
         <div class="fields__field postCode-field">
           <label for="postCode">Post Code</label>
-          <input type="text" id="postCode">
+          <input type="text" id="postCode" formControlName="fromPostCode" [ngStyle]="{
+              'border-color': (invoiceForm.get('fromPostCode')!.invalid &&
+              invoiceForm.get('fromPostCode')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
         <div class="fields__field country-field">
           <label for="country">Country</label>
-          <input type="text" id="country">
+          <input type="text" id="country" formControlName="fromCountry" [ngStyle]="{
+              'border-color': (invoiceForm.get('fromCountry')!.invalid &&
+              invoiceForm.get('fromCountry')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
       </div>
     </div>
@@ -34,98 +49,141 @@
       <div class="input-group__fields">
         <div class="fields__field client-name-field">
           <label for="clientName">Client's Name</label>
-          <input type="text" id="clientName">
+          <input type="text" id="clientName" formControlName=clientName [ngStyle]="{
+              'border-color': (invoiceForm.get('clientName')!.invalid &&
+              invoiceForm.get('clientName')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          <small *ngIf=" invoiceForm.get('clientName')!.invalid &&
+                    invoiceForm.get('clientName')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-email-field">
           <label for="clientEmail">Client's Email</label>
-          <input type="text" id="clientEmail">
+          <input type="text" id="clientEmail" formControlName=email [ngStyle]="{
+              'border-color': (invoiceForm.get('email')!.invalid &&
+              invoiceForm.get('email')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          <small *ngIf=" invoiceForm.get('email')!.invalid &&
+                    invoiceForm.get('email')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-str-field">
           <label for="clientStr">Street Address</label>
-          <input type="text" id="clientStr">
+          <input type="text" id="clientStr" formControlName="toStreet" [ngStyle]="{
+              'border-color': (invoiceForm.get('toStreet')!.invalid &&
+              invoiceForm.get('toStreet')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          <small *ngIf=" invoiceForm.get('toStreet')!.invalid &&
+                    invoiceForm.get('toStreet')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-city-field">
           <label for="clientCty">City</label>
-          <input type="text" id="clientCty">
+          <input type="text" id="clientCty" formControlName="toCity" [ngStyle]="{
+              'border-color': (invoiceForm.get('toCity')!.invalid &&
+              invoiceForm.get('toCity')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
         <div class="fields__field client-pstC-field">
           <label for="clientPstC">Post Code</label>
-          <input type="text" id="clientPstC">
+          <input type="text" id="clientPstC" formControlName="toPostCode" [ngStyle]="{
+              'border-color': (invoiceForm.get('toPostCode')!.invalid &&
+              invoiceForm.get('toPostCode')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
         <div class="fields__field client-ctry-field">
           <label for="clientCtry">Country</label>
-          <input type="text" id="clientCtry">
-        </div>
-        <div class="fields__field client-name-field">
-          <label for="clientName">Client's Name</label>
-          <input type="text" id="clientName">
+          <input type="text" id="clientCtry" formControlName="toCountry" [ngStyle]="{
+              'border-color': (invoiceForm.get('toCountry')!.invalid &&
+              invoiceForm.get('toCountry')!.touched) ? 'red' : '#DFE3FA'
+            }">
         </div>
         <div class="fields__field date">
-          <label for="paymentDate">Payment Date</label>
-          <div class="date-wrapper">
-            <input type="date" id="paymentDate">
+          <label for="invoiceDate">Invoice Date</label>
+          <div class="date-wrapper" [ngStyle]="{
+            'border-color': (invoiceForm.get('invoiceDate')!.invalid &&
+            invoiceForm.get('invoiceDate')!.touched) ? 'red' : '#DFE3FA'
+          }">
+            <input type="date" id="invoiceDate" formControlName="invoiceDate">
           </div>
         </div>
         <div class="fields__field terms">
           <label for="terms">Payment Terms</label>
           <div class="select-wrapper">
-            <select name="terms" [value]="1" id="">
+            <select name="terms" [value]="1" id="terms" formControlName="term">
               <option value="1">Net 1 Day</option>
               <option value="7">Net 7 Day</option>
               <option value="14">Net 14 Day</option>
               <option value="30">Net 30 Day</option>
             </select>
-            <img src="assets/icon-arrow-down.svg" alt="" srcset="">
+            <img src="assets/icon-arrow-down.svg" alt="an arrow pointing down">
           </div>
         </div>
         <div class="fields__field description">
-          <label for="description">Payment Description</label>
-          <input type="text" id="description">
+          <label for="description">Project Description</label>
+          <input type="text" id="desc" formControlName="desc" [ngStyle]="{
+              'border-color': (invoiceForm.get('desc')!.invalid &&
+              invoiceForm.get('desc')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          <small *ngIf=" invoiceForm.get('desc')!.invalid &&
+                    invoiceForm.get('desc')!.touched">can't be empty</small>
         </div>
       </div>
     </div>
 
     <!-- Items -->
-    <div class="item-fields">
+    <div class="item-fields" formArrayName="items">
       <h2 class="item-fields__title">Item List</h2>
-      <div class="rows">
-        <div class="row item-name">
-          <label for="itemName">Item Name</label>
-          <input type="text" id="itemName">
-        </div>
-        <div class="row item-data">
-          <div class="row__field quantity">
-            <label for="quantity">Qty.</label>
-            <input type="text" id="quantity">
+      <div *ngFor="let item of getFormsItems().controls; let i = index">
+        <div class="rows" [formGroupName]="i">
+          <div class="row item-name">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" formControlName="itemName" [ngStyle]="{
+              'border-color': (getFormsItems().controls[i].get('itemName')!.invalid &&
+              getFormsItems().controls[i].get('itemName')!.touched) ? 'red' : '#DFE3FA'
+            }">
+          </div>
+          <div class="row item-data">
+            <div class="row__field quantity">
+              <label for="quantity">Qty.</label>
+              <input type="text" id="quantity" formControlName="quantity" [ngStyle]="{
+                  'border-color': (getFormsItems().controls[i].get('quantity')!.invalid &&
+                  getFormsItems().controls[i].get('quantity')!.touched) ? 'red' : '#DFE3FA'
+                }">
 
+            </div>
+            <div class="row__field price">
+              <label for="price">Price</label>
+              <input type="text" id="price" formControlName="price" [ngStyle]="{
+                  'border-color': (getFormsItems().controls[i].get('price')!.invalid &&
+                                    getFormsItems().controls[i].get('price')!.touched) ? 'red' : '#DFE3FA'
+                }">
+            </div>
+            <div class="row__field total">
+              <label for="total">Total</label>
+              <input type="text" id="total" formControlName="total">
+            </div>
+            <img src="assets/icon-delete.svg" alt="trash" class="remove-icon">
           </div>
-          <div class="row__field price">
-            <label for="price">Price</label>
-            <input type="text" id="price">
-
-          </div>
-          <div class="row__field total">
-            <label for="total">Total</label>
-            <input type="text" id="total">
-          </div>
-          <img src="assets/icon-delete.svg" alt="trash" class="remove-icon">
         </div>
       </div>
+
     </div>
 
     <!-- New Item CTA -->
 
     <div class="item-cta">
-      <button type="button" class="new-item-btn">
+      <button (click)="onAddList()" type="button" class="new-item-btn">
         + Add New Item
       </button>
+    </div>
+
+    <div class="errors-container">
+      <small *ngFor="let error of errors">{{error}}</small>
     </div>
 
     <!-- FORM CTA -->
     <div class="form-cta">
       <button class="discard" (click)="closeInvoiceForm()" type="button">Discard</button>
       <button class="draft" type="button">Save as Draft</button>
-      <button class="save" type="button">Save & Send</button>
+      <button class="save" type="submit">Save & Send</button>
     </div>
   </form>
 </section>

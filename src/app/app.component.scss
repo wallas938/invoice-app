@@ -15,13 +15,14 @@
     padding-right: 2rem;
     position: relative;
 
-    aside {
+    div.formBackdrop {
       position: absolute;
       left: 0;
       top: 0;
+      right: 0;
       bottom: 0;
-      overflow-y: scroll;
       width: 100%;
+      height: 100vh;
       z-index: 2;
       background-color: rgba($color: (#000), $alpha: 0.5);
     }
@@ -48,7 +49,7 @@
       padding-left: 29.583333rem;
       padding-right: 29.583333rem;
 
-      aside {
+      div.formBackdrop {
         padding-left: 8.583333rem;
       }
     }

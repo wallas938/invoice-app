@@ -13,8 +13,7 @@ import { InvoiceFormService } from './user-account/services/invoice-form.service
         pointerEvents: 'none'
       })),
       state('show', style({
-        opacity: 1,
-        pointerEvents: 'all'
+        opacity: 1
       })),
       transition('show <=> hide', animate(350)),
     ])
@@ -41,6 +40,7 @@ export class AppComponent {
 
   closeInvoiceForm() {
     this.invoiceFormService.setInvoiceFormDisplayStatus(false);
+    console.log("aside");
   }
 
 }

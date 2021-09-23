@@ -3,9 +3,10 @@
     <app-header></app-header>
   </div>
   <div class="main-container">
-    <aside (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus">
-      <app-invoice-form></app-invoice-form>
-    </aside>
+    <!-- <aside (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus"> -->
+    <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus">
+    </div>
+    <app-invoice-form></app-invoice-form>
     <router-outlet></router-outlet> <!-- login, ect -->
   </div>
 </div>
