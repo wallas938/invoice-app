@@ -4,11 +4,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StoreService } from 'src/app/core/services/store/store.service';
-import { InvoiceCreateDto } from 'src/app/models/invoice/invoiceCreateDto';
+import { InvoiceCreateDto, Item } from 'src/app/models/invoice';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import Utils from 'src/app/shared/utils';
-import { InvoiceFormService } from '../../services/invoice-form.service';
+import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -100,7 +100,7 @@ export class InvoiceFormComponent implements OnInit {
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private alertService: AlertService,
-    private invoiceFormService: InvoiceFormService) { }
+    private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
     this.getFormsItems()?.valueChanges
@@ -146,31 +146,35 @@ export class InvoiceFormComponent implements OnInit {
       invoiceDate: this.invoiceForm.get('invoiceDate')?.value.trim(),
       term: this.invoiceForm.get('term')?.value.trim(),
       desc: this.invoiceForm.get('desc')?.value.trim(),
-      items: this.invoiceForm.get('items')?.value
+      items: this.invoiceForm.get('items')?.value,
+      totalAmount: this.computeTotalAmount(),
     };
 
     this.verifyInput(newInvoice);
 
     if (!this.hasError) {
-      this.invoiceFormService.saveInvoice(newInvoice)
+      this.invoiceService.saveInvoice(newInvoice)
         .subscribe((result: any) => {
           this.alertService.setMessage(result.message, "success");
+          this.invoiceService.setNewInvoiceCreatedStatus(true);
           this.closeInvoiceForm();
           this.openSnackBar();
         },
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {
               this.alertService.setMessage("An server error occurs...", "error");
+              this.invoiceService.setNewInvoiceCreatedStatus(false);
               this.openSnackBar();
               return;
             }
             this.alertService.setMessage(error.message, "error");
+            this.invoiceService.setNewInvoiceCreatedStatus(false);
             this.openSnackBar();
           });
     } else {
       this.alertService.setMessage('One or many of the entered inputs is wrong!', 'error');
       this.openSnackBar();
-    }
+    };
   };
 
   onAddList() {
@@ -193,7 +197,7 @@ export class InvoiceFormComponent implements OnInit {
   };
 
   closeInvoiceForm() {
-    this.invoiceFormService.setInvoiceFormDisplayStatus(false);
+    this.invoiceService.setInvoiceFormDisplayStatus(false);
     this.invoiceForm.reset();
   };
 
@@ -203,10 +207,9 @@ export class InvoiceFormComponent implements OnInit {
 
   verifyInput(inputs: any) {
     this.hasError = false;
+    const specialFields = ['totalAmount', 'items', 'invoiceDate', 'term'];
     for (const input in inputs) {
-      if (input as any !== 'items' &&
-        input as any !== 'invoiceDate' &&
-        input as any !== 'term') {
+      if (!specialFields.includes(input)) {
         if (inputs[input].trim() === "") {
           this.hasError = true;
         }
@@ -224,6 +227,15 @@ export class InvoiceFormComponent implements OnInit {
       }
     }
   };
+
+  computeTotalAmount(): number {
+    let totalAmount = 0;
+    (this.getFormsItems().value as Array<any>)
+      .forEach((item: Item) => {
+        totalAmount += item.quantity * item.price
+      });
+    return totalAmount;
+  }
 
   openSnackBar() {
     this._snackBar.openFromComponent(SnackBarComponent, {

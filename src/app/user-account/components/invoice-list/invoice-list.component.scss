@@ -7,8 +7,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: $light-bg;
 
-  > div:first-child {
+  >div:first-child {
     margin-right: 6.30rem; //
 
     h1 {
@@ -27,12 +28,12 @@ header {
     display: flex;
     align-items: center;
 
-    > div {
+    >div {
       display: flex;
       margin-right: 1rem;
     }
 
-    > div > span {
+    >div>span {
       font-weight: 700;
     }
 
@@ -52,6 +53,7 @@ header {
     align-items: center;
     padding: 0.5rem 1.166666rem 0.5rem 0.5rem;
     cursor: pointer;
+
     .switch__icon-plus {
       width: 2.666666rem; // 32px
       height: 2.666666rem;
@@ -62,15 +64,21 @@ header {
       background-color: #FFF;
     }
 
-    .switch__text > span:first-child {
+    .switch__text>span:first-child {
       color: #FFF;
       font-weight: 700;
     }
 
-    .switch__text > .show-flex {
+    .switch__text>.show-flex {
       display: none;
     }
   }
+}
+
+.invoices {
+  padding-top: 2.75rem; // 33px
+  background-color: $light-bg;
+
 }
 
 .no-invoice {
@@ -97,14 +105,16 @@ header {
   }
 }
 
-@media screen and (min-width: $tablet-down) {
+@media screen and (min-width: $tablet-min) {
   header {
 
     div:first-child {
       margin-right: 16rem; //
+
       h1 {
         font-size: 2.666666rem; // 20px
       }
+
       .invoice__count {
         color: $violet-gray;
       }
@@ -115,16 +125,16 @@ header {
       display: flex;
       align-items: center;
 
-      > div {
+      >div {
         display: flex;
         margin-right: 1.333333rem;
       }
 
-      > div > span {
+      >div>span {
         font-weight: 700;
       }
 
-      > div > span:first-child::after {
+      >div>span:first-child::after {
         content: "-";
         visibility: hidden;
       }
@@ -155,16 +165,21 @@ header {
         background-color: #FFF;
       }
 
-      .switch__text > span:first-child,
-      .switch__text > .show-flex {
+      .switch__text>span:first-child,
+      .switch__text>.show-flex {
         color: #FFF;
         font-weight: 700;
       }
 
-      .switch__text > .show-flex {
+      .switch__text>.show-flex {
         display: unset;
       }
     }
+  }
+
+  .invoices {
+    padding-top: 4.666666rem; // 56px
+
   }
 
   .no-invoice {
@@ -193,14 +208,16 @@ header {
 
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: $desktop-min) {
   header {
 
     div:first-child {
       margin-right: 22rem; //
+
       h1 {
         font-size: 2.666666rem; // 20px
       }
+
       .invoice__count {
         color: $violet-gray;
       }
@@ -211,16 +228,16 @@ header {
       display: flex;
       align-items: center;
 
-      > div {
+      >div {
         display: flex;
         margin-right: 1.333333rem;
       }
 
-      > div > span {
+      >div>span {
         font-weight: 700;
       }
 
-      > div > span:first-child::after {
+      >div>span:first-child::after {
         content: "-";
         visibility: hidden;
       }
@@ -251,16 +268,21 @@ header {
         background-color: #FFF;
       }
 
-      .switch__text > span:first-child,
-      .switch__text > .show-flex {
+      .switch__text>span:first-child,
+      .switch__text>.show-flex {
         color: #FFF;
         font-weight: 700;
       }
 
-      .switch__text > .show-flex {
+      .switch__text>.show-flex {
         display: unset;
       }
     }
+  }
+
+  .invoices {
+    padding-top: 5.416666rem; // 65px
+
   }
 
   .no-invoice {

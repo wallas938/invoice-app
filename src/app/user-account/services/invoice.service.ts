@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StoreService } from 'src/app/core/services/store/store.service';
-import { InvoiceCreateDto } from 'src/app/models/invoice/invoiceCreateDto';
+import { InvoiceCreateDto } from 'src/app/models/invoice';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceFormService {
+export class InvoiceService {
 
   private invoiceUrl = "http://localhost:3200/invoices"
 
@@ -17,8 +17,21 @@ export class InvoiceFormService {
     return this.http.post(`${this.invoiceUrl}/post`, invoice);
   }
 
+  getInvoices() {
+    return this.http.get(`${this.invoiceUrl}`)
+            .subscribe((data: any) => {
+              this.storeService.setInvoices(data.invoices);
+            });
+  }
+
   setInvoiceFormDisplayStatus(status: boolean) {
     this.storeService.setInvoiceFormDisplayStatus(status);
   }
+
+  setNewInvoiceCreatedStatus(status: boolean) {
+    this.storeService.setNewInvoiceCreatedStatus(status);
+  }
+
+
 
 }

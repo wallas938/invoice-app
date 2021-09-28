@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { InvoiceGetDto } from 'src/app/models/invoice';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
 
 @Injectable({
@@ -27,6 +28,12 @@ export class StoreService {
   //** Invoice properties */
   private isInvoiceFormIsDisplayed = new BehaviorSubject<boolean>(false);
   public readonly isInvoiceFormIsDisplayed$ = this.isInvoiceFormIsDisplayed.asObservable();
+
+  private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
+  public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
+
+  private invoices = new BehaviorSubject<InvoiceGetDto[]>([]);
+  public readonly invoices$ = this.invoices.asObservable();
 
   constructor() { }
 
@@ -60,6 +67,14 @@ export class StoreService {
 
   setInvoiceFormDisplayStatus(status: boolean) {
     this.isInvoiceFormIsDisplayed.next(status);
+  }
+
+  setNewInvoiceCreatedStatus(status: boolean) {
+    this.newInvoiceCreatedStatus.next(status);
+  }
+
+  setInvoices(invoices: InvoiceGetDto[]) {
+    this.invoices.next(invoices);
   }
 
   //// END INVOICE METHODS ////

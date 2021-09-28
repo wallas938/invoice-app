@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { StoreService } from './core/services/store/store.service';
-import { InvoiceFormService } from './user-account/services/invoice-form.service';
+import { InvoiceService } from './user-account/services/invoice.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent {
   isConnected: boolean = false;
   displayStatus: string = 'hide';
   constructor(private storeService: StoreService,
-              private invoiceFormService: InvoiceFormService) {}
+              private invoiceService: InvoiceService) {}
 
   ngOnInit() {
     this.storeService.isConnected$
@@ -39,8 +39,7 @@ export class AppComponent {
   }
 
   closeInvoiceForm() {
-    this.invoiceFormService.setInvoiceFormDisplayStatus(false);
-    console.log("aside");
+    this.invoiceService.setInvoiceFormDisplayStatus(false);
   }
 
 }

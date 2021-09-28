@@ -1,0 +1,27 @@
+<div class="invoice">
+  <span class="invoice-code">
+    <span class="hashtag">#</span>{{invoice?.invoiceCode}}
+  </span>
+  <span class="due-date">
+    Due {{invoice?.invoiceDate | date:'L MMM y'}}
+  </span>
+  <span class="client-name">
+    {{invoice?.to?.clientName}}
+  </span>
+  <span class="total">
+    £ {{invoice?.totalAmount}}
+  </span>
+  <div class="status" [ngClass]="{
+              'paid': invoice?.status === 'Paid',
+              'pending': invoice?.status === 'Pending',
+              'draft': invoice?.status === 'Draft' }">
+    <span class="status__bullet-point" [ngStyle]="{
+        backgroundColor: invoice?.status === 'Paid' ? '#33D69F' :
+        invoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
+      }"></span>
+    <span class="status__text">{{ invoice?.status }}</span>
+  </div>
+  <div class="hide-for-mobile arrow">
+    <img src="assets/icon-arrow-right.svg" alt="arrow pointing to the rignt side" srcset="">
+  </div>
+</div>
