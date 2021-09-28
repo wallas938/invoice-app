@@ -29,7 +29,7 @@
   }
 }
 
-@media screen and (min-width: $tablet-down) {
+@media screen and (min-width: $tablet-min) {
   #invoice-app {
 
     .main-container {
@@ -40,7 +40,7 @@
   }
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: $desktop-min) {
   #invoice-app {
     flex-direction: row;
 

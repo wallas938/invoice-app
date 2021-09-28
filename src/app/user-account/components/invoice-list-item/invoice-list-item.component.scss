@@ -1,0 +1,180 @@
+@import "../../../../sass/colors";
+@import "../../../../sass/mixins";
+@import "../../../../sass/helpers";
+@import "../../../../sass/variables";
+
+.invoice {
+  padding: 2rem;
+  border-radius: 0.666666rem;
+  background-color: #fff;
+  margin-bottom: 1.333333rem;
+
+  display: grid;
+  grid-template-columns: auto 8.666666rem;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "invoiceCode clientName"
+    "dueDate     status"
+    "total       status";
+
+  .invoice-code,
+  .total {
+    font-weight: 700;
+    color: black;
+  }
+
+  .client-name,
+  .due-date,
+  .hashtag {
+    color: #858BB2;
+  }
+
+  .invoice-code {
+    grid-area: invoiceCode;
+    margin-bottom: 2rem;
+  }
+
+  .due-date {
+    grid-area: dueDate;
+    margin-bottom: 0.666666rem;
+  }
+
+  .client-name {
+    grid-area: clientName;
+    margin-bottom: 2.25rem;
+    text-align: end;
+  }
+
+  .total {
+    grid-area: total;
+    font-size: 1.333333rem;
+  }
+
+  .status {
+    grid-area: status;
+    display: flex;
+    align-items: baseline;
+    padding: 1.0833333rem 1.416666rem 1.025rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .paid {
+    background-color: rgba($color: #33D69F, $alpha: 0.06);
+    color: #33D69F;
+  }
+
+  .pending {
+    background-color: rgba($color: #FF8F00, $alpha: 0.06);
+    color: #FF8F00;
+  }
+
+  .draft {
+    background-color: rgba($color: #373B53, $alpha: 0.06);
+    color: #373B53;
+  }
+
+  .status .status__bullet-point {
+    display: inline-block;
+    width: 0.666666rem;
+    height: 0.666666rem;
+    border-radius: 100%;
+    margin-right: 0.666666rem;
+  }
+
+  .status .status__text {
+    font-weight: 700;
+  }
+
+}
+@media screen and (min-width: $tablet-min) {
+  .invoice {
+    padding: 1.333333rem 2rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+
+    /* justify-content: unset;
+    grid-template-columns: auto 1fr 1fr 1fr 8.666666rem auto;
+    grid-template-rows: auto;
+    grid-template-areas: "invoiceCode dueDate clientName total status arrow";
+*/
+    .invoice-code {
+      grid-area: unset;
+      margin-bottom: unset;
+      margin-right: 2.25rem;
+    }
+
+    .due-date {
+      grid-area: unset;
+      margin-bottom: unset;
+      width: 11.916666rem;
+    }
+
+    .client-name {
+      grid-area: unset;
+      margin-bottom: unset;
+      text-align: left;
+      width: 10rem;
+    }
+
+    .total {
+      grid-area: unset;
+      text-align: right;
+      width: 10rem;
+      margin-right: 3.333333rem;
+    }
+
+    .status {
+      grid-area: unset;
+      padding: 1.0833333rem 0 1.025rem 1.5rem;
+      width: 8.666666rem;
+    }
+
+    .arrow {
+      grid-area: unset;
+      cursor: pointer;
+      margin-left: 1.666666rem;
+    }
+
+  }
+}
+
+@media screen and (min-width: $desktop-min) {
+  .invoice {
+    padding: 1.333333rem 2.666666rem;
+    height: 6rem;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: "invoiceCode dueDate clientName total status arrow";
+
+    .invoice-code {
+      grid-area: invoiceCode;
+      margin-bottom: unset;
+    }
+
+    .due-date {
+      grid-area: dueDate;
+      margin-bottom: unset;
+    }
+
+    .client-name {
+      grid-area: clientName;
+      margin-bottom: unset;
+    }
+
+    .total {
+      grid-area: total;
+    }
+
+    .status {
+      grid-area: status;
+      padding: 1.0833333rem 1.416666rem 1.025rem 1.5rem;
+    }
+
+    .arrow {
+      grid-area: arrow;
+      cursor: pointer;
+    }
+
+  }
+}

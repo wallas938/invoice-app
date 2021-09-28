@@ -346,7 +346,7 @@ section#invoice-form {
   }
 }
 
-@media screen and (min-width: $tablet-down) {
+@media screen and (min-width: $tablet-min) {
   section#invoice-form {
     padding-top: 4.666666rem;
     width: 51.333333rem;
@@ -549,7 +549,7 @@ section#invoice-form {
   }
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: $desktop-min) {
   section#invoice-form {
     padding-top: 4.666666rem;
     left: 8.583333rem;

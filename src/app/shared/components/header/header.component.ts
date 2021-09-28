@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StoreService } from 'src/app/core/services/store/store.service';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
-import { InvoiceFormService } from 'src/app/user-account/services/invoice-form.service';
+import { InvoiceService } from 'src/app/user-account/services/invoice.service';
 import { CacheService } from '../../services/cache/cache.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(private store: StoreService,
               private cacheService: CacheService,
               private authService: AuthService,
-              private invoiceFormService: InvoiceFormService,
+              private invoiceService: InvoiceService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   closeInvoiceForm() {
-    this.invoiceFormService.setInvoiceFormDisplayStatus(false);
+    this.invoiceService.setInvoiceFormDisplayStatus(false);
   }
 
   logout() {
