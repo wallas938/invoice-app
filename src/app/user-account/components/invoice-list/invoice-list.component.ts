@@ -44,8 +44,6 @@ export class InvoiceListComponent implements OnInit {
     this.storeService.invoices$
       .subscribe((invoices: InvoiceGetDto[]) => {
         this.invoices = invoices;
-        console.log(invoices);
-
       })
   }
 

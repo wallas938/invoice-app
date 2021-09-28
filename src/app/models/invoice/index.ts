@@ -13,7 +13,7 @@ export interface InvoiceCreateDto {
   term: string;
   desc: string;
   items: Item[];
-  totalAmount: Number;
+  totalAmount: number;
 };
 
 export interface InvoiceGetDto {
@@ -42,7 +42,7 @@ export interface InvoiceGetDto {
   desc: string;
   items: Item[];
   status: string;
-  totalAmount: Number;
+  totalAmount: number;
 };
 
 export interface Item {

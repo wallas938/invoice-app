@@ -116,7 +116,7 @@ export class InvoiceFormComponent implements OnInit {
         this.getFormsItems().controls.forEach((itemControl: AbstractControl) => {
           const total = +itemControl.get('price')?.value * +itemControl.get('quantity')?.value;
           if (!Number.isNaN(total) && +itemControl.get('total')?.value != total) {
-            itemControl.get('total')?.setValue(total.toString());
+            itemControl.get('total')?.setValue(total.toFixed(2).toString());
           }
         })
       });
@@ -128,10 +128,12 @@ export class InvoiceFormComponent implements OnInit {
   };
 
   submit() {
+    //** For inputs validation */
     if (this.invoiceForm.invalid) {
       !this.errors.includes(this.formGlobalError) && this.errors.push(this.formGlobalError)
       return;
     }
+    //** For inputs validation */
     const newInvoice: InvoiceCreateDto = {
       fromStreet: this.invoiceForm.get('fromStreet')?.value.trim(),
       fromCity: this.invoiceForm.get('fromCity')?.value.trim(),
@@ -149,7 +151,6 @@ export class InvoiceFormComponent implements OnInit {
       items: this.invoiceForm.get('items')?.value,
       totalAmount: this.computeTotalAmount(),
     };
-
     this.verifyInput(newInvoice);
 
     if (!this.hasError) {
@@ -208,24 +209,31 @@ export class InvoiceFormComponent implements OnInit {
   verifyInput(inputs: any) {
     this.hasError = false;
     const specialFields = ['totalAmount', 'items', 'invoiceDate', 'term'];
+    const itemNumericFields = ['price', 'quantity'];
     for (const input in inputs) {
       if (!specialFields.includes(input)) {
         if (inputs[input].trim() === "") {
           this.hasError = true;
         }
       }
-      for (const input in inputs) {
-        if (input as any === 'items') {
-          for (const item of inputs[input] as any) {
-            for (const prop in item) {
-              if (item[prop].trim() === "") {
-                this.hasError = true;
-              }
+    };
+
+    for (const input in inputs) {
+      if (input === 'items') {
+        for (const item of inputs[input]) {
+          for (const prop in item) {
+            if (item[prop].trim() === "") {
+              this.hasError = true;
+              console.log("untrimmed");
+            }
+            if (itemNumericFields.includes(prop) && isNaN(+item[prop])) {
+              this.hasError = true;
+              console.log("isNaN", +item[prop]);
             }
           }
         }
       }
-    }
+    };
   };
 
   computeTotalAmount(): number {
