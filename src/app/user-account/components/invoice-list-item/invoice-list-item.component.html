@@ -9,7 +9,7 @@
     {{invoice?.to?.clientName}}
   </span>
   <span class="total">
-    £ {{invoice?.totalAmount}}
+    £ {{invoice?.totalAmount | number: '1.2'}}
   </span>
   <div class="status" [ngClass]="{
               'paid': invoice?.status === 'Paid',
