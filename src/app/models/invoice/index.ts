@@ -38,7 +38,7 @@ export interface InvoiceGetDto {
     email: string;
   };
   invoiceDate: string;
-  paymentTerms: string;
+  term: string;
   desc: string;
   items: Item[];
   status: string;

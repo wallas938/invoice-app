@@ -6,19 +6,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { ConvertDatePipe } from './pipes/convert-date.pipe';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SnackBarComponent,
-    ShortenPipe
+    ShortenPipe,
+    ConvertDatePipe
   ],
   imports: [
     CommonModule, ReactiveFormsModule, HttpClientModule, MatSnackBarModule
   ],
   exports: [
-    ShortenPipe, HeaderComponent, ReactiveFormsModule, MatSnackBarModule,
+    ShortenPipe, ConvertDatePipe, HeaderComponent, ReactiveFormsModule, MatSnackBarModule,
   ]
 })
 export class SharedModule { }
