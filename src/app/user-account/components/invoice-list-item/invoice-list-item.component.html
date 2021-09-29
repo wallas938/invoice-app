@@ -3,7 +3,7 @@
     <span class="hashtag">#</span>{{invoice?.invoiceCode}}
   </span>
   <span class="due-date">
-    Due {{invoice?.invoiceDate | date:'L MMM y'}}
+    Due {{invoice!.invoiceDate | convertDate:invoice!.term}}
   </span>
   <span class="client-name">
     {{invoice!.to!.clientName | shorten:15}}
@@ -18,10 +18,11 @@
     <span class="status__bullet-point" [ngStyle]="{
         backgroundColor: invoice?.status === 'Paid' ? '#33D69F' :
         invoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
-      }"></span>
+      }">
+    </span>
     <span class="status__text">{{ invoice?.status }}</span>
   </div>
   <div class="hide-for-mobile arrow">
-    <img src="assets/icon-arrow-right.svg" alt="arrow pointing to the rignt side" srcset="">
+    <img src="assets/icon-arrow-right.svg" alt="arrow pointing to the rignt side">
   </div>
 </div>
