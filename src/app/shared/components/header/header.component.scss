@@ -74,7 +74,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-min) {
   #header {
     background-color: #373B53;
     width: 100%;
@@ -100,7 +100,7 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: $desktop-min) {
   #header {
     justify-content: space-between;
     position: fixed;

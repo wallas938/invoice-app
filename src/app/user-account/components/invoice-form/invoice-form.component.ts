@@ -1,4 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { formatNumber } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -148,7 +149,13 @@ export class InvoiceFormComponent implements OnInit {
       invoiceDate: this.invoiceForm.get('invoiceDate')?.value.trim(),
       term: this.invoiceForm.get('term')?.value.trim(),
       desc: this.invoiceForm.get('desc')?.value.trim(),
-      items: this.invoiceForm.get('items')?.value,
+      items: this.invoiceForm.get('items')?.value.map(
+        (item: Item) => {
+          item.price = formatNumber(+item.price, 'en-US', '1.2')
+          console.log(item.price);
+          return item;
+        }
+      ),
       totalAmount: this.computeTotalAmount(),
     };
     this.verifyInput(newInvoice);
@@ -224,11 +231,9 @@ export class InvoiceFormComponent implements OnInit {
           for (const prop in item) {
             if (item[prop].trim() === "") {
               this.hasError = true;
-              console.log("untrimmed");
             }
             if (itemNumericFields.includes(prop) && isNaN(+item[prop])) {
               this.hasError = true;
-              console.log("isNaN", +item[prop]);
             }
           }
         }
@@ -236,13 +241,13 @@ export class InvoiceFormComponent implements OnInit {
     };
   };
 
-  computeTotalAmount(): number {
+  computeTotalAmount(): string {
     let totalAmount = 0;
     (this.getFormsItems().value as Array<any>)
       .forEach((item: Item) => {
-        totalAmount += item.quantity * item.price
+        totalAmount += +item.quantity * +item.price
       });
-    return totalAmount;
+    return formatNumber(totalAmount, 'en-US', '1.2');
   }
 
   openSnackBar() {

@@ -6,10 +6,10 @@
     Due {{invoice?.invoiceDate | date:'L MMM y'}}
   </span>
   <span class="client-name">
-    {{invoice?.to?.clientName}}
+    {{invoice!.to!.clientName | shorten:15}}
   </span>
   <span class="total">
-    £ {{invoice?.totalAmount | number: '1.2'}}
+    £ {{invoice!.totalAmount|  shorten:9}}
   </span>
   <div class="status" [ngClass]="{
               'paid': invoice?.status === 'Paid',

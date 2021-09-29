@@ -210,9 +210,9 @@ header {
 
 @media screen and (min-width: $desktop-min) {
   header {
-
+    justify-content: unset;
     div:first-child {
-      margin-right: 22rem; //
+      margin-right: 22.25rem; //
 
       h1 {
         font-size: 2.666666rem; // 20px

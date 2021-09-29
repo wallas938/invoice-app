@@ -55,7 +55,6 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate(["/home"]);
         },
         ({ error }: HttpErrorResponse) => {
-          console.log("No user Token");
         })
 
     }
@@ -80,7 +79,6 @@ export class LoginPageComponent implements OnInit {
     if (email && password) {
       this.authService.login({ email, password })
         .subscribe((data: any) => {
-          console.log(data);
           this.userService.setLoggedUser(data.user);
           this.authService.setUserConnectionStatus(true);
           this.authService.setToken(data.token);
