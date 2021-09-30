@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StoreService } from 'src/app/core/services/store/store.service';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
+import { LoadingSpinnerComponent } from 'src/app/shared/components/loading-spinner/loading-spinner.component';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import { CacheService } from 'src/app/shared/services/cache/cache.service';
@@ -54,8 +55,8 @@ export class LoginPageComponent implements OnInit {
           this.authService.setUserConnectionStatus(false);
           this.router.navigate(["/home"]);
         },
-        ({ error }: HttpErrorResponse) => {
-        })
+          ({ error }: HttpErrorResponse) => {
+          })
 
     }
 
@@ -74,23 +75,31 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  showLoading() {
+    this._snackBar.openFromComponent(LoadingSpinnerComponent);
+  }
+
   onSubmit() {
     const { email, password } = this.loginForm.value;
     if (email && password) {
+      this.showLoading();
       this.authService.login({ email, password })
         .subscribe((data: any) => {
+          this._snackBar.dismiss();
           this.userService.setLoggedUser(data.user);
-          this.authService.setUserConnectionStatus(true);
           this.authService.setToken(data.token);
+          this.authService.setUserConnectionStatus(true);
           this.router.navigate(["/user-account"]);
         },
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {
+              this._snackBar.dismiss();
               this.alertService.setMessage("An server error occurs...", "error");
               this.authService.setUserConnectionStatus(false);
               this.openSnackBar();
               return;
             }
+            this._snackBar.dismiss();
             this.alertService.setMessage(error.message, "error");
             this.authService.setUserConnectionStatus(false);
             this.openSnackBar();

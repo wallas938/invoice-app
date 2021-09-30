@@ -1,7 +1,8 @@
 <header>
   <div>
     <h1>Invoices</h1>
-    <p class="invoice__count"><span class="hide-for-mobile">There are</span> {{ invoices.length !== 0 ? invoices.length : '' }} <span class="hide-for-mobile">total</span> invoices</p>
+    <p class="invoice__count"><span class="hide-for-mobile">There are</span>
+      {{ invoices?.length !== 0 ? invoices?.length : '' }} <span class="hide-for-mobile">total</span> invoices</p>
   </div>
   <div class="filter">
     <div>
@@ -20,7 +21,10 @@
   </div>
 </header>
 <section class="main">
-  <div *ngIf="invoices.length === 0" class="no-invoice">
+  <div *ngIf="isLoading">
+    <app-loading-stripe ></app-loading-stripe>
+  </div>
+  <div *ngIf="invoices?.length === 0 && !isLoading" class="no-invoice">
     <img src="assets/illustration-empty.svg" alt="an image of a woman talking throughout a megaphone">
     <div class="no-invoice__text">
       <h1>There is nothing here</h1>
@@ -28,14 +32,8 @@
         New button and get started</p>
     </div>
   </div>
-  <div *ngIf="invoices.length !== 0" class="invoices">
-    <!-- <div *ngFor="let item of invoices">
-      {{ item.clientName }}
-    </div> -->
-    <app-invoice-list-item
-      *ngFor="let invoice of invoices"
-      [invoice]="invoice"
-      >
+  <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
+    <app-invoice-list-item *ngFor="let invoice of invoices" [invoice]="invoice">
     </app-invoice-list-item>
   </div>
 </section>
