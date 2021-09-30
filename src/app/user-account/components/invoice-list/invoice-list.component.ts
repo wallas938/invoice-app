@@ -16,13 +16,14 @@ export class InvoiceListComponent implements OnInit {
 
   user!: UserGetDto;
   imageSrc: string = 'assets/camera.svg';
-  invoices: InvoiceGetDto[] = [];
+  invoices!: InvoiceGetDto[];
+  isLoading: boolean = false;
 
   constructor(private invoiceService: InvoiceService,
     private storeService: StoreService) { }
 
   ngOnInit(): void {
-    this.invoiceService.getInvoices();
+    this.getInvoices();
 
     this.storeService.loggedUser$
       .subscribe((user: UserGetDto | null) => {
@@ -42,9 +43,17 @@ export class InvoiceListComponent implements OnInit {
 
 
     this.storeService.invoices$
-      .subscribe((invoices: InvoiceGetDto[]) => {
-        this.invoices = invoices;
-      })
+      .subscribe((invoices: InvoiceGetDto[] | undefined) => {
+        if(invoices) {
+          this.invoices = invoices;
+          this.isLoading = false;
+        }
+      });
+  }
+
+  getInvoices() {
+    this.isLoading = true;
+    this.invoiceService.getInvoices();
   }
 
   openInvoiceForm() {

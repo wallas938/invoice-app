@@ -5,7 +5,7 @@
   <div class="main-container">
     <!-- <aside (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus"> -->
     <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus">
-    </div>
+    </div> <!-- Revoir formBackdrop provoque débordement -->
     <app-invoice-form></app-invoice-form>
     <router-outlet></router-outlet> <!-- login, ect -->
   </div>

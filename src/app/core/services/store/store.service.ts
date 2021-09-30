@@ -10,6 +10,11 @@ export class StoreService {
 
   private token!: string | null;
 
+  /* Loading Status  */
+  private loadingStatus = new BehaviorSubject<boolean>(false);
+  public readonly loadingStatus$ = this.loadingStatus.asObservable();
+  /* Loading Status  */
+
   /** User properties */
   private userId!: string;
 
@@ -32,7 +37,7 @@ export class StoreService {
   private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
   public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
 
-  private invoices = new BehaviorSubject<InvoiceGetDto[]>([]);
+  private invoices = new BehaviorSubject<InvoiceGetDto[] | undefined>(undefined);
   public readonly invoices$ = this.invoices.asObservable();
 
   constructor() { }
@@ -99,4 +104,12 @@ export class StoreService {
       localStorage.removeItem("token");
     }
   }
+
+  //// TOKEN METHODS ////
+
+  //// LOADING METHODS ////
+  setLoadingStatus(status: boolean) {
+    this.loadingStatus.next(status);
+  }
+  //// LOADING METHODS ////
 }

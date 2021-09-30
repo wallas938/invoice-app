@@ -107,12 +107,13 @@ header {
 
 @media screen and (min-width: $tablet-min) {
   header {
-
+    justify-content: unset;
     div:first-child {
       margin-right: 16rem; //
 
       h1 {
         font-size: 2.666666rem; // 20px
+        margin-bottom: 0.666666rem;
       }
 
       .invoice__count {
@@ -179,7 +180,6 @@ header {
 
   .invoices {
     padding-top: 4.666666rem; // 56px
-
   }
 
   .no-invoice {
@@ -212,7 +212,7 @@ header {
   header {
     justify-content: unset;
     div:first-child {
-      margin-right: 22.25rem; //
+      margin-right: 21rem; //
 
       h1 {
         font-size: 2.666666rem; // 20px
