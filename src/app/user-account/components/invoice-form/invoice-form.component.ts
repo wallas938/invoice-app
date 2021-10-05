@@ -8,6 +8,7 @@ import { StoreService } from 'src/app/core/services/store/store.service';
 import { InvoiceCreateDto, Item } from 'src/app/models/invoice';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
+import { LoadingService } from 'src/app/shared/services/loading/loading.service';
 import Utils from 'src/app/shared/utils';
 import { InvoiceService } from '../../services/invoice.service';
 
@@ -98,10 +99,11 @@ export class InvoiceFormComponent implements OnInit {
   });
 
   constructor(private storeService: StoreService,
-    private fb: FormBuilder,
-    private _snackBar: MatSnackBar,
-    private alertService: AlertService,
-    private invoiceService: InvoiceService) { }
+              private fb: FormBuilder,
+              private _snackBar: MatSnackBar,
+              private alertService: AlertService,
+              private invoiceService: InvoiceService,
+              private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.getFormsItems()?.valueChanges
@@ -161,22 +163,26 @@ export class InvoiceFormComponent implements OnInit {
     this.verifyInput(newInvoice);
 
     if (!this.hasError) {
+      this.loadingService.setLoadingStatus(true);
       this.invoiceService.saveInvoice(newInvoice)
         .subscribe((result: any) => {
           this.alertService.setMessage(result.message, "success");
           this.invoiceService.setNewInvoiceCreatedStatus(true);
           this.closeInvoiceForm();
+          this.loadingService.setLoadingStatus(false);
           this.openSnackBar();
         },
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {
               this.alertService.setMessage("An server error occurs...", "error");
               this.invoiceService.setNewInvoiceCreatedStatus(false);
+              this.loadingService.setLoadingStatus(false);
               this.openSnackBar();
               return;
             }
             this.alertService.setMessage(error.message, "error");
             this.invoiceService.setNewInvoiceCreatedStatus(false);
+            this.loadingService.setLoadingStatus(false);
             this.openSnackBar();
           });
     } else {

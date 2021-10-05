@@ -3,6 +3,11 @@
 @import "../../../../sass/helpers";
 @import "../../../../sass/variables";
 
+header, .invoices, .no-invoice {
+  max-width: 38.4rem; // 576px
+  margin: 0 auto;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -78,7 +83,6 @@ header {
 .invoices {
   padding-top: 2.75rem; // 33px
   background-color: $light-bg;
-
 }
 
 .no-invoice {
@@ -106,8 +110,12 @@ header {
 }
 
 @media screen and (min-width: $tablet-min) {
+  header, .invoices, .no-invoice {
+    max-width: 66.133333rem; // 992px
+  }
+
   header {
-    justify-content: unset;
+
     div:first-child {
       margin-right: 16rem; //
 
@@ -209,8 +217,11 @@ header {
 }
 
 @media screen and (min-width: $desktop-min) {
+  header, .invoices, .no-invoice {
+    max-width: 85.333333rem; // 1280px
+  }
+
   header {
-    justify-content: unset;
     div:first-child {
       margin-right: 21rem; //
 
@@ -282,13 +293,11 @@ header {
 
   .invoices {
     padding-top: 5.416666rem; // 65px
-
   }
 
   .no-invoice {
     padding-top: 11.75rem; // 141px
     width: 20.166666rem; // 242px
-    margin: 0 auto;
 
     img {
       margin-bottom: 5.333333rem;

@@ -7,7 +7,7 @@
   padding: 2rem;
   border-radius: 0.666666rem;
   background-color: #fff;
-  margin-bottom: 1.333333rem;
+  margin: 0 auto 1.333333rem auto;
 
   display: grid;
   grid-template-columns: auto 8.666666rem;
@@ -86,13 +86,14 @@
   }
 
 }
+
 @media screen and (min-width: $tablet-min) {
   .invoice {
     padding: 1.333333rem 2rem;
     height: 6rem;
     display: flex;
     align-items: center;
-
+    width: 51.2rem;
     .invoice-code {
       grid-area: unset;
       margin-bottom: unset;
@@ -142,8 +143,8 @@
     grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto;
     grid-template-areas: "invoiceCode dueDate clientName total status arrow";
-    min-width: 60.833333rem;
-    display: inline-flex;
+    width: 60.833333rem;
+    display: flex;
     .invoice-code {
       margin-bottom: unset;
     }
