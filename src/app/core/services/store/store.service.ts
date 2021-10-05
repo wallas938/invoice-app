@@ -110,6 +110,7 @@ export class StoreService {
   //// LOADING METHODS ////
   setLoadingStatus(status: boolean) {
     this.loadingStatus.next(status);
+    console.log(status);
   }
   //// LOADING METHODS ////
 }

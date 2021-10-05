@@ -3,9 +3,10 @@
     <app-header></app-header>
   </div>
   <div class="main-container">
-    <!-- <aside (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus"> -->
-    <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus">
-    </div> <!-- Revoir formBackdrop provoque débordement -->
+    <div *ngIf="isLoading && isConnected" class="global-loading">
+      <app-loading-stripe ></app-loading-stripe>
+    </div>
+    <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected" [@formBackDropState]="displayStatus"></div> <!-- Revoir formBackdrop provoque débordement -->
     <app-invoice-form></app-invoice-form>
     <router-outlet></router-outlet> <!-- login, ect -->
   </div>

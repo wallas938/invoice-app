@@ -5,6 +5,7 @@ import { UserService } from 'src/app/home/services/user.service';
 import { InvoiceGetDto } from 'src/app/models/invoice';
 import { ProfileImage } from 'src/app/models/picture/pictureDto';
 import { UserGetDto } from 'src/app/models/user/userGetDto';
+import { LoadingService } from 'src/app/shared/services/loading/loading.service';
 import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
@@ -20,11 +21,12 @@ export class InvoiceListComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private invoiceService: InvoiceService,
-    private storeService: StoreService) { }
+    private storeService: StoreService,
+    private loadingService: LoadingService) {
+    this.getInvoices();
+  }
 
   ngOnInit(): void {
-    this.getInvoices();
-
     this.storeService.loggedUser$
       .subscribe((user: UserGetDto | null) => {
         this.user = user!;
@@ -41,18 +43,22 @@ export class InvoiceListComponent implements OnInit {
         }
       });
 
+    this.storeService.loadingStatus$
+      .subscribe((status: boolean) => {
+        this.isLoading = status;
+      });
 
     this.storeService.invoices$
       .subscribe((invoices: InvoiceGetDto[] | undefined) => {
-        if(invoices) {
+        if (invoices) {
           this.invoices = invoices;
-          this.isLoading = false;
+          this.loadingService.setLoadingStatus(false);
         }
       });
   }
 
   getInvoices() {
-    this.isLoading = true;
+    this.loadingService.setLoadingStatus(true);
     this.invoiceService.getInvoices();
   }
 

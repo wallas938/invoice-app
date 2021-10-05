@@ -21,9 +21,6 @@
   </div>
 </header>
 <section class="main">
-  <div *ngIf="isLoading">
-    <app-loading-stripe ></app-loading-stripe>
-  </div>
   <div *ngIf="invoices?.length === 0 && !isLoading" class="no-invoice">
     <img src="assets/illustration-empty.svg" alt="an image of a woman talking throughout a megaphone">
     <div class="no-invoice__text">
@@ -33,7 +30,9 @@
     </div>
   </div>
   <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
-    <app-invoice-list-item *ngFor="let invoice of invoices" [invoice]="invoice">
+    <app-invoice-list-item
+      *ngFor="let invoice of invoices"
+      [invoice]="invoice">
     </app-invoice-list-item>
   </div>
 </section>
