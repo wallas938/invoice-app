@@ -7,7 +7,7 @@
       <app-loading-stripe ></app-loading-stripe>
     </div>
     <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected && displayStatus" @formBackDropState></div> <!-- Revoir formBackdrop provoque débordement -->
-    <app-invoice-form></app-invoice-form>
+    <app-invoice-form  *ngIf="displayStatus"></app-invoice-form>
     <router-outlet></router-outlet> <!-- login, ect -->
   </div>
 </div>
