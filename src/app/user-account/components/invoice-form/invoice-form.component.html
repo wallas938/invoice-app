@@ -1,5 +1,5 @@
 <!-- <section click-stop-propagation [@formState]="displayStatus" id="invoice-form"> -->
-<section [@formState]="displayStatus" id="invoice-form">
+<section *ngIf="displayStatus" @formState id="invoice-form">
   <p (click)="closeInvoiceForm()">
     <a>Go back</a> <!-- retirer a partir de 768px -->
   </p>

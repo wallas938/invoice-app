@@ -9,21 +9,27 @@ import { InvoiceService } from './user-account/services/invoice.service';
   templateUrl: './app.component.html',
   animations: [
     trigger("formBackDropState", [
-      state('hide', style({
-        opacity: 0,
-        pointerEvents: 'none'
-      })),
-      state('show', style({
-        opacity: 1
-      })),
-      transition('show <=> hide', animate(350)),
+      transition('void => *', [
+        style({
+          opacity: '0'
+        }),
+        animate(0, style({
+          opacity: '1'
+        }))
+      ]),
+      transition('* => void', [
+        animate(350, style({
+          opacity: '0'
+        }))
+      ]),
     ])
   ],
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   isConnected: boolean = false;
-  displayStatus: string = 'hide';
+  /* displayStatus: string = 'hide'; */
+  displayStatus: boolean = false;
   isLoading: boolean = false;
   constructor(private storeService: StoreService,
     private invoiceService: InvoiceService,
@@ -37,7 +43,8 @@ export class AppComponent {
 
     this.storeService.isInvoiceFormIsDisplayed$
       .subscribe((displayStatus) => {
-        this.displayStatus = displayStatus ? 'show' : 'hide';
+        /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
+        this.displayStatus = displayStatus;
       });
 
     this.storeService.loadingStatus$
