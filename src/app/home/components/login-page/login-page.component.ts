@@ -43,23 +43,6 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.cacheService.getToken()) {
-      this.authService.autoLogin()
-        .subscribe((data: any) => {
-          if (data.user) {
-            this.userService.setLoggedUser(data.user);
-            this.authService.setUserConnectionStatus(true);
-            this.router.navigate(["/user-account"]);
-            return;
-          }
-          this.authService.setUserConnectionStatus(false);
-          this.router.navigate(["/home"]);
-        },
-          ({ error }: HttpErrorResponse) => {
-          })
-
-    }
-
     this.store.userSignUpStatus$
       .subscribe((status: Boolean) => {
         if (status) {

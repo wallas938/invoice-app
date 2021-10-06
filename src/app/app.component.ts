@@ -1,6 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './core/services/auth/auth.service';
 import { StoreService } from './core/services/store/store.service';
+import { UserService } from './home/services/user.service';
+import { CacheService } from './shared/services/cache/cache.service';
 import { LoadingService } from './shared/services/loading/loading.service';
 import { InvoiceService } from './user-account/services/invoice.service';
 
@@ -32,10 +37,16 @@ export class AppComponent {
   displayStatus: boolean = false;
   isLoading: boolean = false;
   constructor(private storeService: StoreService,
-    private invoiceService: InvoiceService,
-    private loadingService: LoadingService) { }
+              private invoiceService: InvoiceService,
+              private loadingService: LoadingService,
+              private cacheService: CacheService,
+              private authService: AuthService,
+              private userService: UserService,
+              private router: Router) {
+              }
 
   ngOnInit() {
+
     this.storeService.isConnected$
       .subscribe((isConnected) => {
         this.isConnected = isConnected;
@@ -51,6 +62,24 @@ export class AppComponent {
       .subscribe((status: boolean) => {
         this.isLoading = status;
       });
+  }
+
+  autoLogin() {
+    if (this.cacheService.getToken()) {
+      this.authService.autoLogin()
+        .subscribe((data: any) => {
+          if (data.user) {
+            this.userService.setLoggedUser(data.user);
+            this.authService.setUserConnectionStatus(true);
+            this.router.navigate(["/user-account"]);
+            return;
+          }
+          this.authService.setUserConnectionStatus(false);
+          this.router.navigate(["/home"]);
+        },
+          ({ error }: HttpErrorResponse) => {
+          })
+    }
   }
 
   closeInvoiceForm() {

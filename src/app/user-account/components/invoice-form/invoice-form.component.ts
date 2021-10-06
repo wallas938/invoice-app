@@ -109,7 +109,6 @@ export class InvoiceFormComponent implements OnInit {
         if (this.getFormsItems().valid) {
           this.errors = this.errors.filter((message) => message !== this.itemsErrorMessage);
         } else {
-          console.log("invalid form");
           !this.errors.includes(this.itemsErrorMessage) &&
             this.errors.push(this.itemsErrorMessage);
         }
