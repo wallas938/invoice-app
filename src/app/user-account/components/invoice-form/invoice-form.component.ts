@@ -17,24 +17,21 @@ import { InvoiceService } from '../../services/invoice.service';
   templateUrl: './invoice-form.component.html',
   animations: [
     trigger("formState", [
-      state('close', style({
-        opacity: '0',
-        display: 'none'
-        //transform: 'translateX(-500px)'
-      })),
-      state('open', style({
-        opacity: '1',
-        display: 'unset'
-
-      })),
-      transition('close <=> open', animate(350)),
+      transition('void => *', [
+        style({ opacity: '0' }),
+        animate(300, style({ opacity: '1' }))
+      ]),
+      transition('* => void', [
+        animate(300, style({ opacity: '0' }))
+      ]),
     ])
   ],
   styleUrls: ['./invoice-form.component.scss']
 })
 export class InvoiceFormComponent implements OnInit {
 
-  displayStatus: string = 'close';
+  /* displayStatus: string = 'close'; */
+  displayStatus: boolean = false;
   formGlobalError: string = 'All fields must be completed!';
   itemsErrorMessage: string = 'An item must be completed!';
   errors: string[] = [];
@@ -99,11 +96,11 @@ export class InvoiceFormComponent implements OnInit {
   });
 
   constructor(private storeService: StoreService,
-              private fb: FormBuilder,
-              private _snackBar: MatSnackBar,
-              private alertService: AlertService,
-              private invoiceService: InvoiceService,
-              private loadingService: LoadingService) { }
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private alertService: AlertService,
+    private invoiceService: InvoiceService,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.getFormsItems()?.valueChanges
@@ -126,7 +123,11 @@ export class InvoiceFormComponent implements OnInit {
 
     this.storeService.isInvoiceFormIsDisplayed$
       .subscribe((displayStatus) => {
-        this.displayStatus = displayStatus ? 'open' : 'close';
+        /* this.displayStatus = displayStatus ? 'open' : 'close'; */
+        this.displayStatus = displayStatus;
+        if (!displayStatus) {
+          this.resetForm();
+        }
       });
   };
 
@@ -212,8 +213,12 @@ export class InvoiceFormComponent implements OnInit {
 
   closeInvoiceForm() {
     this.invoiceService.setInvoiceFormDisplayStatus(false);
-    this.invoiceForm.reset();
   };
+
+  resetForm() {
+    this.invoiceForm.markAsPristine()
+    this.invoiceForm.reset();
+  }
 
   deleteItem(itemIndex: number) {
     this.getFormsItems().removeAt(itemIndex);
