@@ -8,7 +8,13 @@ import { UserGetDto } from 'src/app/models/user/userGetDto';
 })
 export class StoreService {
 
+  /** Token properties */
   private token!: string | null;
+
+  private expiredTokenStatus = new BehaviorSubject<boolean>(false);
+  public readonly expiredTokenStatus$ = this.expiredTokenStatus.asObservable();
+
+  /** Token properties */
 
   /* Loading Status  */
   private loadingStatus = new BehaviorSubject<boolean>(false);
@@ -104,13 +110,15 @@ export class StoreService {
       localStorage.removeItem("token");
     }
   }
+  setExpiredTokenStatus(status: boolean) {
+    this.expiredTokenStatus.next(status);
+  }
 
   //// TOKEN METHODS ////
 
   //// LOADING METHODS ////
   setLoadingStatus(status: boolean) {
     this.loadingStatus.next(status);
-    console.log(status);
   }
   //// LOADING METHODS ////
 }

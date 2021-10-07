@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AutoLoginGuard } from './core/guards/auto-login.guard';
 
 const routes: Routes = [
   { path: 'home',

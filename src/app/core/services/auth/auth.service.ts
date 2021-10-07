@@ -15,8 +15,8 @@ export class AuthService {
   private authUrl = "http://localhost:3200/auth"
 
   constructor(private http: HttpClient,
-              private store: StoreService,
-              private cacheService: CacheService) { }
+    private storeService: StoreService,
+    private cacheService: CacheService) { }
 
   login(data: LoginCredentials) {
     return this.http.post(`${this.authUrl}`, data, { responseType: 'json' })
@@ -27,12 +27,19 @@ export class AuthService {
   }
 
   setUserConnectionStatus(status: boolean) {
-    this.store.setLoginStatus(status);
-    this.store.setUserConnectionStatus(status);
+    this.storeService.setLoginStatus(status);
+    this.storeService.setUserConnectionStatus(status);
   }
 
-  setToken(token: string) {
-    this.store.setToken(token);
-    this.cacheService.setToken(token);
+  setToken(data: any) {
+    this.storeService.setToken(data);
+    this.cacheService.setToken(data);
+  }
+
+  setExpiredTokenStatus(status: boolean) {
+    this.storeService.setExpiredTokenStatus(status);
+    if (status) {
+      this.cacheService.removeToken();
+    }
   }
 }
