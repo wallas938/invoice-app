@@ -7,15 +7,23 @@ export class CacheService {
 
   constructor() { }
 
-  setToken(token: string) {
-    localStorage.setItem('token_id', token);
+  setToken(data: any) {
+    localStorage.setItem('token_id', data.token);
+    localStorage.setItem('invoice-app_token_exp', data.exp);
+    localStorage.setItem('invoice-app_token_iat', data.iat);
   }
 
   getToken() {
     return localStorage.getItem('token_id');
   }
 
+  getTokenExp() {
+    return +localStorage.getItem('invoice-app_token_exp')!;
+  }
+
   removeToken() {
     localStorage.removeItem('token_id');
+    localStorage.removeItem('invoice-app_token_exp');
+    localStorage.removeItem('invoice-app_token_iat');
   }
 }

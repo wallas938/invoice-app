@@ -50,6 +50,15 @@ export class LoginPageComponent implements OnInit {
           this.userService.setUserSignUpStatus(false);
         }
       });
+
+    this.store.expiredTokenStatus$
+      .subscribe((status: Boolean) => {
+        if (status) {
+          this.authService.setExpiredTokenStatus(false);
+          this.alertService.setMessage("Sorry but your session time expired. Please log in again", "info");
+          this.openSnackBar();
+        }
+      });
   }
 
   openSnackBar() {
@@ -70,7 +79,7 @@ export class LoginPageComponent implements OnInit {
         .subscribe((data: any) => {
           this._snackBar.dismiss();
           this.userService.setLoggedUser(data.user);
-          this.authService.setToken(data.token);
+          this.authService.setToken(data.data);
           this.authService.setUserConnectionStatus(true);
           this.router.navigate(["/user-account"]);
         },

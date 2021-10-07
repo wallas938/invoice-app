@@ -10,7 +10,6 @@ export class LoadingStripeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("LoadingStripeComponent");
   }
 
 }
