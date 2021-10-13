@@ -16,6 +16,15 @@
     "dueDate     status"
     "total       status";
 
+    .invoice-code {
+      cursor: pointer;
+    }
+
+    .invoice-code:hover {
+      cursor: pointer;
+      color: #9277FF;
+    }
+
   .invoice-code,
   .total {
     font-weight: 700;
@@ -56,21 +65,6 @@
     padding: 1.0833333rem 1.416666rem 1.025rem 1.5rem;
     border-radius: 0.5rem;
     text-align: center;
-  }
-
-  .paid {
-    background-color: rgba($color: #33D69F, $alpha: 0.06);
-    color: #33D69F;
-  }
-
-  .pending {
-    background-color: rgba($color: #FF8F00, $alpha: 0.06);
-    color: #FF8F00;
-  }
-
-  .draft {
-    background-color: rgba($color: #373B53, $alpha: 0.06);
-    color: #373B53;
   }
 
   .status .status__bullet-point {

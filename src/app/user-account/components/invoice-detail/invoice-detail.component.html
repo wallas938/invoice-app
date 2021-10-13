@@ -1,0 +1,89 @@
+<section id="invoice-detail">
+  <div class="invoice container">
+    <p><a class="back" href="#">Go back</a></p>
+    <div class="invoice__header">
+      <div class="header__status">
+        <span>Status</span>
+        <div class="status-design" [ngClass]="{
+                    'paid': currentInvoice?.status === 'Paid',
+                    'pending': currentInvoice?.status === 'Pending',
+                    'draft': currentInvoice?.status === 'Draft' }">
+          <span class="bullet" [ngStyle]="{
+            backgroundColor: currentInvoice?.status === 'Paid' ? '#33D69F' :
+            currentInvoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
+          }">
+        </span>
+          <span>{{ currentInvoice?.status }}</span>
+        </div>
+      </div>
+      <div class="invoice__cta hide-for-mobile">
+        <button class="edit">Edit</button>
+        <button class="delete">Delete</button>
+        <button class="mark-as-paid">Mark as Paid</button>
+      </div>
+    </div>
+    <div class="invoice__body">
+      <div class="top-part">
+        <div class="invoice-identity">
+          <p><span class="hashtag">#</span>{{ currentInvoice!.invoiceCode }}</p>
+          <P>{{ currentInvoice!.desc }}</P>
+        </div>
+        <div class="invoice-from">
+          <p class="street">{{ currentInvoice!.from!.address.street }}</p>
+          <p class="city">{{ currentInvoice!.from!.address.city }}</p>
+          <p class="post-code">{{ currentInvoice!.from!.address.postCode }}</p>
+          <p class="country">{{ currentInvoice!.from!.address.country }}</p>
+        </div>
+        <div class="invoice-date">
+          <span>Invoice Date</span>
+          <span>{{ currentInvoice!.invoiceDate | convertDate:"" }}</span>  <!-- a convertir -->
+        </div>
+        <div class="invoice-bill-to">
+          <span>Bill To</span>
+          <p class="name">{{ currentInvoice!.to.clientName }}</p>
+          <p class="street">{{ currentInvoice!.to.address.street }}</p>
+          <p class="city">{{ currentInvoice!.to.address.city }}</p>
+          <p class="post-code">{{ currentInvoice!.to.address.postCode }}</p>
+          <p class="country">{{ currentInvoice!.to.address.country }}</p>
+        </div>
+        <div class="invoice-due">
+          <span>Payment Due</span>
+          <p>{{currentInvoice!.invoiceDate | convertDate:currentInvoice!.term}}</p>
+        </div>
+        <div class="send-to">
+          <span>Sent to</span>
+          <p>{{ currentInvoice!.to.email }}</p>
+        </div>
+      </div>
+      <div class="items">
+        <div class="head hide-for-mobile">
+          <span>Item Name</span>
+          <span>QTY.</span>
+          <span>Price</span>
+          <span>Total</span>
+        </div>
+        <div class="item" *ngFor="let item of currentInvoice!.items">
+          <div>
+            <span class="name">{{ item.itemName }}</span>
+            <span class="qty-price hide-for-tablet hide-for-desktop">{{item.quantity}} x £ {{item.price |  shorten:9}}</span>
+            <span class="qty hide-for-mobile">{{item.quantity}}</span>
+            <span class="price hide-for-mobile">{{item.price}}</span>
+            <span class="total hide-for-mobile">£ {{item.total | shorten:9}}</span>
+          </div>
+          <span class="total hide-for-tablet hide-for-desktop">£ {{item.total |  shorten:9}}</span>
+        </div>
+      </div>
+      <div class="footer">
+        <div>
+          <span>Amount Due</span>
+          <span>£ {{ currentInvoice!.totalAmount}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="invoice__cta-mobile container hide-for-tablet-and-desktop">
+    <button class="edit">Edit</button>
+    <button class="delete">Delete</button>
+    <button class="mark-as-paid">Mark as Paid</button>
+  </div>
+</section>

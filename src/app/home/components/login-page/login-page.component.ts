@@ -81,7 +81,7 @@ export class LoginPageComponent implements OnInit {
           this.userService.setLoggedUser(data.user);
           this.authService.setToken(data.data);
           this.authService.setUserConnectionStatus(true);
-          this.router.navigate(["/user-account"]);
+          this.router.navigate(["/user-account/invoices"]);
         },
           ({ error }: HttpErrorResponse) => {
             if (!error.message) {

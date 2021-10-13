@@ -46,6 +46,9 @@ export class StoreService {
   private invoices = new BehaviorSubject<InvoiceGetDto[] | undefined>(undefined);
   public readonly invoices$ = this.invoices.asObservable();
 
+  private currentInvoice = new BehaviorSubject<InvoiceGetDto | undefined>(undefined);
+  public readonly currentInvoice$ = this.currentInvoice.asObservable();
+
   constructor() { }
 
   //// USER METHODS////
@@ -86,6 +89,16 @@ export class StoreService {
 
   setInvoices(invoices: InvoiceGetDto[]) {
     this.invoices.next(invoices);
+  }
+
+  setCurrentInvoice(id: string) {
+    this.currentInvoice.next(this.getInvoiceById(id));
+
+  }
+
+  private getInvoiceById(id: string) {
+    const invoice = this.invoices.getValue()?.find((i: InvoiceGetDto) => i._id === id);
+    return invoice;
   }
 
   //// END INVOICE METHODS ////
