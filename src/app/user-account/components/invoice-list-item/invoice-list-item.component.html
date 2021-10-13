@@ -1,5 +1,5 @@
 <div class="invoice">
-  <span class="invoice-code">
+  <span class="invoice-code" (click)="navigateToDetail(invoice._id)">
     <span class="hashtag">#</span>{{invoice?.invoiceCode}}
   </span>
   <span class="due-date">
@@ -22,7 +22,7 @@
     </span>
     <span class="status__text">{{ invoice?.status }}</span>
   </div>
-  <div class="hide-for-mobile arrow">
+  <div class="hide-for-mobile arrow" (click)="navigateToDetail(invoice._id)">
     <img src="assets/icon-arrow-right.svg" alt="arrow pointing to the rignt side">
   </div>
 </div>

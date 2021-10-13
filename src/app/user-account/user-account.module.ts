@@ -6,12 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { UserAccountComponent } from './user-account.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { InvoiceListItemComponent } from './components/invoice-list-item/invoice-list-item.component';
+import { InvoiceDetailComponent } from './components/invoice-detail/invoice-detail.component';
 
 @NgModule({
   declarations: [
     InvoiceListComponent,
     UserAccountComponent,
-    InvoiceListItemComponent
+    InvoiceListItemComponent,
+    InvoiceDetailComponent
   ],
   imports: [
     CommonModule, UserAccountRoutingModule, SharedModule

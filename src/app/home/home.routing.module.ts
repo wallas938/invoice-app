@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '', canActivate: [AutoLoginGuard], component: LoginPageComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'user-account', loadChildren: () => import('../user-account/user-account.module').then(m => m.UserAccountModule) },
+  { path: 'user-account/invoices', loadChildren: () => import('../user-account/user-account.module').then(m => m.UserAccountModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

@@ -1,3 +1,5 @@
+@import "variables";;
+
 *,
 *::before,
 *::after {
@@ -42,4 +44,21 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
+}
+
+.container {
+  max-width: 48rem;  // 576px
+  margin: 0 auto;
+}
+
+@media screen and (min-width: $tablet-min) {
+  .container {
+    max-width: 66.133333rem;
+  }
+}
+
+@media screen and (min-width: $desktop-min) {
+  .container {
+    max-width: 85.333333rem;
+  }
 }

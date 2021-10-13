@@ -19,7 +19,7 @@ export class AutoLoginGuard implements CanActivate {
     if (this.cacheService.getToken() && (+this.cacheService.getTokenExp()! > +Date.now())) {
       this.authService.setUserConnectionStatus(true);
       this.authService.setExpiredTokenStatus(false);
-      this.router.navigate(['/user-account']);
+      this.router.navigate(["/user-account/invoices"]);
       return false;
     } else if (this.cacheService.getToken() && (+Date.now() > +this.cacheService.getTokenExp()!)) {
       this.authService.setExpiredTokenStatus(true);

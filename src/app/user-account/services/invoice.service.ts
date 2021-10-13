@@ -32,6 +32,10 @@ export class InvoiceService {
     this.storeService.setNewInvoiceCreatedStatus(status);
   }
 
+  setCurrentInvoice(id: string) {
+    this.storeService.setCurrentInvoice(id);
+  }
+
 
 
 }

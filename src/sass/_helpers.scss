@@ -5,25 +5,25 @@
 
 .hide-for-mobile {
   @include breakpoint-up($mobile-min, $mobile-max) { // 375px => 767px
-      display: none;
+      display: none !important;
   }
 }
 
 .hide-for-tablet {
-  @include breakpoint-down($tablet-min, $tablet-max) { // 768px => 1439px
-      display: none;
+  @include breakpoint-up($tablet-min, $tablet-max) { // 768px => 1439px
+      display: none !important;
   }
 }
 
 .hide-for-desktop {
-  @include breakpoint-down($desktop-min, $desktop-max) { // 1440px => 2440px
-      display: none;
+  @include breakpoint-up($desktop-min, $desktop-max) { // 1440px => 2440px
+      display: none !important;
   }
 }
 
 .hide-for-tablet-and-desktop {
-  @include breakpoint-up($tablet-min, $desktop-max) { // 375px => 767px
-      display: none;
+  @include breakpoint-up($tablet-min, $desktop-max) { // 768px => 767px
+      display: none !important;
   }
 }
 
@@ -37,4 +37,19 @@
 
 .hide {
   display: none;
+}
+
+.paid {
+  background-color: rgba($color: #33D69F, $alpha: 5.71%) !important;
+  color: #33D69F !important;
+}
+
+.pending {
+  background-color: rgba($color: #FF8F00, $alpha: 5.71%) !important;
+  color: #FF8F00 !important;
+}
+
+.draft {
+  background-color: rgba($color: #373B53, $alpha: 5.71%) !important;
+  color: #373B53 !important;
 }
