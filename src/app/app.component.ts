@@ -52,7 +52,7 @@ export class AppComponent {
         this.isConnected = isConnected;
       });
 
-    this.storeService.isInvoiceFormIsDisplayed$
+    this.storeService.isInvoiceFormDisplayed$
       .subscribe((displayStatus) => {
         /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
         this.displayStatus = displayStatus;
@@ -84,6 +84,7 @@ export class AppComponent {
 
   closeInvoiceForm() {
     this.invoiceService.setInvoiceFormDisplayStatus(false);
+    this.invoiceService.setInvoiceEditionMode(false);
   }
 
 }

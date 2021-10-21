@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceGetDto } from 'src/app/models/invoice';
-import { InvoiceService } from '../../services/invoice.service';
+import { InvoiceService } from '../../../../services/invoice.service';
 
 @Component({
   selector: 'app-invoice-list-item',

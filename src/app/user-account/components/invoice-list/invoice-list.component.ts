@@ -23,7 +23,8 @@ export class InvoiceListComponent implements OnInit {
   constructor(private invoiceService: InvoiceService,
     private storeService: StoreService,
     private loadingService: LoadingService) {
-    this.getInvoices();
+      this.getInvoices();
+      this.loadingService.setLoadingStatus(false);
   }
 
   ngOnInit(): void {
@@ -40,6 +41,14 @@ export class InvoiceListComponent implements OnInit {
         if (status) {
           this.invoiceService.getInvoices();
           this.invoiceService.setNewInvoiceCreatedStatus(false);
+        }
+      });
+
+    this.storeService.invoiceUpdatedStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this.invoiceService.getInvoices();
+          this.invoiceService.setInvoiceUpdatedStatus(false);
         }
       });
 

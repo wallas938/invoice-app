@@ -3,6 +3,7 @@
     <app-header></app-header>
   </div>
   <div class="main-container">
+    <!-- <div *ngIf="true" class="global-loading"> -->
     <div *ngIf="isLoading && isConnected" class="global-loading">
       <app-loading-stripe ></app-loading-stripe>
     </div>

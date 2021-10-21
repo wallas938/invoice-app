@@ -3,7 +3,10 @@
   <p (click)="closeInvoiceForm()">
     <a>Go back</a> <!-- retirer a partir de 768px -->
   </p>
-  <h1>New Invoice</h1>
+  <h1>
+    <span *ngIf="editionMode">Edit <span class="hashtag">#</span>{{currentInvoice?.invoiceCode}}</span>
+    <span *ngIf="!editionMode">New Invoice</span>
+  </h1>
 
   <form [formGroup]="invoiceForm" (ngSubmit)="submit()">
     <!-- From -->
@@ -147,7 +150,6 @@
                   'border-color': (getFormsItems().controls[i].get('quantity')!.invalid &&
                   getFormsItems().controls[i].get('quantity')!.touched) ? 'red' : '#DFE3FA'
                 }">
-
             </div>
             <div class="row__field price">
               <label for="price">Price</label>
@@ -160,7 +162,9 @@
               <label for="total">Total</label>
               <input type="text" id="total" formControlName="total">
             </div>
-            <img src="assets/icon-delete.svg" alt="trash" (click)="deleteItem(i)" class="remove-icon">
+            <button type="button" (click)="deleteItem(i)" [disabled]="getFormsItems().invalid">
+              <img src="assets/icon-delete.svg" alt="trash" class="remove-icon">
+            </button>
           </div>
         </div>
       </div>
@@ -180,10 +184,10 @@
     </div>
 
     <!-- FORM CTA -->
-    <div class="form-cta">
-      <button class="discard" (click)="closeInvoiceForm()" type="button">Discard</button>
-      <button class="draft" type="button">Save as Draft</button>
-      <button class="save" type="submit">Save & Send</button>
+    <div class="form-cta" [ngStyle]="{ justifyContent: editionMode && 'flex-end' }">
+      <button class="discard" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()" type="button">{{ editionMode ? 'Cancel' : 'Discard' }}</button>
+      <button *ngIf="!editionMode" class="btn-draft" type="button">Save as Draft</button>
+      <button class="save" type="submit">{{ editionMode ? 'Save Changes' : 'Save & Send' }}</button>
     </div>
   </form>
 </section>

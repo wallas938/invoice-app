@@ -1,0 +1,21 @@
+<div class="invoice__header">
+  <div class="header__status">
+    <span>Status</span>
+    <div class="status-design" [ngClass]="{
+                'paid': currentInvoice?.status === 'Paid',
+                'pending': currentInvoice?.status === 'Pending',
+                'draft': currentInvoice?.status === 'Draft' }">
+      <span class="bullet" [ngStyle]="{
+        backgroundColor: currentInvoice?.status === 'Paid' ? '#33D69F' :
+        currentInvoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
+      }">
+    </span>
+      <span>{{ currentInvoice?.status }}</span>
+    </div>
+  </div>
+  <div class="invoice__cta hide-for-mobile">
+    <button class="edit" (click)="onEdit(currentInvoice!._id)">Edit</button>
+    <button class="delete">Delete</button>
+    <button class="mark-as-paid">Mark as Paid</button>
+  </div>
+</div>

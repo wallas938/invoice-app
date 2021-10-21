@@ -1,0 +1,101 @@
+@import "../../../../../../sass/variables";
+@import "../../../../../../sass/colors";
+
+.invoice__header {
+  margin-bottom: 1.333333rem;
+  background-color: #fff;
+  padding: 1.6rem;
+  border-radius: 0.666666rem;
+
+  .header__status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__status>span {
+    color: #858BB2;
+    font-weight: 500;
+  }
+
+  .header__status>.status-design {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.083333rem 1.416666rem;
+    border-radius: 0.5rem;
+  }
+
+  .header__status>.status-design>.bullet {
+    width: 0.666666rem;
+    height: 0.666666rem;
+    border-radius: 100%;
+    margin-right: 0.666666rem;
+  }
+
+  .header__status>.status-design>span:last-child {
+    font-weight: 700;
+  }
+
+}
+
+@media screen and (min-width: $tablet-min) {
+  .invoice__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    padding: 1.666666rem 2.666666rem;
+    box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+
+    .header__status {
+      justify-content: unset;
+    }
+
+    .header__status>span:first-child {
+      margin-right: 1.333333rem;
+    }
+
+    .invoice__cta {
+      display: flex;
+      align-items: center;
+    }
+
+    .invoice__cta>button {
+      font-weight: 700;
+      border: transparent;
+      letter-spacing: -0.25px;
+      border-radius: 2rem;
+      height: 4rem;
+    }
+
+    .invoice__cta>button:not(:last-child) {
+      margin-right: 0.666666rem;
+    }
+
+    .invoice__cta>button:not(:first-child) {
+      color: #FFF;
+    }
+
+    .invoice__cta>.edit {
+      color: $blue-violet;
+      width: 6.083333rem;
+      background-color: #F9FAFE;
+    }
+
+    .invoice__cta>.delete {
+      width: 7.416666rem;
+      background-color: $red;
+    }
+
+    .invoice__cta>.mark-as-paid {
+      width: 10.916666rem;
+      background-color: $violet-1;
+    }
+  }
+
+}
+
+@media screen and (min-width: $desktop-min) {
+}

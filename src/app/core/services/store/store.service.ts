@@ -37,11 +37,17 @@ export class StoreService {
   public readonly isConnected$ = this.isConnected.asObservable();
 
   //** Invoice properties */
-  private isInvoiceFormIsDisplayed = new BehaviorSubject<boolean>(false);
-  public readonly isInvoiceFormIsDisplayed$ = this.isInvoiceFormIsDisplayed.asObservable();
+  private isInvoiceFormDisplayed = new BehaviorSubject<boolean>(false);
+  public readonly isInvoiceFormDisplayed$ = this.isInvoiceFormDisplayed.asObservable();
 
   private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
   public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
+
+  private invoiceUpdatedStatus = new BehaviorSubject<boolean>(false);
+  public readonly invoiceUpdatedStatus$ = this.invoiceUpdatedStatus.asObservable();
+
+  private invoiceEditionMode = new BehaviorSubject<boolean>(false);
+  public readonly invoiceEditionMode$ = this.invoiceEditionMode.asObservable();
 
   private invoices = new BehaviorSubject<InvoiceGetDto[] | undefined>(undefined);
   public readonly invoices$ = this.invoices.asObservable();
@@ -80,11 +86,15 @@ export class StoreService {
   //// INVOICE METHODS ////
 
   setInvoiceFormDisplayStatus(status: boolean) {
-    this.isInvoiceFormIsDisplayed.next(status);
+    this.isInvoiceFormDisplayed.next(status);
   }
 
   setNewInvoiceCreatedStatus(status: boolean) {
     this.newInvoiceCreatedStatus.next(status);
+  }
+
+  setInvoiceUpdatedStatus(status: boolean) {
+    this.invoiceUpdatedStatus.next(status);
   }
 
   setInvoices(invoices: InvoiceGetDto[]) {
@@ -93,7 +103,10 @@ export class StoreService {
 
   setCurrentInvoice(id: string) {
     this.currentInvoice.next(this.getInvoiceById(id));
+  }
 
+  setInvoiceEditionMode(status: boolean) {
+    this.invoiceEditionMode.next(status);
   }
 
   private getInvoiceById(id: string) {

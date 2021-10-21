@@ -5,15 +5,19 @@ import { UserAccountRoutingModule } from './user-account-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserAccountComponent } from './user-account.component';
 import { UserResolver } from './resolvers/user.resolver';
-import { InvoiceListItemComponent } from './components/invoice-list-item/invoice-list-item.component';
+import { InvoiceListItemComponent } from './components/invoice-list/components/invoice-list-item/invoice-list-item.component';
 import { InvoiceDetailComponent } from './components/invoice-detail/invoice-detail.component';
+import { InvoiceHeaderComponent } from './components/invoice-detail/components/invoice-header/invoice-header.component';
+import { InvoiceBodyComponent } from './components/invoice-detail/components/invoice-body/invoice-body.component';
 
 @NgModule({
   declarations: [
     InvoiceListComponent,
     UserAccountComponent,
     InvoiceListItemComponent,
-    InvoiceDetailComponent
+    InvoiceDetailComponent,
+    InvoiceHeaderComponent,
+    InvoiceBodyComponent
   ],
   imports: [
     CommonModule, UserAccountRoutingModule, SharedModule
