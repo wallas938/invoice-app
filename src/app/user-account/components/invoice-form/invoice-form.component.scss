@@ -36,6 +36,10 @@ section#invoice-form {
     padding: 0 1.83rem;
   }
 
+  h1 .hashtag {
+    color: $violet-gray;
+  }
+
   small {
     color: $red;
     font-weight: 700;
@@ -266,12 +270,12 @@ section#invoice-form {
       }
 
       .row__field.quantity>input {
-        width: clamp(5.333333rem, 17.055vw, 10rem);
+        width: 5.333333rem;
       }
 
       .row__field.price>input,
       .row__field.total>input {
-        width: clamp(8.333333rem, 26.645vw, 15rem);
+        width: 8.333333rem;
       }
 
       .row__field.total>input {
@@ -282,7 +286,9 @@ section#invoice-form {
         pointer-events: none;
       }
 
-      .remove-icon {
+      >button {
+        height: fit-content;
+        border: none;
         position: absolute;
         top: 37%;
         right: 0;
@@ -333,7 +339,7 @@ section#invoice-form {
       margin-left: 0.66rem;
     }
 
-    .draft {
+    .btn-draft {
       background-color: #373B53;
       color: $violet-gray;
       margin-left: 0.66rem;
@@ -350,7 +356,7 @@ section#invoice-form {
   section#invoice-form {
     padding-top: 4.666666rem;
     width: 51.333333rem;
-    height: 100vh;
+    height: 100%;
     overflow-y: scroll;
     border-radius: 0px 20px 20px 0px;
 
@@ -500,6 +506,7 @@ section#invoice-form {
 
         .row__field.quantity>input {
           width: 3.833333rem;
+          padding: 0 0 0 1.5rem ;
         }
 
         .row__field.price>input {
@@ -510,7 +517,7 @@ section#invoice-form {
           width: 6.833333rem;
         }
 
-        .remove-icon {
+        .row__field>button {
           top: 45%;
         }
       }
@@ -699,10 +706,6 @@ section#invoice-form {
 
         .row__field.total>input {
           width: 6.833333rem;
-        }
-
-        .remove-icon {
-          top: 45%;
         }
       }
     }

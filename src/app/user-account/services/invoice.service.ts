@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StoreService } from 'src/app/core/services/store/store.service';
-import { InvoiceCreateDto } from 'src/app/models/invoice';
+import { InvoiceCreateDto, InvoiceUpdateDto } from 'src/app/models/invoice';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class InvoiceService {
 
   saveInvoice(invoice: InvoiceCreateDto) {
     return this.http.post(`${this.invoiceUrl}/post`, invoice);
+  }
+
+  editInvoice(invoice: InvoiceUpdateDto) {
+    return this.http.put(`${this.invoiceUrl}/${invoice._id}`, invoice);
   }
 
   getInvoices() {
@@ -32,10 +36,16 @@ export class InvoiceService {
     this.storeService.setNewInvoiceCreatedStatus(status);
   }
 
+  setInvoiceUpdatedStatus(status: boolean) {
+    this.storeService.setInvoiceUpdatedStatus(status);
+  }
+
   setCurrentInvoice(id: string) {
     this.storeService.setCurrentInvoice(id);
   }
 
-
+  setInvoiceEditionMode(status: boolean) {
+    this.storeService.setInvoiceEditionMode(status);
+  }
 
 }
