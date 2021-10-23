@@ -250,7 +250,6 @@ export class InvoiceFormComponent implements OnInit {
           this.invoiceService.setInvoiceUpdatedStatus(true);
           this.closeInvoiceForm();
           this.loadingService.setLoadingStatus(false);
-          this.router.navigate(['..'], { relativeTo: this.route })
           this.openSnackBar();
         },
           ({ error }: HttpErrorResponse) => {
@@ -388,8 +387,8 @@ export class InvoiceFormComponent implements OnInit {
       }))
     })
   }
-/*   getDateNow() {
-    return this.datePipe.transform(new Date, 'dd-MM-yyyy');
-  } */
+  /*   getDateNow() {
+      return this.datePipe.transform(new Date, 'dd-MM-yyyy');
+    } */
 }
 

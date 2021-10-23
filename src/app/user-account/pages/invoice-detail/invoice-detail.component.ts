@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { StoreService } from 'src/app/core/services/store/store.service';
 import { InvoiceGetDto } from 'src/app/models/invoice';
@@ -23,18 +23,29 @@ export class InvoiceDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private loadingService: LoadingService,
     private alertService: AlertService,
-    private _snackBar: MatSnackBar,) { }
+    private _snackBar: MatSnackBar) {
+      this.loadingService.setLoadingStatus(false);
+    }
 
   ngOnInit(): void {
-    this.storeService.currentInvoice$
-      .subscribe((currentInvoice: InvoiceGetDto | undefined) => {
-        this.currentInvoice = currentInvoice;
-      });
+    this.route.data.subscribe(
+      (resolverData: Data) => {
+        let { invoice }: any = resolverData['invoiceDetail'];
+        this.currentInvoice = invoice;
+      }
+    )
+
+    this.storeService.invoiceUpdatedStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this.router.navigate(['..'], { relativeTo: this.route })
+        }
+      })
   }
 
   onEdit(invoiceId: string) {
     this.invoiceService.setInvoiceEditionMode(true);
-    this.invoiceService.setCurrentInvoice(invoiceId);
+    this.invoiceService.setCurrentInvoiceId(invoiceId);
     this.invoiceService.setInvoiceFormDisplayStatus(true);
   }
 

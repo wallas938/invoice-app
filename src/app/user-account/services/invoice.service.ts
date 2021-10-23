@@ -17,13 +17,15 @@ export class InvoiceService {
     return this.http.post(`${this.invoiceUrl}/post`, invoice);
   }
 
+  getInvoice(invoiceId: string) {
+    return this.http.get(`${this.invoiceUrl}/${invoiceId}`);
+  }
+
   editInvoice(invoice: InvoiceUpdateDto) {
     return this.http.put(`${this.invoiceUrl}/${invoice._id}`, invoice);
   }
 
   deleteInvoice(invoiceId: string) {
-    console.log(invoiceId);
-
     return this.http.delete(`${this.invoiceUrl}/${invoiceId}`);
   }
 
@@ -44,6 +46,10 @@ export class InvoiceService {
 
   setInvoiceUpdatedStatus(status: boolean) {
     this.storeService.setInvoiceUpdatedStatus(status);
+  }
+
+  setCurrentInvoiceId(id: string) {
+    this.storeService.setCurrentInvoiceId(id);
   }
 
   setCurrentInvoice(id: string) {

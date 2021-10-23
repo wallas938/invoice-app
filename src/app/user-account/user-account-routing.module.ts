@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth-guard/auth.guard';
-import { InvoiceDetailComponent } from './components/invoice-detail/invoice-detail.component';
-import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
+import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
+import { InvoiceResolver } from './pages/invoice-detail/resolver/invoice.resolver';
+import { InvoiceListComponent } from './pages/invoice-list/invoice-list.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { UserAccountComponent } from './user-account.component';
 
@@ -18,7 +19,10 @@ const routes: Routes = [
       },
       {
         path: ':id',
-        component: InvoiceDetailComponent
+        component: InvoiceDetailComponent,
+        resolve: {
+          invoiceDetail: InvoiceResolver
+        }
       },
     ]
   }

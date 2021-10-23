@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvoiceGetDto } from 'src/app/models/invoice';
 import { InvoiceService } from '../../../../services/invoice.service';
@@ -11,6 +11,7 @@ import { InvoiceService } from '../../../../services/invoice.service';
 export class InvoiceListItemComponent implements OnInit {
 
   @Input() invoice!: InvoiceGetDto;
+  @Output() detail = new EventEmitter<string>();
 
   constructor(private invoiceService: InvoiceService,
               private router: Router,
@@ -20,8 +21,7 @@ export class InvoiceListItemComponent implements OnInit {
   }
 
   navigateToDetail(id: string) {
-    this.invoiceService.setCurrentInvoice(id);
-    this.router.navigate([id], {relativeTo: this.route});
+    this.detail.emit(id);
   }
 
 }

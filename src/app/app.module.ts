@@ -7,7 +7,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { InvoiceFormComponent } from './user-account/components/invoice-form/invoice-form.component';
+import { InvoiceFormComponent } from './user-account/pages/invoice-form/invoice-form.component';
 
 @NgModule({
   declarations: [

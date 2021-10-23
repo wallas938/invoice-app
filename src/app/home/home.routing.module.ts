@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AutoLoginGuard } from '../core/guards/auto-login.guard';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
