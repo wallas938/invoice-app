@@ -61,6 +61,14 @@ export class InvoiceListComponent implements OnInit {
       .subscribe((invoices: InvoiceGetDto[] | undefined) => {
         if (invoices) {
           this.invoices = invoices;
+        }
+        this.loadingService.setLoadingStatus(false);
+      });
+
+    this.storeService.invoiceDeletionStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this.invoiceService.setInvoiceDeletionStatus(false);
           this.loadingService.setLoadingStatus(false);
         }
       });

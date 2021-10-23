@@ -21,6 +21,12 @@ export class InvoiceService {
     return this.http.put(`${this.invoiceUrl}/${invoice._id}`, invoice);
   }
 
+  deleteInvoice(invoiceId: string) {
+    console.log(invoiceId);
+
+    return this.http.delete(`${this.invoiceUrl}/${invoiceId}`);
+  }
+
   getInvoices() {
     return this.http.get(`${this.invoiceUrl}`)
             .subscribe((data: any) => {
@@ -46,6 +52,10 @@ export class InvoiceService {
 
   setInvoiceEditionMode(status: boolean) {
     this.storeService.setInvoiceEditionMode(status);
+  }
+
+  setInvoiceDeletionStatus(status: boolean) {
+    this.storeService.setInvoiceDeletionStatus(status);
   }
 
 }
