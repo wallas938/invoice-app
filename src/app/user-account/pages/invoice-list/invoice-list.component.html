@@ -32,7 +32,8 @@
   <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
     <app-invoice-list-item
       *ngFor="let invoice of invoices"
-      [invoice]="invoice">
+      [invoice]="invoice"
+      (detail)="getInvoice($event)">
     </app-invoice-list-item>
   </div>
 </section>

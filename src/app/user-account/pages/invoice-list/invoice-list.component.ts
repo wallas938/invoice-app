@@ -21,8 +21,10 @@ export class InvoiceListComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private invoiceService: InvoiceService,
-    private storeService: StoreService,
-    private loadingService: LoadingService) {
+              private storeService: StoreService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private loadingService: LoadingService) {
       this.getInvoices();
       this.loadingService.setLoadingStatus(false);
   }
@@ -72,6 +74,13 @@ export class InvoiceListComponent implements OnInit {
           this.loadingService.setLoadingStatus(false);
         }
       });
+  }
+
+  getInvoice(invoiceId: string) {
+    this.loadingService.setLoadingStatus(true);
+    this.invoiceService.setCurrentInvoiceId(invoiceId);
+    this.invoiceService.setCurrentInvoice(invoiceId);
+    this.router.navigate([invoiceId], {relativeTo: this.route});
   }
 
   getInvoices() {
