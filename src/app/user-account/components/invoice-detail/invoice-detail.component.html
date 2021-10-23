@@ -1,14 +1,16 @@
 <section id="invoice-detail">
   <div class="invoice container">
     <p><a class="back" [routerLink]="['..']">Go back</a></p>
-    <app-invoice-header [currentInvoice]="currentInvoice" (edit)="onEdit($event)">
+    <app-invoice-header [currentInvoice]="currentInvoice"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)">
     </app-invoice-header>
     <app-invoice-body [currentInvoice]="currentInvoice" (edit)="onEdit($event)">
     </app-invoice-body>
   </div>
   <div class="invoice__cta-mobile container hide-for-tablet-and-desktop">
     <button class="edit" (click)="onEdit(currentInvoice!._id)">Edit</button>
-    <button class="delete">Delete</button>
+    <button class="delete" (click)="onDelete(currentInvoice!._id)">Delete</button>
     <button class="mark-as-paid">Mark as Paid</button>
   </div>
 </section>

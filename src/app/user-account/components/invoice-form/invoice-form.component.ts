@@ -196,7 +196,6 @@ export class InvoiceFormComponent implements OnInit {
           this.alertService.setMessage(result.message, "success");
           this.invoiceService.setNewInvoiceCreatedStatus(true);
           this.closeInvoiceForm();
-          this.loadingService.setLoadingStatus(false);
           this.openSnackBar();
         },
           ({ error }: HttpErrorResponse) => {

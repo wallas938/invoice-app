@@ -49,6 +49,9 @@ export class StoreService {
   private invoiceEditionMode = new BehaviorSubject<boolean>(false);
   public readonly invoiceEditionMode$ = this.invoiceEditionMode.asObservable();
 
+  private invoiceDeletionStatus = new BehaviorSubject<boolean>(false);
+  public readonly invoiceDeletionStatus$ = this.invoiceDeletionStatus.asObservable();
+
   private invoices = new BehaviorSubject<InvoiceGetDto[] | undefined>(undefined);
   public readonly invoices$ = this.invoices.asObservable();
 
@@ -107,6 +110,10 @@ export class StoreService {
 
   setInvoiceEditionMode(status: boolean) {
     this.invoiceEditionMode.next(status);
+  }
+
+  setInvoiceDeletionStatus(status: boolean) {
+    this.invoiceDeletionStatus.next(status);
   }
 
   private getInvoiceById(id: string) {
