@@ -29,12 +29,18 @@ export class InvoiceService {
     return this.http.delete(`${this.invoiceUrl}/${invoiceId}`);
   }
 
+  markAsPaid(invoiceId: string) {
+    return this.http.patch(`${this.invoiceUrl}/${invoiceId}/status`, { status: 'Paid' });
+  }
+
   getInvoices() {
     return this.http.get(`${this.invoiceUrl}`)
             .subscribe((data: any) => {
               this.storeService.setInvoices(data.invoices);
             });
   }
+
+  /** Setters */
 
   setInvoiceFormDisplayStatus(status: boolean) {
     this.storeService.setInvoiceFormDisplayStatus(status);
@@ -62,6 +68,10 @@ export class InvoiceService {
 
   setInvoiceDeletionStatus(status: boolean) {
     this.storeService.setInvoiceDeletionStatus(status);
+  }
+
+  setInvoiceStateStatus(status: boolean) {
+    this.storeService.setInvoiceStateStatus(status);
   }
 
 }

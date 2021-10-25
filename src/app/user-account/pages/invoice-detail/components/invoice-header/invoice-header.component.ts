@@ -11,6 +11,7 @@ export class InvoiceHeaderComponent implements OnInit {
   @Input() currentInvoice: InvoiceGetDto | undefined;
   @Output() edit: EventEmitter<string> = new EventEmitter();
   @Output() delete: EventEmitter<string> = new EventEmitter();
+  @Output() markAsPaid: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
@@ -23,5 +24,9 @@ export class InvoiceHeaderComponent implements OnInit {
 
   onDelete(invoiceId: string) {
     this.delete.emit(invoiceId);
+  }
+
+  onMarkAsPaid(invoiceId: string) {
+    this.markAsPaid.emit(invoiceId);
   }
 }
