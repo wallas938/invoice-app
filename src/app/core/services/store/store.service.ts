@@ -52,6 +52,9 @@ export class StoreService {
   private invoiceDeletionStatus = new BehaviorSubject<boolean>(false);
   public readonly invoiceDeletionStatus$ = this.invoiceDeletionStatus.asObservable();
 
+  private invoiceStateStatus = new BehaviorSubject<boolean>(false);
+  public readonly invoiceStateStatus$ = this.invoiceStateStatus.asObservable();
+
   private invoices = new BehaviorSubject<InvoiceGetDto[] | undefined>(undefined);
   public readonly invoices$ = this.invoices.asObservable();
 
@@ -125,6 +128,10 @@ export class StoreService {
 
   setInvoiceDeletionStatus(status: boolean) {
     this.invoiceDeletionStatus.next(status);
+  }
+
+  setInvoiceStateStatus(status: boolean) {
+    this.invoiceStateStatus.next(status);
   }
 
   private getInvoiceById(id: string) {

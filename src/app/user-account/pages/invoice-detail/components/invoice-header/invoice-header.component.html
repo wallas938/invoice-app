@@ -16,6 +16,6 @@
   <div class="invoice__cta hide-for-mobile">
     <button class="edit" (click)="onEdit(currentInvoice!._id)">Edit</button>
     <button class="delete" (click)="onDelete(currentInvoice!._id)">Delete</button>
-    <button class="mark-as-paid">Mark as Paid</button>
+    <button class="mark-as-paid" *ngIf="currentInvoice!.status !== 'Paid'" (click)="onMarkAsPaid(currentInvoice!._id)">Mark as Paid</button>
   </div>
 </div>

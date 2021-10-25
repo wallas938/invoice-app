@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,13 +20,13 @@ export class InvoiceDetailComponent implements OnInit {
   currentInvoice: InvoiceGetDto | undefined
   constructor(private storeService: StoreService,
     private invoiceService: InvoiceService,
-    private router: Router,
+    private _router: Router,
     private route: ActivatedRoute,
     private loadingService: LoadingService,
     private alertService: AlertService,
     private _snackBar: MatSnackBar) {
-      this.loadingService.setLoadingStatus(false);
-    }
+    this.loadingService.setLoadingStatus(false);
+  }
 
   ngOnInit(): void {
     this.route.data.subscribe(
@@ -35,10 +36,24 @@ export class InvoiceDetailComponent implements OnInit {
       }
     )
 
+    this.storeService.invoiceDeletionStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this._router.navigate(['..'], { relativeTo: this.route });
+        }
+      })
+
     this.storeService.invoiceUpdatedStatus$
       .subscribe((status: boolean) => {
         if (status) {
-          this.router.navigate(['..'], { relativeTo: this.route })
+          this._router.navigate(['..'], { relativeTo: this.route });
+        }
+      })
+
+    this.storeService.invoiceStateStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this._router.navigate(['..'], { relativeTo: this.route });
         }
       })
   }
@@ -55,7 +70,6 @@ export class InvoiceDetailComponent implements OnInit {
       .subscribe((result: any) => {
         this.alertService.setMessage(result.message, "success");
         this.invoiceService.setInvoiceDeletionStatus(true);
-        this.router.navigate(['..'], { relativeTo: this.route });
       },
         ({ error }: HttpErrorResponse) => {
           if (!error.message) {
@@ -70,6 +84,27 @@ export class InvoiceDetailComponent implements OnInit {
           this.loadingService.setLoadingStatus(false);
           this.openSnackBar();
         })
+  }
+
+  onMarkAsPaid(invoiceId: string) {
+    this.loadingService.setLoadingStatus(true);
+    this.invoiceService.markAsPaid(invoiceId)
+      .subscribe((result: any) => {
+        this.alertService.setMessage(result.message, "success");
+        this.invoiceService.setInvoiceStateStatus(true);
+      }, ({ error }: HttpErrorResponse) => {
+        if (!error.message) {
+          this.alertService.setMessage("An server error occurs...", "error");
+          this.invoiceService.setInvoiceStateStatus(false);
+          this.loadingService.setLoadingStatus(false);
+          this.openSnackBar();
+          return;
+        }
+        this.alertService.setMessage(error.message, "error");
+        this.invoiceService.setInvoiceStateStatus(false);
+        this.loadingService.setLoadingStatus(false);
+        this.openSnackBar();
+      })
   }
 
   openSnackBar() {
