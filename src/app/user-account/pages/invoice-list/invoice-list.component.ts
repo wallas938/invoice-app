@@ -21,15 +21,16 @@ export class InvoiceListComponent implements OnInit {
   imageSrc: string = 'assets/camera.svg';
   invoices!: InvoiceGetDto[];
   isLoading: boolean = false;
+  showFilter: boolean = false;
 
   constructor(private invoiceService: InvoiceService,
-              private storeService: StoreService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private _snackBar: MatSnackBar,
-              private loadingService: LoadingService) {
-      this.getInvoices();
-      this.loadingService.setLoadingStatus(false);
+    private storeService: StoreService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private loadingService: LoadingService) {
+    this.getInvoices();
+    this.loadingService.setLoadingStatus(false);
   }
 
   ngOnInit(): void {
@@ -87,6 +88,11 @@ export class InvoiceListComponent implements OnInit {
           this.openSnackBar();
         }
       });
+
+    this.storeService.filterDisplayStatus$
+      .subscribe((status: boolean) => {
+          this.showFilter = status;
+      })
   }
 
   openSnackBar() {
@@ -95,11 +101,23 @@ export class InvoiceListComponent implements OnInit {
     });
   };
 
+  onFilter(data: { draft: string, pending: string, paid: string }) {
+    console.log(data);
+  }
+
+  onShowFilter() {
+    this.invoiceService.setFilterDisplayStatus(true);
+  }
+
+  onHideFilter() {
+    this.invoiceService.setFilterDisplayStatus(false);
+  }
+
   getInvoice(invoiceId: string) {
     this.loadingService.setLoadingStatus(true);
     this.invoiceService.setCurrentInvoiceId(invoiceId);
     this.invoiceService.setCurrentInvoice(invoiceId);
-    this.router.navigate([invoiceId], {relativeTo: this.route});
+    this.router.navigate([invoiceId], { relativeTo: this.route });
   }
 
   getInvoices() {

@@ -74,4 +74,8 @@ export class InvoiceService {
     this.storeService.setInvoiceStateStatus(status);
   }
 
+  setFilterDisplayStatus(status: boolean) {
+    this.storeService.setFilterDisplayStatus(status);
+  }
+
 }

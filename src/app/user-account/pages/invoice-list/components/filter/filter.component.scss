@@ -1,0 +1,81 @@
+@import "../../../../../../sass/variables";
+@import "../../../../../../sass/colors";
+
+.filter {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 2.75rem;
+  left: -3.333333rem;
+
+  z-index: 1;
+  padding: 2rem 7.166666rem 2rem 2rem;
+  border-radius: 0.666666rem;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+
+  .status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .status:hover>[type="checkbox"]:not(:checked) {
+    border: 1px solid $violet-1;
+  }
+
+  .status:not(:last-child) {
+    margin-bottom: 0.916666rem;
+  }
+
+  .status>label {
+    font-weight: 700;
+    line-height: 15px;
+  }
+
+  /* checkbox styling */
+  .status>input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: $blue-gray-light;
+    /* Not removed via appearance */
+    margin-right: 1.083333rem;
+    font: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+  }
+
+  .status>input[type="checkbox"]:checked {
+    background-color: $violet-1;
+  }
+
+  .status>input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #FFF;
+    transform-origin: bottom left;
+    clip-path: polygon(16% 36%, 33% 56%, 87% 4%, 100% 19%, 30% 88%, 0% 50%);
+  }
+
+  .status>input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+}
+
+@media screen and (min-width: $tablet-min) {
+  .filter {}
+}
+
+@media screen and (min-width: $desktop-min) {
+  .filter {}
+}
