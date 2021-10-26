@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { StoreService } from 'src/app/core/services/store/store.service';
 import { InvoiceCreateDto, InvoiceUpdateDto } from 'src/app/models/invoice';
 
@@ -11,7 +12,7 @@ export class InvoiceService {
   private invoiceUrl = "http://localhost:3200/invoices"
 
   constructor(private http: HttpClient,
-              private storeService: StoreService) { }
+    private storeService: StoreService) { }
 
   saveInvoice(invoice: InvoiceCreateDto) {
     return this.http.post(`${this.invoiceUrl}/post`, invoice);
@@ -35,9 +36,16 @@ export class InvoiceService {
 
   getInvoices() {
     return this.http.get(`${this.invoiceUrl}`)
-            .subscribe((data: any) => {
-              this.storeService.setInvoices(data.invoices);
-            });
+      .subscribe((data: any) => {
+        this.storeService.setInvoices(data.invoices);
+      });
+  }
+
+  updateInvoices(data: { draft: string, pending: string, paid: string }) {
+    return this.http.get(`${this.invoiceUrl}/filter?draft=${data.draft}&pending=${data.pending}&paid=${data.paid}`)
+      .subscribe((data: any) => {
+        this.storeService.setInvoices(data.invoices);
+      });
   }
 
   /** Setters */
