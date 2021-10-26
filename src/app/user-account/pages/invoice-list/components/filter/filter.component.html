@@ -1,0 +1,14 @@
+<div class="filter" *ngIf="showFilter">
+  <div class="status" (click)="onFilter('draft')">
+    <input type="checkbox" name="draft" id="draft" [checked]="draft">
+    <label for="draft">Draft</label>
+  </div>
+  <div class="status" (click)="onFilter('pending')">
+    <input type="checkbox" name="pending" id="pending" [checked]="pending">
+    <label for="pending">Pending</label>
+  </div>
+  <div class="status" (click)="onFilter('paid')">
+    <input type="checkbox" name="paid" id="paid" [checked]="paid">
+    <label for="paid">Paid</label>
+  </div>
+</div>

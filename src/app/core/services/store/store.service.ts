@@ -40,6 +40,9 @@ export class StoreService {
   private isInvoiceFormDisplayed = new BehaviorSubject<boolean>(false);
   public readonly isInvoiceFormDisplayed$ = this.isInvoiceFormDisplayed.asObservable();
 
+  private filterDisplayStatus = new BehaviorSubject<boolean>(false);
+  public readonly filterDisplayStatus$ = this.filterDisplayStatus.asObservable();
+
   private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
   public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
 
@@ -133,6 +136,12 @@ export class StoreService {
   setInvoiceStateStatus(status: boolean) {
     this.invoiceStateStatus.next(status);
   }
+
+  setFilterDisplayStatus(status: boolean) {
+    this.filterDisplayStatus.next(status);
+  }
+
+
 
   private getInvoiceById(id: string) {
     const invoice = this.invoices.getValue()?.find((i: InvoiceGetDto) => i._id === id);

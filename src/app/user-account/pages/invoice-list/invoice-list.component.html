@@ -4,15 +4,17 @@
     <p class="invoice__count"><span class="hide-for-mobile">There are</span>
       {{ invoices?.length !== 0 ? invoices?.length : '' }} <span class="hide-for-mobile">total</span> invoices</p>
   </div>
-  <div class="filter">
-    <div>
+  <div class="filter" (mouseenter)="onShowFilter()">
+    <app-filter (mouseleave)="onHideFilter()" [showFilter]="showFilter" (filter)="onFilter($event)"></app-filter>
+    <div (click)="onHideFilter()">
       <span>Filter</span> <span class="hide-for-mobile">by status</span>
     </div>
-    <img src="assets/icon-arrow-down.svg" alt="icon of an arrow" srcset="">
+    <div (click)="onHideFilter()" [ngClass]="{ 'filter-arrow-up': showFilter, 'filter-arrow-down': !showFilter}"></div>
+    <!-- <img [src]="showFilter ? 'assets/icon-arrow-up.svg' : 'assets/icon-arrow-down.svg'" alt="icon of an arrow"> -->
   </div>
   <div class="switch" (click)="openInvoiceForm()">
     <span class="switch__icon-plus">
-      <img src="assets/icon-plus.svg" alt="icon of a plus" srcset="">
+      <img src="assets/icon-plus.svg" alt="icon of a plus">
     </span>
     <div class="switch__text">
       <span>New </span>
@@ -30,10 +32,7 @@
     </div>
   </div>
   <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
-    <app-invoice-list-item
-      *ngFor="let invoice of invoices"
-      [invoice]="invoice"
-      (detail)="getInvoice($event)">
+    <app-invoice-list-item *ngFor="let invoice of invoices" [invoice]="invoice" (detail)="getInvoice($event)">
     </app-invoice-list-item>
   </div>
 </section>

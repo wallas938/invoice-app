@@ -10,6 +10,7 @@ import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.co
 import { InvoiceHeaderComponent } from './pages/invoice-detail/components/invoice-header/invoice-header.component';
 import { InvoiceBodyComponent } from './pages/invoice-detail/components/invoice-body/invoice-body.component';
 import { InvoiceResolver } from './pages/invoice-detail/resolver/invoice.resolver';
+import { FilterComponent } from './pages/invoice-list/components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InvoiceResolver } from './pages/invoice-detail/resolver/invoice.resolve
     InvoiceListItemComponent,
     InvoiceDetailComponent,
     InvoiceHeaderComponent,
-    InvoiceBodyComponent
+    InvoiceBodyComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule, UserAccountRoutingModule, SharedModule

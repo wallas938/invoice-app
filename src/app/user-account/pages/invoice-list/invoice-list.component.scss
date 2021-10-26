@@ -3,7 +3,9 @@
 @import "../../../../sass/helpers";
 @import "../../../../sass/variables";
 
-header, .invoices, .no-invoice {
+header,
+.invoices,
+.no-invoice {
   max-width: 38.4rem; // 576px
   margin: 0 auto;
 }
@@ -13,6 +15,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: $light-bg;
+  position: relative;
 
   >div:first-child {
     margin-right: 6.30rem; //
@@ -32,7 +35,8 @@ header {
     margin-right: 1.5rem; // 18px
     display: flex;
     align-items: center;
-
+    cursor: pointer;
+    position: relative;
     >div {
       display: flex;
       margin-right: 1rem;
@@ -42,9 +46,19 @@ header {
       font-weight: 700;
     }
 
-    img {
-      width: 0.705rem;
-      height: 0.3525rem;
+    div.filter-arrow-down {
+    }
+
+    div.filter-arrow-down::before {
+      content: url('../../../../assets/icon-arrow-down.svg');
+      transform: rotateZ(0deg);
+      transition: all 200ms ease-in-out;
+    }
+
+    div.filter-arrow-up::before {
+      content: url('../../../../assets/icon-arrow-down.svg');
+      transform: rotateZ(180deg);
+      transition: all 200ms ease-in-out;
     }
   }
 
@@ -110,7 +124,10 @@ header {
 }
 
 @media screen and (min-width: $tablet-min) {
-  header, .invoices, .no-invoice {
+
+  header,
+  .invoices,
+  .no-invoice {
     max-width: 66.133333rem; // 992px
   }
 
@@ -146,11 +163,6 @@ header {
       >div>span:first-child::after {
         content: "-";
         visibility: hidden;
-      }
-
-      img {
-        width: 0.705rem;
-        height: 0.3525rem;
       }
     }
 
@@ -217,7 +229,10 @@ header {
 }
 
 @media screen and (min-width: $desktop-min) {
-  header, .invoices, .no-invoice {
+
+  header,
+  .invoices,
+  .no-invoice {
     max-width: 85.333333rem; // 1280px
   }
 
@@ -251,11 +266,6 @@ header {
       >div>span:first-child::after {
         content: "-";
         visibility: hidden;
-      }
-
-      img {
-        width: 0.705rem;
-        height: 0.3525rem;
       }
     }
 
