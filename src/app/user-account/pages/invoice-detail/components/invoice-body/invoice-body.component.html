@@ -40,7 +40,7 @@
     </div>
     <div class="item" *ngFor="let item of currentInvoice!.items">
       <div>
-        <span class="name">{{ item.itemName }}</span>
+        <span class="name">{{ item.itemName | shorten:15}}</span>
         <span class="qty-price hide-for-tablet hide-for-desktop">{{item.quantity}} x £
           {{item.price |  shorten:9}}</span>
         <span class="qty hide-for-mobile">{{item.quantity}}</span>

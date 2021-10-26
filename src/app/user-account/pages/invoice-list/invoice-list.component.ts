@@ -102,7 +102,8 @@ export class InvoiceListComponent implements OnInit {
   };
 
   onFilter(data: { draft: string, pending: string, paid: string }) {
-    console.log(data);
+    this.loadingService.setLoadingStatus(true);
+    this.invoiceService.updateInvoices(data)
   }
 
   onShowFilter() {

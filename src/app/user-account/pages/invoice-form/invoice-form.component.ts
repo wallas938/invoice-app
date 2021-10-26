@@ -164,7 +164,7 @@ export class InvoiceFormComponent implements OnInit {
       !this.errors.includes(this.formGlobalError) && this.errors.push(this.formGlobalError)
       return;
     }
-    //** For inputs validation */
+    //** For inputs validation
     const newInvoice: InvoiceCreateDto = {
       fromStreet: this.invoiceForm.get('fromStreet')?.value.trim(),
       fromCity: this.invoiceForm.get('fromCity')?.value.trim(),
@@ -333,8 +333,11 @@ export class InvoiceFormComponent implements OnInit {
             if (item[prop].trim() === "") {
               this.hasError = true;
             }
-            if (itemNumericFields.includes(prop) && isNaN(+item[prop])) {
+
+            let value = +item[prop].replace(/,/g, "");
+            if (itemNumericFields.includes(prop) && isNaN(value)) {
               this.hasError = true;
+              console.log(item[prop]);
             }
           }
         }
@@ -346,7 +349,7 @@ export class InvoiceFormComponent implements OnInit {
     let totalAmount = 0;
     (this.getFormsItems().value as Array<any>)
       .forEach((item: Item) => {
-        totalAmount += +item.quantity * +item.price
+        totalAmount += +item.quantity * +item.price.replace(/,/g, "");
       });
     return formatNumber(totalAmount, 'en-US', '1.2');
   }
