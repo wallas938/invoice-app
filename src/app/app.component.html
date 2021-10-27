@@ -7,8 +7,14 @@
     <div *ngIf="isLoading && isConnected" class="global-loading">
       <app-loading-stripe ></app-loading-stripe>
     </div>
-    <div class="formBackdrop" (click)="closeInvoiceForm()" *ngIf="isConnected && displayStatus" @formBackDropState></div>
-    <app-invoice-form  *ngIf="displayStatus"></app-invoice-form>
+    <div class="backdrop" (click)="closeModals()" *ngIf="isConnected && (displayStatus || deletePromptDisplay)" @formBackDropState></div>
+    <app-invoice-form
+      *ngIf="displayStatus">
+    </app-invoice-form>
+    <app-delete-prompt
+      *ngIf="deletePromptDisplay"
+      (confirmInvoiceDeletion)="onConfirmDeletion($event)"><!-- deletePromptDisplay -->
+    </app-delete-prompt>
     <router-outlet></router-outlet>
   </div>
 </div>

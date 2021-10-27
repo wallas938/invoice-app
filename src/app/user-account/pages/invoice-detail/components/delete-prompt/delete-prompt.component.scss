@@ -1,0 +1,77 @@
+@import "../../../../../../sass/colors";
+@import "../../../../../../sass/variables";
+
+.delete-prompt {
+  position: fixed;
+  width: 25rem;
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.666666rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 1.083333rem;
+  }
+
+  p {
+    font-weight: 500;
+    line-height: 22px;
+    color: $blue-violet;
+  }
+
+  .prompt__cta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .prompt__cta>.cancel,
+  .prompt__cta>.delete {
+    padding: 0.9rem 1.2rem;
+    font-weight: 700;
+    line-height: 15px;
+    border-radius: 2rem;
+    border: none;
+  }
+
+  .prompt__cta>.cancel {
+    color: $blue-violet;
+    background-color: #F9FAFE;
+  }
+
+  .prompt__cta>.delete {
+    color: #FFF;
+    background-color: $red;
+  }
+}
+
+@media screen and (min-width: $tablet-min) {
+  .delete-prompt {
+    width: 33rem;
+    width: 40rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    top: 25%;
+    padding: 4rem;
+
+    h1 {
+      font-size: 2rem;
+      line-height: 32px;
+    }
+
+    .prompt__cta>.cancel,
+    .prompt__cta>.delete {
+      padding: 1.416666rem 2rem;
+    }
+  }
+
+}
+
+@media screen and (min-width: $desktop-min) {}

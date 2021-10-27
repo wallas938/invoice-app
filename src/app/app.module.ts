@@ -8,11 +8,13 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { InvoiceFormComponent } from './user-account/pages/invoice-form/invoice-form.component';
+import { DeletePromptComponent } from './user-account/pages/invoice-detail/components/delete-prompt/delete-prompt.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InvoiceFormComponent
+    InvoiceFormComponent,
+    DeletePromptComponent
   ],
   imports: [
     BrowserModule,
