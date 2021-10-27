@@ -54,6 +54,10 @@ export class InvoiceService {
     this.storeService.setInvoiceFormDisplayStatus(status);
   }
 
+  setDeletePromptDisplayStatus(status: boolean) {
+    this.storeService.setDeletePromptDisplayStatus(status);
+  }
+
   setNewInvoiceCreatedStatus(status: boolean) {
     this.storeService.setNewInvoiceCreatedStatus(status);
   }
@@ -84,6 +88,10 @@ export class InvoiceService {
 
   setFilterDisplayStatus(status: boolean) {
     this.storeService.setFilterDisplayStatus(status);
+  }
+
+  setInvoiceDeletionConfirmationStatus(status: boolean) {
+    this.storeService.setInvoiceDeletionConfirmationStatus(status);
   }
 
 }

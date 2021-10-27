@@ -40,8 +40,14 @@ export class StoreService {
   private isInvoiceFormDisplayed = new BehaviorSubject<boolean>(false);
   public readonly isInvoiceFormDisplayed$ = this.isInvoiceFormDisplayed.asObservable();
 
+  private deletePromptDisplayStatus = new BehaviorSubject<boolean>(false);
+  public readonly deletePromptDisplayStatus$ = this.deletePromptDisplayStatus.asObservable();
+
   private filterDisplayStatus = new BehaviorSubject<boolean>(false);
   public readonly filterDisplayStatus$ = this.filterDisplayStatus.asObservable();
+
+  private invoiceDeletionConfirmationStatus = new BehaviorSubject<boolean>(false);
+  public readonly invoiceDeletionConfirmationStatus$ = this.invoiceDeletionConfirmationStatus.asObservable();
 
   private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
   public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
@@ -101,6 +107,10 @@ export class StoreService {
     this.isInvoiceFormDisplayed.next(status);
   }
 
+  setDeletePromptDisplayStatus(status: boolean) {
+    this.deletePromptDisplayStatus.next(status);
+  }
+
   setNewInvoiceCreatedStatus(status: boolean) {
     this.newInvoiceCreatedStatus.next(status);
   }
@@ -139,6 +149,10 @@ export class StoreService {
 
   setFilterDisplayStatus(status: boolean) {
     this.filterDisplayStatus.next(status);
+  }
+
+  setInvoiceDeletionConfirmationStatus(status: boolean) {
+    this.invoiceDeletionConfirmationStatus.next(status);
   }
 
 

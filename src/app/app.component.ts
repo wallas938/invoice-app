@@ -35,6 +35,7 @@ export class AppComponent {
   isConnected: boolean = false;
   /* displayStatus: string = 'hide'; */
   displayStatus: boolean = false;
+  deletePromptDisplay: boolean = false;
   isLoading: boolean = false;
   constructor(private storeService: StoreService,
               private invoiceService: InvoiceService,
@@ -56,6 +57,12 @@ export class AppComponent {
       .subscribe((displayStatus) => {
         /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
         this.displayStatus = displayStatus;
+      });
+
+    this.storeService.deletePromptDisplayStatus$
+      .subscribe((deletePromptDisplay) => {
+        /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
+        this.deletePromptDisplay = deletePromptDisplay;
       });
 
     this.storeService.loadingStatus$
@@ -82,9 +89,18 @@ export class AppComponent {
     }
   }
 
-  closeInvoiceForm() {
+  onConfirmDeletion(confirmation: boolean) {
+    if (!confirmation) {
+      this.closeModals();
+    }
+    this.invoiceService.setInvoiceDeletionConfirmationStatus(confirmation);
+  }
+
+  closeModals() {
     this.invoiceService.setInvoiceFormDisplayStatus(false);
     this.invoiceService.setInvoiceEditionMode(false);
+    this.invoiceService.setDeletePromptDisplayStatus(false);
+    this.invoiceService.setInvoiceDeletionConfirmationStatus(false);
   }
 
 }

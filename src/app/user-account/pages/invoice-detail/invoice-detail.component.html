@@ -4,7 +4,7 @@
     <app-invoice-header
       [currentInvoice]="currentInvoice"
       (edit)="onEdit($event)"
-      (delete)="onDelete($event)"
+      (delete)="onShowPromptForDelete()"
       (markAsPaid)="onMarkAsPaid($event)">
     </app-invoice-header>
     <app-invoice-body
@@ -14,7 +14,7 @@
   </div>
   <div class="invoice__cta-mobile container hide-for-tablet-and-desktop">
     <button class="edit" (click)="onEdit(currentInvoice!._id)">Edit</button>
-    <button class="delete" (click)="onDelete(currentInvoice!._id)">Delete</button>
+    <button class="delete" (click)="onShowPromptForDelete()">Delete</button>
     <button class="mark-as-paid" *ngIf="currentInvoice!.status !== 'Paid'" (click)="onMarkAsPaid(currentInvoice!._id)">Mark as Paid</button>
   </div>
 </section>

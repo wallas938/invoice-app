@@ -56,6 +56,13 @@ export class InvoiceDetailComponent implements OnInit {
           this._router.navigate(['..'], { relativeTo: this.route });
         }
       })
+
+    this.storeService.invoiceDeletionConfirmationStatus$
+      .subscribe((confirmation: boolean) => {
+        if (confirmation) {
+          this.delete(this.currentInvoice!._id);
+        }
+      })
   }
 
   onEdit(invoiceId: string) {
@@ -64,26 +71,8 @@ export class InvoiceDetailComponent implements OnInit {
     this.invoiceService.setInvoiceFormDisplayStatus(true);
   }
 
-  onDelete(invoiceId: string) {
-    this.loadingService.setLoadingStatus(true);
-    this.invoiceService.deleteInvoice(invoiceId)
-      .subscribe((result: any) => {
-        this.alertService.setMessage(result.message, "success");
-        this.invoiceService.setInvoiceDeletionStatus(true);
-      },
-        ({ error }: HttpErrorResponse) => {
-          if (!error.message) {
-            this.alertService.setMessage("An server error occurs...", "error");
-            this.invoiceService.setInvoiceDeletionStatus(false);
-            this.loadingService.setLoadingStatus(false);
-            this.openSnackBar();
-            return;
-          }
-          this.alertService.setMessage(error.message, "error");
-          this.invoiceService.setInvoiceDeletionStatus(false);
-          this.loadingService.setLoadingStatus(false);
-          this.openSnackBar();
-        })
+  onShowPromptForDelete() {
+    this.invoiceService.setDeletePromptDisplayStatus(true);
   }
 
   onMarkAsPaid(invoiceId: string) {
@@ -105,6 +94,32 @@ export class InvoiceDetailComponent implements OnInit {
         this.loadingService.setLoadingStatus(false);
         this.openSnackBar();
       })
+  }
+
+  delete(invoiceId: string) {
+    this.loadingService.setLoadingStatus(true);
+    this.invoiceService.deleteInvoice(invoiceId)
+      .subscribe((result: any) => {
+        this.alertService.setMessage(result.message, "success");
+        this.invoiceService.setInvoiceDeletionStatus(true);
+        this.invoiceService.setDeletePromptDisplayStatus(false);
+        this.invoiceService.setInvoiceDeletionConfirmationStatus(false);
+        this._router.navigate(['..'], { relativeTo: this.route });
+        this.openSnackBar();
+      },
+        ({ error }: HttpErrorResponse) => {
+          if (!error.message) {
+            this.alertService.setMessage("An server error occurs...", "error");
+            this.invoiceService.setInvoiceDeletionStatus(false);
+            this.loadingService.setLoadingStatus(false);
+            this.openSnackBar();
+            return;
+          }
+          this.alertService.setMessage(error.message, "error");
+          this.invoiceService.setInvoiceDeletionStatus(false);
+          this.loadingService.setLoadingStatus(false);
+          this.openSnackBar();
+        })
   }
 
   openSnackBar() {

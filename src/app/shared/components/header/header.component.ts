@@ -17,10 +17,10 @@ export class HeaderComponent implements OnInit {
   user!: UserGetDto;
   isConnected: boolean = false;
   constructor(private store: StoreService,
-              private cacheService: CacheService,
-              private authService: AuthService,
-              private invoiceService: InvoiceService,
-              private router: Router) { }
+    private cacheService: CacheService,
+    private authService: AuthService,
+    private invoiceService: InvoiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.store.loggedUser$
@@ -34,22 +34,26 @@ export class HeaderComponent implements OnInit {
         this.profileImage = "assets/image-avatar.jpg";
       });
 
-      this.store.isConnected$
-          .subscribe((isConnected: boolean) => {
-              this.isConnected = isConnected;
-          })
-  }
-
-  closeInvoiceForm() {
-    this.invoiceService.setInvoiceFormDisplayStatus(false);
+    this.store.isConnected$
+      .subscribe((isConnected: boolean) => {
+        this.isConnected = isConnected;
+      })
   }
 
   logout() {
-    this.closeInvoiceForm();
+    this.closeModals();
     setTimeout(() => {
       this.cacheService.removeToken();
       this.authService.setUserConnectionStatus(false);
+
       this.router.navigate(['/home']);
     }, 400);
+  }
+
+  closeModals() {
+    this.invoiceService.setInvoiceFormDisplayStatus(false);
+    this.invoiceService.setInvoiceEditionMode(false);
+    this.invoiceService.setDeletePromptDisplayStatus(false);
+    this.invoiceService.setInvoiceDeletionConfirmationStatus(false);
   }
 }

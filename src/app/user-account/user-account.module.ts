@@ -11,6 +11,7 @@ import { InvoiceHeaderComponent } from './pages/invoice-detail/components/invoic
 import { InvoiceBodyComponent } from './pages/invoice-detail/components/invoice-body/invoice-body.component';
 import { InvoiceResolver } from './pages/invoice-detail/resolver/invoice.resolver';
 import { FilterComponent } from './pages/invoice-list/components/filter/filter.component';
+import { DeletePromptComponent } from './pages/invoice-detail/components/delete-prompt/delete-prompt.component';
 
 @NgModule({
   declarations: [

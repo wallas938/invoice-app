@@ -76,7 +76,6 @@ export class InvoiceListComponent implements OnInit {
         if (status) {
           this.invoiceService.setInvoiceDeletionStatus(false);
           this.loadingService.setLoadingStatus(false);
-          this.openSnackBar();
         }
       });
 
@@ -91,7 +90,7 @@ export class InvoiceListComponent implements OnInit {
 
     this.storeService.filterDisplayStatus$
       .subscribe((status: boolean) => {
-          this.showFilter = status;
+        this.showFilter = status;
       })
   }
 
