@@ -1,20 +1,25 @@
 <div id="invoice-app">
+  <div class="global-backdrop" (click)="closeModals()" *ngIf="isConnected && deletePromptDisplay" @formBackDropState></div>
+
+  <app-delete-prompt
+  [invoiceCode]="currentInvoice!.invoiceCode"
+  *ngIf="deletePromptDisplay"
+  (confirmInvoiceDeletion)="onConfirmDeletion($event)"><!-- deletePromptDisplay -->
+</app-delete-prompt>
+
   <div *ngIf="isConnected" class="header">
     <app-header></app-header>
   </div>
-  <div class="main-container">
+
+  <div class="main-container" [ngClass]="{'hide-overflow': globalBackdrop} ">
     <!-- <div *ngIf="true" class="global-loading"> -->
     <div *ngIf="isLoading && isConnected" class="global-loading">
       <app-loading-stripe ></app-loading-stripe>
     </div>
-    <div class="backdrop" (click)="closeModals()" *ngIf="isConnected && (displayStatus || deletePromptDisplay)" @formBackDropState></div>
+    <div class="main-backdrop" (click)="closeModals()" *ngIf="isConnected && displayStatus" @formBackDropState></div>
     <app-invoice-form
       *ngIf="displayStatus">
     </app-invoice-form>
-    <app-delete-prompt
-      *ngIf="deletePromptDisplay"
-      (confirmInvoiceDeletion)="onConfirmDeletion($event)"><!-- deletePromptDisplay -->
-    </app-delete-prompt>
     <router-outlet></router-outlet>
   </div>
 </div>

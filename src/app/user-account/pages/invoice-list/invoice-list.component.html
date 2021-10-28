@@ -1,22 +1,25 @@
 <header>
   <div>
     <h1>Invoices</h1>
-    <p class="invoice__count"><span class="hide-for-mobile">There are</span>
-      {{ invoices?.length !== 0 ? invoices?.length : '' }} <span class="hide-for-mobile">total</span> invoices</p>
+    <p *ngIf="invoices?.length;else noInvoiceText" class="invoice__count" >
+      <span class="hide-for-mobile">There are</span>
+      {{ invoices?.length }}
+      <span class="hide-for-mobile">total</span> invoices</p>
+      <ng-template #noInvoiceText><p class="invoice__count">No invoices</p></ng-template>
   </div>
-  <div class="filter" (mouseenter)="onShowFilter()">
-    <app-filter (mouseleave)="onHideFilter()" [showFilter]="showFilter" (filter)="onFilter($event)"></app-filter>
-    <div (click)="onHideFilter()">
+  <div class="filter">
+    <app-filter [showFilter]="showFilter" (filter)="onFilter($event)"></app-filter>
+    <div (click)="onToggle()">
       <span>Filter</span> <span class="hide-for-mobile">by status</span>
     </div>
-    <div (click)="onHideFilter()" [ngClass]="{ 'filter-arrow-up': showFilter, 'filter-arrow-down': !showFilter}"></div>
+    <div (click)="onToggle()" [ngClass]="{ 'filter-arrow-up': showFilter, 'filter-arrow-down': !showFilter}"></div>
     <!-- <img [src]="showFilter ? 'assets/icon-arrow-up.svg' : 'assets/icon-arrow-down.svg'" alt="icon of an arrow"> -->
   </div>
-  <div class="switch" (click)="openInvoiceForm()">
-    <span class="switch__icon-plus">
+  <div class="new-invoice" (click)="openInvoiceForm()">
+    <span class="new-invoice__icon-plus">
       <img src="assets/icon-plus.svg" alt="icon of a plus">
     </span>
-    <div class="switch__text">
+    <div class="new-invoice__text">
       <span>New </span>
       <span class="show-flex">Invoice</span>
     </div>

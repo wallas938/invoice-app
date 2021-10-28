@@ -39,6 +39,10 @@
   display: none;
 }
 
+.hide-overflow {
+  overflow: hidden;
+}
+
 .paid {
   background-color: rgba($color: #33D69F, $alpha: 5.71%) !important;
   color: #33D69F !important;

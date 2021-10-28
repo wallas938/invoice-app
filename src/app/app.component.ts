@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './core/services/auth/auth.service';
 import { StoreService } from './core/services/store/store.service';
 import { UserService } from './home/services/user.service';
+import { InvoiceGetDto } from './models/invoice';
 import { CacheService } from './shared/services/cache/cache.service';
 import { LoadingService } from './shared/services/loading/loading.service';
 import { InvoiceService } from './user-account/services/invoice.service';
@@ -33,18 +34,19 @@ import { InvoiceService } from './user-account/services/invoice.service';
 })
 export class AppComponent {
   isConnected: boolean = false;
+  globalBackdrop: boolean = false;
   /* displayStatus: string = 'hide'; */
   displayStatus: boolean = false;
   deletePromptDisplay: boolean = false;
   isLoading: boolean = false;
+  currentInvoice: InvoiceGetDto | undefined
   constructor(private storeService: StoreService,
-              private invoiceService: InvoiceService,
-              private loadingService: LoadingService,
-              private cacheService: CacheService,
-              private authService: AuthService,
-              private userService: UserService,
-              private router: Router) {
-              }
+    private invoiceService: InvoiceService,
+    private cacheService: CacheService,
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router) {
+  }
 
   ngOnInit() {
 
@@ -55,14 +57,18 @@ export class AppComponent {
 
     this.storeService.isInvoiceFormDisplayed$
       .subscribe((displayStatus) => {
-        /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
         this.displayStatus = displayStatus;
       });
 
+    this.storeService.currentInvoice$
+      .subscribe((currentInvoice: InvoiceGetDto | undefined) => {
+        this.currentInvoice = currentInvoice;
+      });
+
     this.storeService.deletePromptDisplayStatus$
-      .subscribe((deletePromptDisplay) => {
-        /* this.displayStatus = displayStatus ? 'show' : 'hide'; */
-        this.deletePromptDisplay = deletePromptDisplay;
+      .subscribe((status: boolean) => {
+        this.deletePromptDisplay = status;
+        this.globalBackdrop = status;
       });
 
     this.storeService.loadingStatus$
