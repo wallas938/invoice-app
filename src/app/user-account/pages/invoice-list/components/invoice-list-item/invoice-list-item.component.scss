@@ -1,14 +1,14 @@
 @import "../../../../../../sass/variables";
 
 .invoice {
-  padding: 2rem;
-  border-radius: 0.666666rem;
-  background-color: #fff;
-  margin: 0 auto 1.333333rem auto;
-  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
   display: grid;
-  grid-template-columns: auto 8.666666rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.666666rem;
+  margin: 0 auto 1.333333rem auto;
   grid-template-rows: auto auto auto;
+  grid-template-columns: auto 8.666666rem;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   grid-template-areas: "invoiceCode clientName"
     "dueDate     status"
     "total       status";
@@ -58,7 +58,8 @@
   .status {
     grid-area: status;
     display: flex;
-    align-items: baseline;
+    justify-content: center;
+    align-items: center;
     padding: 1.0833333rem 1.416666rem 1.025rem 1.5rem;
     border-radius: 0.5rem;
     text-align: center;
@@ -84,7 +85,7 @@
     height: 6rem;
     display: flex;
     align-items: center;
-    width: 51.2rem;
+    margin: 0 0 1.333333rem 0;
     .invoice-code {
       grid-area: unset;
       margin-bottom: unset;
@@ -114,7 +115,7 @@
 
     .status {
       grid-area: unset;
-      padding: 1.0833333rem 0 1.025rem 1.5rem;
+      padding: 1.0833333rem 1.416666rem 1.025rem 1.5rem;
       width: 8.666666rem;
     }
 
@@ -134,8 +135,8 @@
     grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto;
     grid-template-areas: "invoiceCode dueDate clientName total status arrow";
-    width: 60.833333rem;
     display: flex;
+
     .invoice-code {
       margin-bottom: unset;
     }

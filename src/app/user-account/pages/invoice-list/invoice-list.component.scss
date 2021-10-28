@@ -37,6 +37,7 @@ header {
     align-items: center;
     cursor: pointer;
     position: relative;
+    width: 4.5rem;
     >div {
       display: flex;
       margin-right: 1rem;
@@ -44,9 +45,6 @@ header {
 
     >div>span {
       font-weight: 700;
-    }
-
-    div.filter-arrow-down {
     }
 
     div.filter-arrow-down::before {
@@ -62,10 +60,10 @@ header {
     }
   }
 
-  .switch {
+  .new-invoice {
     background-color: $violet-1;
-    width: 7.5rem; //90px
-    height: 3.666666rem; // 44px
+    /* width: 7.5rem; //90px
+    height: 3.666666rem; // 44px */
     border-radius: 30px;
     display: flex;
     justify-content: space-between;
@@ -73,7 +71,7 @@ header {
     padding: 0.5rem 1.166666rem 0.5rem 0.5rem;
     cursor: pointer;
 
-    .switch__icon-plus {
+    .new-invoice__icon-plus {
       width: 2.666666rem; // 32px
       height: 2.666666rem;
       border-radius: 100%;
@@ -81,14 +79,15 @@ header {
       align-items: center;
       justify-content: center;
       background-color: #FFF;
+      margin-right: 0.666666rem;
     }
 
-    .switch__text>span:first-child {
+    .new-invoice__text>span:first-child {
       color: #FFF;
       font-weight: 700;
     }
 
-    .switch__text>.show-flex {
+    .new-invoice__text>.show-flex {
       display: none;
     }
   }
@@ -147,10 +146,10 @@ header {
     }
 
     .filter {
-      margin-right: 3.333333rem;
+      margin-right: 0;
       display: flex;
       align-items: center;
-
+      width: unset;
       >div {
         display: flex;
         margin-right: 1.333333rem;
@@ -166,7 +165,7 @@ header {
       }
     }
 
-    .switch {
+    .new-invoice {
       background-color: $violet-1;
       width: 12.5rem; // 150px
       height: 4rem; // 44px
@@ -176,7 +175,7 @@ header {
       align-items: center;
       padding: 0.666666rem 1.25rem 0.666666rem 0.666666rem;
 
-      .switch__icon-plus {
+      .new-invoice__icon-plus {
         width: 2.666666rem; // 32px
         height: 2.666666rem;
         border-radius: 100%;
@@ -186,13 +185,13 @@ header {
         background-color: #FFF;
       }
 
-      .switch__text>span:first-child,
-      .switch__text>.show-flex {
+      .new-invoice__text>span:first-child,
+      .new-invoice__text>.show-flex {
         color: #FFF;
         font-weight: 700;
       }
 
-      .switch__text>.show-flex {
+      .new-invoice__text>.show-flex {
         display: unset;
       }
     }
@@ -203,7 +202,7 @@ header {
   }
 
   .no-invoice {
-    padding-top: 17.5rem; // 210px
+    padding-top: 5rem; // 210px
     width: 20.166666rem; // 242px
     margin: 0 auto;
 
@@ -269,7 +268,7 @@ header {
       }
     }
 
-    .switch {
+    .new-invoice {
       background-color: $violet-1;
       width: 12.5rem; // 150px
       height: 4rem; // 44px
@@ -279,7 +278,7 @@ header {
       align-items: center;
       padding: 0.666666rem 1.25rem 0.666666rem 0.666666rem;
 
-      .switch__icon-plus {
+      .new-invoice__icon-plus {
         width: 2.666666rem; // 32px
         height: 2.666666rem;
         border-radius: 100%;
@@ -289,13 +288,13 @@ header {
         background-color: #FFF;
       }
 
-      .switch__text>span:first-child,
-      .switch__text>.show-flex {
+      .new-invoice__text>span:first-child,
+      .new-invoice__text>.show-flex {
         color: #FFF;
         font-weight: 700;
       }
 
-      .switch__text>.show-flex {
+      .new-invoice__text>.show-flex {
         display: unset;
       }
     }

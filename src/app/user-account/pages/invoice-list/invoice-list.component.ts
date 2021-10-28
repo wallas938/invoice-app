@@ -105,6 +105,11 @@ export class InvoiceListComponent implements OnInit {
     this.invoiceService.updateInvoices(data)
   }
 
+  /** For Mobile */
+  onToggle() {
+    this.invoiceService.setFilterDisplayStatus(!this.showFilter);
+  }
+
   onShowFilter() {
     this.invoiceService.setFilterDisplayStatus(true);
   }

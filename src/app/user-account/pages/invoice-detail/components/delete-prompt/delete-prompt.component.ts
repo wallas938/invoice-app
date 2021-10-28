@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-delete-prompt',
@@ -7,10 +7,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class DeletePromptComponent implements OnInit {
 
+  @Input() invoiceCode!: string;
   @Output() confirmInvoiceDeletion = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.invoiceCode);
   }
 
   onCancel() {
