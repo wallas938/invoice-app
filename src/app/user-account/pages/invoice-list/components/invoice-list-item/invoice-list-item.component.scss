@@ -1,6 +1,8 @@
 @import "../../../../../../sass/variables";
+@import "../../../../../../sass/colors";
 
 .invoice {
+
   display: grid;
   padding: 2rem;
   background-color: #fff;
@@ -13,14 +15,18 @@
     "dueDate     status"
     "total       status";
 
-    .invoice-code {
-      cursor: pointer;
-    }
+  &:hover {
+    border: 1px solid $violet-1;
+  }
 
-    .invoice-code:hover {
-      cursor: pointer;
-      color: #9277FF;
-    }
+  .invoice-code {
+    cursor: pointer;
+  }
+
+  .invoice-code:hover {
+    cursor: pointer;
+    color: #9277FF;
+  }
 
   .invoice-code,
   .total {
@@ -86,6 +92,7 @@
     display: flex;
     align-items: center;
     margin: 0 0 1.333333rem 0;
+
     .invoice-code {
       grid-area: unset;
       margin-bottom: unset;
