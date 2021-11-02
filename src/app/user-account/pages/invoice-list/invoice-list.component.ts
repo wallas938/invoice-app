@@ -50,6 +50,14 @@ export class InvoiceListComponent implements OnInit {
         }
       });
 
+    this.storeService.draftedInvoiceStatus$
+      .subscribe((status: boolean) => {
+        if (status) {
+          this.invoiceService.getInvoices();
+          this.invoiceService.setDraftedInvoiceStatus(false);
+        }
+      });
+
     this.storeService.invoiceUpdatedStatus$
       .subscribe((status: boolean) => {
         if (status) {

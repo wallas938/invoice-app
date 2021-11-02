@@ -186,7 +186,7 @@
     <!-- FORM CTA -->
     <div class="form-cta" [ngStyle]="{ justifyContent: editionMode && 'flex-end' }">
       <button class="discard" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()" type="button">{{ editionMode ? 'Cancel' : 'Discard' }}</button>
-      <button *ngIf="!editionMode" class="btn-draft" type="button">Save as Draft</button>
+      <button (click)="saveAsDraft()" *ngIf="!editionMode" class="btn-draft" type="button">Save as Draft</button>
       <button class="save" type="submit"[disabled]="editionMode && ( invoiceForm.invalid ||  !invoiceForm.dirty)" >{{ editionMode ? 'Save Changes' : 'Save & Send' }}</button>
     </div>
   </form>

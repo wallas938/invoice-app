@@ -52,6 +52,9 @@ export class StoreService {
   private newInvoiceCreatedStatus = new BehaviorSubject<boolean>(false);
   public readonly newInvoiceCreatedStatus$ = this.newInvoiceCreatedStatus.asObservable();
 
+  private draftedInvoiceStatus = new BehaviorSubject<boolean>(false);
+  public readonly draftedInvoiceStatus$ = this.draftedInvoiceStatus.asObservable();
+
   private invoiceUpdatedStatus = new BehaviorSubject<boolean>(false);
   public readonly invoiceUpdatedStatus$ = this.invoiceUpdatedStatus.asObservable();
 
@@ -113,6 +116,10 @@ export class StoreService {
 
   setNewInvoiceCreatedStatus(status: boolean) {
     this.newInvoiceCreatedStatus.next(status);
+  }
+
+  setDraftedInvoiceStatus(status: boolean) {
+    this.draftedInvoiceStatus.next(status);
   }
 
   setInvoiceUpdatedStatus(status: boolean) {

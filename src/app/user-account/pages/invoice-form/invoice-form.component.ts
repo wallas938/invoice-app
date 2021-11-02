@@ -6,7 +6,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from 'src/app/core/services/store/store.service';
-import { InvoiceCreateDto, InvoiceGetDto, InvoiceUpdateDto, Item } from 'src/app/models/invoice';
+import { DraftedInvoiceDto, InvoiceCreateDto, InvoiceGetDto, InvoiceUpdateDto, Item } from 'src/app/models/invoice';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import { LoadingService } from 'src/app/shared/services/loading/loading.service';
@@ -35,7 +35,7 @@ export class InvoiceFormComponent implements OnInit {
   displayStatus: boolean = false;
   editionMode: boolean = false;
   formGlobalError: string = 'All fields must be completed!';
-  itemsErrorMessage: string = 'An item must be completed!';
+  itemsErrorMessage: string = 'Each item must be completed!';
   errors: string[] = [];
   hasError: boolean = false;
   currentInvoice: InvoiceGetDto | undefined;
@@ -179,12 +179,7 @@ export class InvoiceFormComponent implements OnInit {
       invoiceDate: this.invoiceForm.get('invoiceDate')?.value.trim(),
       term: this.invoiceForm.get('term')?.value.trim(),
       desc: this.invoiceForm.get('desc')?.value.trim(),
-      items: this.invoiceForm.get('items')?.value.map(
-        (item: Item) => {
-          item.price = formatNumber(+item.price, 'en-US', '1.2')
-          return item;
-        }
-      ),
+      items: this.invoiceForm.get('items')?.value,
       totalAmount: this.computeTotalAmount(),
     };
     this.verifyInput(newInvoice);
@@ -233,16 +228,17 @@ export class InvoiceFormComponent implements OnInit {
       invoiceDate: this.invoiceForm.get('invoiceDate')?.value.trim(),
       term: this.invoiceForm.get('term')?.value.trim(),
       desc: this.invoiceForm.get('desc')?.value.trim(),
-      items: this.invoiceForm.get('items')?.value.map(
-        (item: Item) => {
-          item.price = formatNumber(+item.price, 'en-US', '1.2')
-          return item;
-        }
-      ),
+      items: this.invoiceForm.get('items')?.value,
       totalAmount: this.computeTotalAmount(),
     };
     this.verifyInput(editedInvoice);
     if (!this.hasError) {
+      editedInvoice.items.map(
+        (item: Item) => {
+          item.price = formatNumber(+item.price, 'en-US', '1.2') // ex: 1,400.00
+          return item;
+        }
+      );
       this.loadingService.setLoadingStatus(true);
       this.invoiceService.editInvoice(editedInvoice)
         .subscribe((result: any) => {
@@ -269,6 +265,52 @@ export class InvoiceFormComponent implements OnInit {
       this.alertService.setMessage('One or many of the entered inputs is wrong!', 'error');
       this.openSnackBar();
     };
+  }
+
+  saveAsDraft() {
+    const draftedInvoice: DraftedInvoiceDto = {
+      fromStreet: this.invoiceForm.get('fromStreet')?.value.trim(),
+      fromCity: this.invoiceForm.get('fromCity')?.value.trim(),
+      fromPostCode: this.invoiceForm.get('fromPostCode')?.value.trim(),
+      fromCountry: this.invoiceForm.get('fromCountry')?.value.trim(),
+      clientName: this.invoiceForm.get('clientName')?.value.trim(),
+      email: this.invoiceForm.get('email')?.value.trim(),
+      toStreet: this.invoiceForm.get('toStreet')?.value.trim(),
+      toCity: this.invoiceForm.get('toCity')?.value.trim(),
+      toPostCode: this.invoiceForm.get('toPostCode')?.value.trim(),
+      toCountry: this.invoiceForm.get('toCountry')?.value.trim(),
+      invoiceDate: this.invoiceForm.get('invoiceDate')?.value.trim(),
+      term: this.invoiceForm.get('term')?.value.trim(),
+      desc: this.invoiceForm.get('desc')?.value.trim(),
+      items: this.invoiceForm.get('items')?.value.map(
+        (item: Item) => {
+          item.price = formatNumber(+item.price, 'en-US', '1.2')
+          return item;
+        }
+      ),
+      totalAmount: this.computeTotalAmount(),
+    };
+    this.loadingService.setLoadingStatus(true);
+    this.invoiceService.saveDraftedInvoice(draftedInvoice)
+      .subscribe((result: any) => {
+        this.alertService.setMessage(result.message, "success");
+        this.invoiceService.setDraftedInvoiceStatus(true);
+        this.closeInvoiceForm();
+        this.openSnackBar();
+      },
+        ({ error }: HttpErrorResponse) => {
+          if (!error.message) {
+            this.alertService.setMessage("An server error occurs...", "error");
+            this.invoiceService.setDraftedInvoiceStatus(false);
+            this.loadingService.setLoadingStatus(false);
+            this.openSnackBar();
+            return;
+          }
+          this.alertService.setMessage(error.message, "error");
+          this.invoiceService.setDraftedInvoiceStatus(false);
+          this.loadingService.setLoadingStatus(false);
+          this.openSnackBar();
+        })
   }
 
   onAddList() {
@@ -334,10 +376,10 @@ export class InvoiceFormComponent implements OnInit {
               this.hasError = true;
             }
 
-            let value = +item[prop].replace(/,/g, "");
+            let value = +item[prop];
+
             if (itemNumericFields.includes(prop) && isNaN(value)) {
               this.hasError = true;
-              console.log(item[prop]);
             }
           }
         }
@@ -349,7 +391,7 @@ export class InvoiceFormComponent implements OnInit {
     let totalAmount = 0;
     (this.getFormsItems().value as Array<any>)
       .forEach((item: Item) => {
-        totalAmount += +item.quantity * +item.price.replace(/,/g, "");
+        totalAmount += +item.quantity * +item.price.replace(/,/g, ".");
       });
     return formatNumber(totalAmount, 'en-US', '1.2');
   }
@@ -382,16 +424,17 @@ export class InvoiceFormComponent implements OnInit {
   private initInvoiceItems() {
     this.deleteItem(0); // Remove the default item field
     this.currentInvoice?.items.forEach((i: Item) => {
+      let price = i.price;
+      if(i.price.length > 6) {
+        price = i.price.replace(/,/, "")
+      }
       (<FormArray>this.invoiceForm.get('items')).push(this.fb.group({
         itemName: [i.itemName, Validators.required],
         quantity: [i.quantity, Validators.required],
-        price: [i.price, Validators.required],
+        price: [price, Validators.required],
         total: [i.total, Validators.required]
       }))
     })
   }
-  /*   getDateNow() {
-      return this.datePipe.transform(new Date, 'dd-MM-yyyy');
-    } */
 }
 
