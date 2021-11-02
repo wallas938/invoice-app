@@ -75,6 +75,7 @@
     .invoice-bill-to {
       grid-area: bill-to;
       margin-bottom: 2.666666rem;
+      padding-left: 3.416666rem;
 
       >span,
       p:not(.name) {
@@ -260,6 +261,7 @@
       .invoice-bill-to {
         grid-area: bill-to;
         margin-bottom: unset;
+        padding-left: unset;
 
         >span,
         p:not(.name) {

@@ -11,9 +11,7 @@ export class DeletePromptComponent implements OnInit {
   @Output() confirmInvoiceDeletion = new EventEmitter<boolean>();
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.invoiceCode);
-  }
+  ngOnInit(): void {}
 
   onCancel() {
     this.confirmInvoiceDeletion.emit(false);
