@@ -6,7 +6,7 @@
 
 section#invoice-form {
   padding-top: 2.666rem;
-  background-color: #F2F2F2;
+  background-color: #FFF;
   position: absolute;
   width: 100%;
   z-index: 5;
@@ -304,6 +304,7 @@ section#invoice-form {
     border: 1px solid transparent;
     border-radius: 2rem;
     font-weight: 700;
+    background-color: $light-bg-2;
 
     .new-item-btn {
       border: none;
@@ -328,7 +329,7 @@ section#invoice-form {
     padding: 1.833333rem 2rem;
     background-color: #fff;
     border-radius: 0px 0px 20px 0px;
-
+    box-shadow: 0px 0px 80px 30px rgba(0, 0, 0, .1);
     button {
       @include button-for-mobile;
     }
@@ -506,7 +507,7 @@ section#invoice-form {
 
         .row__field.quantity>input {
           width: 3.833333rem;
-          padding: 0 0 0 1.5rem ;
+          padding: 0 0 0 1.5rem;
         }
 
         .row__field.price>input {
@@ -539,7 +540,7 @@ section#invoice-form {
       padding-right: 4.666666rem;
 
       button {
-        @include button-for-tablet;
+        @include button-for-mobile;
       }
 
       .save {
@@ -718,7 +719,7 @@ section#invoice-form {
       padding-right: 4.666666rem;
 
       button {
-        @include button-for-tablet;
+        @include button-for-mobile;
       }
 
       .save {
