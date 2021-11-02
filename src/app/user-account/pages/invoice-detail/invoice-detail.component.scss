@@ -17,6 +17,10 @@
       font-weight: 700;
     }
 
+    a.back:hover {
+      color:$blue-violet;
+    }
+
     a.back::before {
       content: url("../../../../assets/icon-arrow-left.svg");
       margin-right: 2rem;
@@ -52,14 +56,27 @@
       background-color: #F9FAFE;
     }
 
+    &>.edit:hover {
+      background-color: $blue-gray-light;
+    }
+
     &>.delete {
       width: 7.416666rem;
       background-color: $red;
     }
 
+    &>.delete:hover {
+      width: 7.416666rem;
+      background-color: $red-blurred;
+    }
+
     &>.mark-as-paid {
       width: 10.916666rem;
       background-color: $violet-1;
+    }
+
+    &>.mark-as-paid:hover {
+      background-color: $violet-2;
     }
   }
 }
