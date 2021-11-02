@@ -84,14 +84,26 @@
       background-color: #F9FAFE;
     }
 
+    .invoice__cta>.edit:hover {
+      background-color: $blue-gray-light;
+    }
+
     .invoice__cta>.delete {
       width: 7.416666rem;
       background-color: $red;
     }
 
+    .invoice__cta>.delete:hover {
+      background-color: $red-blurred;
+    }
+
     .invoice__cta>.mark-as-paid {
       width: 10.916666rem;
       background-color: $violet-1;
+    }
+
+    .invoice__cta>.mark-as-paid:hover {
+      background-color: $violet-2;
     }
   }
 
