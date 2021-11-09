@@ -83,12 +83,6 @@ section#invoice-form {
           select::-ms-expand {
             display: none;
           }
-
-          option:hover,
-          option:focus,
-          option:checked {
-            color: $violet-1 !important;
-          }
         }
 
         .select-wrapper:hover {
@@ -237,6 +231,10 @@ section#invoice-form {
         margin-bottom: unset;
       }
 
+      input:focus {
+        border: 1px solid $violet-2;
+      }
+
       small {
         margin-bottom: unset;
         color: $red;
@@ -330,6 +328,7 @@ section#invoice-form {
     background-color: #fff;
     border-radius: 0px 0px 20px 0px;
     box-shadow: 0px 0px 80px 30px rgba(0, 0, 0, .1);
+
     button {
       @include button-for-mobile;
     }
@@ -340,15 +339,27 @@ section#invoice-form {
       margin-left: 0.66rem;
     }
 
+    .save:hover {
+      background-color: $violet-2;
+    }
+
     .btn-draft {
       background-color: #373B53;
       color: $violet-gray;
       margin-left: 0.66rem;
     }
 
+    .btn-draft:hover {
+      background-color: $black-2;
+    }
+
     .discard {
       color: $violet-1;
       background-color: #F9FAFE;
+    }
+
+    .discard:hover {
+      background-color: $blue-gray-light;
     }
   }
 }

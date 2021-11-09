@@ -14,34 +14,31 @@
       <p class="input-group__title">Bill From</p>
       <div class="input-group__fields">
         <div class="fields__field street-field">
-          <label for="street">Street Address</label>
-          <input type="text" id="street" formControlName="fromStreet" [ngStyle]="{
-              'border-color': (invoiceForm.get('fromStreet')!.invalid &&
-              invoiceForm.get('fromStreet')!.touched) ? 'red' : '#DFE3FA'
-            }">
-          <small *ngIf=" invoiceForm.get('fromStreet')!.invalid &&
+          <label for="street" [ngClass]="{'error--label': (invoiceForm.get('fromStreet')!.invalid &&
+          invoiceForm.get('fromStreet')!.touched)}">Street Address</label>
+          <input autofocus #focusFields (click)="focus(0)" type="text" id="street" formControlName="fromStreet"
+            [ngClass]="{'error': (invoiceForm.get('fromStreet')!.invalid &&
+          invoiceForm.get('fromStreet')!.touched), 'focus': currentFocusedInput === 0}">
+          <small *ngIf="invoiceForm.get('fromStreet')!.invalid &&
                     invoiceForm.get('fromStreet')!.touched">can't be empty</small>
         </div>
         <div class="fields__field city-field">
-          <label for="city">City</label>
-          <input type="text" id="city" formControlName="fromCity" [ngStyle]="{
-              'border-color': (invoiceForm.get('fromCity')!.invalid &&
-              invoiceForm.get('fromCity')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="city" [ngClass]="{'error--label': (invoiceForm.get('fromCity')!.invalid &&
+          invoiceForm.get('fromCity')!.touched)}">City</label>
+          <input #focusFields (click)="focus(1)" type="text" id="city" formControlName="fromCity" [ngClass]="{'error': (invoiceForm.get('fromCity')!.invalid &&
+          invoiceForm.get('fromCity')!.touched), 'focus': currentFocusedInput === 1}">
         </div>
         <div class="fields__field postCode-field">
-          <label for="postCode">Post Code</label>
-          <input type="text" id="postCode" formControlName="fromPostCode" [ngStyle]="{
-              'border-color': (invoiceForm.get('fromPostCode')!.invalid &&
-              invoiceForm.get('fromPostCode')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="postCode" [ngClass]="{'error--label': (invoiceForm.get('fromPostCode')!.invalid &&
+          invoiceForm.get('fromPostCode')!.touched)}">Post Code</label>
+          <input #focusFields (click)="focus(2)" type="text" id="postCode" formControlName="fromPostCode" [ngClass]="{'error': (invoiceForm.get('fromPostCode')!.invalid &&
+          invoiceForm.get('fromPostCode')!.touched), 'focus': currentFocusedInput === 2}">
         </div>
         <div class="fields__field country-field">
-          <label for="country">Country</label>
-          <input type="text" id="country" formControlName="fromCountry" [ngStyle]="{
-              'border-color': (invoiceForm.get('fromCountry')!.invalid &&
-              invoiceForm.get('fromCountry')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="country" [ngClass]="{'error--label': (invoiceForm.get('fromCountry')!.invalid &&
+          invoiceForm.get('fromCountry')!.touched)}">Country</label>
+          <input #focusFields (click)="focus(3)" type="text" id="country" formControlName="fromCountry" [ngClass]="{'error': (invoiceForm.get('fromCountry')!.invalid &&
+          invoiceForm.get('fromCountry')!.touched), 'focus': currentFocusedInput === 3}">
         </div>
       </div>
     </div>
@@ -51,65 +48,58 @@
       <p class="input-group__title">Bill To</p>
       <div class="input-group__fields">
         <div class="fields__field client-name-field">
-          <label for="clientName">Client's Name</label>
-          <input type="text" id="clientName" formControlName=clientName [ngStyle]="{
-              'border-color': (invoiceForm.get('clientName')!.invalid &&
-              invoiceForm.get('clientName')!.touched) ? 'red' : '#DFE3FA'
-            }">
-          <small *ngIf=" invoiceForm.get('clientName')!.invalid &&
+          <label for="clientName" [ngClass]="{'error--label': (invoiceForm.get('clientName')!.invalid &&
+          invoiceForm.get('clientName')!.touched)}">Client's Name</label>
+          <input #focusFields (click)="focus(4)" type="text" id="clientName" formControlName=clientName [ngClass]="{'error': (invoiceForm.get('clientName')!.invalid &&
+          invoiceForm.get('clientName')!.touched), 'focus': currentFocusedInput === 4}">
+          <small *ngIf="invoiceForm.get('clientName')!.invalid &&
                     invoiceForm.get('clientName')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-email-field">
-          <label for="clientEmail">Client's Email</label>
-          <input type="text" id="clientEmail" formControlName=email [ngStyle]="{
-              'border-color': (invoiceForm.get('email')!.invalid &&
-              invoiceForm.get('email')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="clientEmail" [ngClass]="{'error--label': (invoiceForm.get('email')!.invalid &&
+          invoiceForm.get('email')!.touched)}">Client's Email</label>
+          <input #focusFields (click)="focus(5)" type="text" id="clientEmail" formControlName=email [ngClass]="{'error': (invoiceForm.get('email')!.invalid &&
+          invoiceForm.get('email')!.touched), 'focus': currentFocusedInput === 5}">
           <small *ngIf=" invoiceForm.get('email')!.invalid &&
                     invoiceForm.get('email')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-str-field">
-          <label for="clientStr">Street Address</label>
-          <input type="text" id="clientStr" formControlName="toStreet" [ngStyle]="{
-              'border-color': (invoiceForm.get('toStreet')!.invalid &&
-              invoiceForm.get('toStreet')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="clientStr" [ngClass]="{'error--label': (invoiceForm.get('toStreet')!.invalid &&
+          invoiceForm.get('toStreet')!.touched)}">Street Address</label>
+          <input #focusFields (click)="focus(6)" type="text" id="clientStr" formControlName="toStreet" [ngClass]="{'error': (invoiceForm.get('toStreet')!.invalid &&
+          invoiceForm.get('toStreet')!.touched), 'focus': currentFocusedInput === 6}">
           <small *ngIf=" invoiceForm.get('toStreet')!.invalid &&
                     invoiceForm.get('toStreet')!.touched">can't be empty</small>
         </div>
         <div class="fields__field client-city-field">
-          <label for="clientCty">City</label>
-          <input type="text" id="clientCty" formControlName="toCity" [ngStyle]="{
-              'border-color': (invoiceForm.get('toCity')!.invalid &&
-              invoiceForm.get('toCity')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="clientCty" [ngClass]="{'error--label': (invoiceForm.get('toCity')!.invalid &&
+          invoiceForm.get('toCity')!.touched)}">City</label>
+          <input #focusFields (click)="focus(7)" type="text" id="clientCty" formControlName="toCity" [ngClass]="{'error': (invoiceForm.get('toCity')!.invalid &&
+          invoiceForm.get('toCity')!.touched), 'focus': currentFocusedInput === 7}">
         </div>
         <div class="fields__field client-pstC-field">
-          <label for="clientPstC">Post Code</label>
-          <input type="text" id="clientPstC" formControlName="toPostCode" [ngStyle]="{
-              'border-color': (invoiceForm.get('toPostCode')!.invalid &&
-              invoiceForm.get('toPostCode')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="clientPstC" [ngClass]="{'error--label': (invoiceForm.get('toPostCode')!.invalid &&
+          invoiceForm.get('toPostCode')!.touched)}">Post Code</label>
+          <input #focusFields (click)="focus(8)" type="text" id="clientPstC" formControlName="toPostCode" [ngClass]="{'error': (invoiceForm.get('toPostCode')!.invalid &&
+          invoiceForm.get('toPostCode')!.touched), 'focus': currentFocusedInput === 8}">
         </div>
         <div class="fields__field client-ctry-field">
-          <label for="clientCtry">Country</label>
-          <input type="text" id="clientCtry" formControlName="toCountry" [ngStyle]="{
-              'border-color': (invoiceForm.get('toCountry')!.invalid &&
-              invoiceForm.get('toCountry')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="clientCtry" [ngClass]="{'error--label': (invoiceForm.get('toCountry')!.invalid &&
+          invoiceForm.get('toCountry')!.touched)}">Country</label>
+          <input #focusFields (click)="focus(9)" type="text" id="clientCtry" formControlName="toCountry" [ngClass]="{'error': (invoiceForm.get('toCountry')!.invalid &&
+          invoiceForm.get('toCountry')!.touched), 'focus': currentFocusedInput === 9}">
         </div>
         <div class="fields__field date">
           <label for="invoiceDate">Invoice Date</label>
-          <div class="date-wrapper" [ngStyle]="{
-            'border-color': (invoiceForm.get('invoiceDate')!.invalid &&
-            invoiceForm.get('invoiceDate')!.touched) ? 'red' : '#DFE3FA'
-          }">
+          <div class="date-wrapper" #focusFields (click)="focus(10)" [ngClass]="{'error': (invoiceForm.get('invoiceDate')!.invalid &&
+          invoiceForm.get('invoiceDate')!.touched), 'focus': currentFocusedInput === 10}">
             <input type="date" id="invoiceDate" formControlName="invoiceDate">
           </div>
         </div>
         <div class="fields__field terms">
           <label for="terms">Payment Terms</label>
-          <div class="select-wrapper">
+          <div #focusFields (click)="focus(11)" [ngClass]="{'focus': currentFocusedInput === 11}"
+            class="select-wrapper">
             <select name="terms" [value]="1" id="terms" formControlName="term">
               <option value="1">Net 1 Day</option>
               <option value="7">Net 7 Day</option>
@@ -120,43 +110,44 @@
           </div>
         </div>
         <div class="fields__field description">
-          <label for="description">Project Description</label>
-          <input type="text" id="desc" formControlName="desc" [ngStyle]="{
-              'border-color': (invoiceForm.get('desc')!.invalid &&
-              invoiceForm.get('desc')!.touched) ? 'red' : '#DFE3FA'
-            }">
+          <label for="description" [ngClass]="{'error--label': (invoiceForm.get('desc')!.invalid &&
+          invoiceForm.get('desc')!.touched)}">Project Description</label>
+          <input #focusFields (click)="focus(12)" [ngClass]="{'error': (invoiceForm.get('desc')!.invalid &&
+          invoiceForm.get('desc')!.touched), 'focus': currentFocusedInput === 12}" type="text" id="desc"
+            formControlName="desc">
           <small *ngIf=" invoiceForm.get('desc')!.invalid &&
                     invoiceForm.get('desc')!.touched">can't be empty</small>
         </div>
       </div>
     </div>
+    <!-- (invoiceForm.get('fromStreet')!.invalid &&
+              invoiceForm.get('fromStreet')!.touched) ?  -->
 
+    <!-- (getFormsItems().controls[i].get('itemName')!.invalid &&
+              getFormsItems().controls[i].get('itemName')!.touched) ? -->
     <!-- Items -->
     <div class="item-fields" formArrayName="items">
       <h2 class="item-fields__title">Item List</h2>
       <div *ngFor="let item of getFormsItems().controls; let i = index">
         <div class="rows" [formGroupName]="i">
           <div class="row item-name">
-            <label for="itemName">Item Name</label>
-            <input type="text" id="itemName" formControlName="itemName" [ngStyle]="{
-              'border-color': (getFormsItems().controls[i].get('itemName')!.invalid &&
-              getFormsItems().controls[i].get('itemName')!.touched) ? 'red' : '#DFE3FA'
-            }">
+            <label for="itemName" [ngClass]="{'error--label': (getFormsItems().controls[i].get('itemName')!.invalid &&
+            getFormsItems().controls[i].get('itemName')!.touched)}">Item Name</label>
+            <input type="text" id="itemName" formControlName="itemName" [ngClass]="{'error': (getFormsItems().controls[i].get('itemName')!.invalid &&
+            getFormsItems().controls[i].get('itemName')!.touched)}">
           </div>
           <div class="row item-data">
             <div class="row__field quantity">
-              <label for="quantity">Qty.</label>
-              <input type="text" id="quantity" formControlName="quantity" [ngStyle]="{
-                  'border-color': (getFormsItems().controls[i].get('quantity')!.invalid &&
-                  getFormsItems().controls[i].get('quantity')!.touched) ? 'red' : '#DFE3FA'
-                }">
+              <label for="quantity" [ngClass]="{'error--label': (getFormsItems().controls[i].get('quantity')!.invalid &&
+              getFormsItems().controls[i].get('quantity')!.touched)}">Qty.</label>
+              <input type="text" id="quantity" formControlName="quantity" [ngClass]="{'error': (getFormsItems().controls[i].get('quantity')!.invalid &&
+              getFormsItems().controls[i].get('quantity')!.touched)}">
             </div>
             <div class="row__field price">
-              <label for="price">Price</label>
-              <input type="text" id="price" formControlName="price" [ngStyle]="{
-                  'border-color': (getFormsItems().controls[i].get('price')!.invalid &&
-                                    getFormsItems().controls[i].get('price')!.touched) ? 'red' : '#DFE3FA'
-                }">
+              <label for="price" [ngClass]="{'error--label': (getFormsItems().controls[i].get('price')!.invalid &&
+              getFormsItems().controls[i].get('price')!.touched)}">Price</label>
+              <input type="text" id="price" formControlName="price" [ngClass]="{'error': (getFormsItems().controls[i].get('price')!.invalid &&
+              getFormsItems().controls[i].get('price')!.touched)}">
             </div>
             <div class="row__field total">
               <label for="total">Total</label>
@@ -185,9 +176,11 @@
 
     <!-- FORM CTA -->
     <div class="form-cta" [ngStyle]="{ justifyContent: editionMode && 'flex-end' }">
-      <button class="discard" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()" type="button">{{ editionMode ? 'Cancel' : 'Discard' }}</button>
+      <button class="discard" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()"
+        type="button">{{ editionMode ? 'Cancel' : 'Discard' }}</button>
       <button (click)="saveAsDraft()" *ngIf="!editionMode" class="btn-draft" type="button">Save as Draft</button>
-      <button class="save" type="submit"[disabled]="editionMode && ( invoiceForm.invalid ||  !invoiceForm.dirty)" >{{ editionMode ? 'Save Changes' : 'Save & Send' }}</button>
+      <button class="save" type="submit"
+        [disabled]="editionMode && ( invoiceForm.invalid ||  !invoiceForm.dirty)">{{ editionMode ? 'Save Changes' : 'Save & Send' }}</button>
     </div>
   </form>
 </section>

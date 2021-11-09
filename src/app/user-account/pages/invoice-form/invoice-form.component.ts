@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DatePipe, formatDate, formatNumber } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,9 +31,10 @@ import { InvoiceService } from '../../services/invoice.service';
 })
 export class InvoiceFormComponent implements OnInit {
 
-  /* displayStatus: string = 'close'; */
+  @ViewChildren("focusField") focusFields!: QueryList<ElementRef>;
   displayStatus: boolean = false;
   editionMode: boolean = false;
+  currentFocusedInput: number = 0;
   formGlobalError: string = 'All fields must be completed!';
   itemsErrorMessage: string = 'Each item must be completed!';
   errors: string[] = [];
@@ -149,6 +150,15 @@ export class InvoiceFormComponent implements OnInit {
         }
       });
   };
+
+  focus(index: number) {
+    this.currentFocusedInput = index;
+    this.focusFields.forEach((input, idx) => {
+      if (idx === index) {
+        input.nativeElement.focus();
+      }
+    })
+  }
 
   submit() {
     //** For inputs validation */
@@ -338,8 +348,8 @@ export class InvoiceFormComponent implements OnInit {
   };
 
   resetForm() {
-    this.invoiceForm.markAsPristine()
     this.invoiceForm.reset();
+    this.invoiceForm.markAsPristine();
   }
 
   deleteItem(itemIndex: number) {
@@ -352,6 +362,7 @@ export class InvoiceFormComponent implements OnInit {
           price: ['0', Validators.required],
           total: ['0', Validators.required]
         }));
+        this.errors = this.errors.filter((message) => message !== this.itemsErrorMessage);
       }
     }, 0)
   };
@@ -425,7 +436,7 @@ export class InvoiceFormComponent implements OnInit {
     this.deleteItem(0); // Remove the default item field
     this.currentInvoice?.items.forEach((i: Item) => {
       let price = i.price;
-      if(i.price.length > 6) {
+      if (i.price.length > 6) {
         price = i.price.replace(/,/, "")
       }
       (<FormArray>this.invoiceForm.get('items')).push(this.fb.group({

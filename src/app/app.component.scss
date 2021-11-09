@@ -1,6 +1,7 @@
 @import "../sass/mixins";
 @import "../sass/helpers";
 @import "../sass/variables";
+@import "../sass/colors";
 
 #invoice-app {
   display: flex;
@@ -60,8 +61,8 @@
 
     .main-container {
       padding-top: 6rem;
-      padding-left: 29.583333rem;
-      padding-right: 29.583333rem;
+      padding-left: 25rem;
+      padding-right: 25rem;
 
       div.main-backdrop {
         padding-left: 8.583333rem;
