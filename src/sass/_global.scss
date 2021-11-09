@@ -1,4 +1,5 @@
-@import "variables";;
+@import "variables";
+;
 
 *,
 *::before,
@@ -40,14 +41,14 @@ button {
   cursor: pointer;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+input:focus:not(input[type="date"]),
+textarea:focus {
   outline: none;
+  /* border: 1px solid $violet-2 !important */
 }
 
 .container {
-  max-width: 48rem;  // 576px
+  max-width: 48rem; // 576px
   margin: 0 auto;
 }
 

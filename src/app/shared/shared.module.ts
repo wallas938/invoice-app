@@ -10,6 +10,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ConvertDatePipe } from './pipes/convert-date.pipe';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingStripeComponent } from './components/loading-stripe/loading-stripe.component';
+import { AutofocusDirective } from './directives/autoFocus';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoadingStripeComponent } from './components/loading-stripe/loading-stri
     ShortenPipe,
     ConvertDatePipe,
     LoadingSpinnerComponent,
-    LoadingStripeComponent
+    LoadingStripeComponent,
+    AutofocusDirective
   ],
   imports: [
     CommonModule, ReactiveFormsModule, HttpClientModule,
@@ -27,7 +29,7 @@ import { LoadingStripeComponent } from './components/loading-stripe/loading-stri
   exports: [
     ShortenPipe, ConvertDatePipe, HeaderComponent,
     ReactiveFormsModule, MatSnackBarModule, MatProgressSpinnerModule,
-    LoadingSpinnerComponent, LoadingStripeComponent
+    LoadingSpinnerComponent, LoadingStripeComponent, AutofocusDirective
   ]
 })
 export class SharedModule { }

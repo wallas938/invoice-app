@@ -1,6 +1,5 @@
 <div id="invoice-app">
   <div class="global-backdrop" (click)="closeModals()" *ngIf="isConnected && deletePromptDisplay" @formBackDropState></div>
-
   <app-delete-prompt
   [invoiceCode]="currentInvoice!.invoiceCode"
   *ngIf="deletePromptDisplay"
