@@ -2,7 +2,6 @@
 @import "../../../../../../sass/colors";
 
 .invoice {
-
   display: grid;
   padding: 2rem;
   background-color: #fff;
@@ -91,13 +90,12 @@
     height: 6rem;
     display: flex;
     align-items: center;
-    margin: 0 0 1.333333rem 0;
-
+    margin: 0 auto 1.333333rem auto;
+    width: 56rem;
     .invoice-code {
       grid-area: unset;
       margin-bottom: unset;
-      margin-right: 2.25rem;
-      width: 5.41666rem; // 65px
+      width: 7.25rem; // 87px
     }
 
     .due-date {
@@ -110,13 +108,13 @@
       grid-area: unset;
       margin-bottom: unset;
       text-align: left;
-      width: 10rem;
+      width: 9.416666rem;
     }
 
     .total {
       grid-area: unset;
       text-align: right;
-      width: 10rem;
+      width: 9.416666rem;
       margin-right: 3.333333rem;
     }
 
@@ -143,17 +141,20 @@
     grid-template-rows: auto;
     grid-template-areas: "invoiceCode dueDate clientName total status arrow";
     display: flex;
+    width: 60.833333rem;
+    margin: 0 auto 1.333333rem auto;
 
     .invoice-code {
-      margin-bottom: unset;
+      width: 8.583333rem;
     }
 
     .due-date {
-      margin-bottom: unset;
+      width: 12.583333rem;
     }
 
-    .client-name {
-      margin-bottom: unset;
+    .client-name,
+    .total {
+      width: 10.5rem;
     }
 
     .status {

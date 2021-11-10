@@ -268,12 +268,18 @@ section#invoice-form {
       }
 
       .row__field.quantity>input {
-        width: 5.333333rem;
+        /* width: 5.333333rem; */
+        width: 16.189vw;
       }
 
       .row__field.price>input,
       .row__field.total>input {
-        width: 8.333333rem;
+        /* width: 8.333333rem; */
+        width: 25.299vw;
+      }
+
+      .row__field.price>input {
+        margin-right: 1.333333rem;
       }
 
       .row__field.total>input {
@@ -285,12 +291,22 @@ section#invoice-form {
       }
 
       >button {
-        height: fit-content;
+        flex: 1;
+        border: none;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        background-color: transparent;
+        /* height: fit-content;
         border: none;
         position: absolute;
         top: 37%;
         right: 0;
-        cursor: pointer;
+        cursor: pointer; */
+      }
+
+      >button path:hover {
+        fill: $red;
       }
     }
   }
@@ -488,7 +504,7 @@ section#invoice-form {
         input {
           @include input-for-mobile;
           margin-right: 1.333333rem;
-          width: clamp(17.833333rem, 27.866vw, 20rem);
+          width: clamp(17.833333rem, 27.866vw, 18.583333rem);
         }
 
         small {
@@ -517,20 +533,24 @@ section#invoice-form {
         }
 
         .row__field.quantity>input {
-          width: 3.833333rem;
+          width: clamp(3.833333rem, 5.99vw, 3.916666rem);
           padding: 0 0 0 1.5rem;
         }
 
         .row__field.price>input {
-          width: 8.333333rem;
+          width: clamp(8.333333rem, 13.022vw, 8.666666rem);
         }
 
         .row__field.total>input {
-          width: 6.833333rem;
+          width: 30px;
+          margin-right: 3.166666rem;
         }
 
         >button {
-          top: 43%;
+          width: auto;
+          height: auto;
+          display: inline-block;
+          margin-top: .4rem;
         }
       }
 
@@ -681,7 +701,7 @@ section#invoice-form {
         input {
           @include input-for-mobile;
           margin-right: 1.333333rem;
-          width: clamp(17.833333rem, 27.866vw, 20rem);
+          /* width: clamp(17.833333rem, 27.866vw, 20rem); */
         }
 
         small {
@@ -707,18 +727,6 @@ section#invoice-form {
         .row__field>small {
           color: $red;
           font-weight: 700;
-        }
-
-        .row__field.quantity>input {
-          width: 3.833333rem;
-        }
-
-        .row__field.price>input {
-          width: 8.333333rem;
-        }
-
-        .row__field.total>input {
-          width: 6.833333rem;
         }
       }
     }
