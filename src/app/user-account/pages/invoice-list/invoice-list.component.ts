@@ -21,6 +21,7 @@ export class InvoiceListComponent implements OnInit {
   imageSrc: string = 'assets/camera.svg';
   invoices!: InvoiceGetDto[];
   isLoading: boolean = false;
+  isDarkTheme: boolean = false;
   showFilter: boolean = false;
 
   constructor(private invoiceService: InvoiceService,
@@ -34,6 +35,11 @@ export class InvoiceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.storeService.switchStatus$
+      .subscribe((status: boolean) => {
+        this.isDarkTheme = status;
+      });
+
     this.storeService.loggedUser$
       .subscribe((user: UserGetDto | null) => {
         this.user = user!;

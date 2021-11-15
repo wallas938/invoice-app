@@ -1,4 +1,4 @@
-<div class="filter" *ngIf="showFilter">
+<div class="filter" *ngIf="showFilter" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <div class="status">
     <input type="checkbox" (click)="onFilter('draft')" name="draft" id="draft" [checked]="draft">
     <label for="draft">Draft</label>

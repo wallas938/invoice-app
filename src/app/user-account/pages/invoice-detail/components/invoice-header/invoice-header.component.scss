@@ -3,9 +3,9 @@
 
 .invoice__header {
   margin-bottom: 1.333333rem;
-  background-color: #fff;
   padding: 1.6rem;
   border-radius: 0.666666rem;
+  transition: all 250ms ease-in-out;
 
   .header__status {
     display: flex;
@@ -14,7 +14,6 @@
   }
 
   .header__status>span {
-    color: #858BB2;
     font-weight: 500;
   }
 
@@ -36,6 +35,21 @@
 
   .header__status>.status-design>span:last-child {
     font-weight: 700;
+  }
+
+}
+
+.light-theme {
+  background-color: #fff;
+  .header__status>span {
+    color: #858BB2;
+  }
+}
+
+.dark-theme {
+  background-color: $black-1;
+  .header__status>span {
+    color: $blue-gray-light;
   }
 
 }

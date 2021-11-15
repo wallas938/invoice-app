@@ -21,6 +21,11 @@ export class StoreService {
   public readonly loadingStatus$ = this.loadingStatus.asObservable();
   /* Loading Status  */
 
+  /* Switch Status  */
+  private switchStatus = new BehaviorSubject<boolean>(false);
+  public readonly switchStatus$ = this.switchStatus.asObservable();
+  /* Switch Status  */
+
   /** User properties */
   private userId!: string;
 
@@ -202,4 +207,14 @@ export class StoreService {
     this.loadingStatus.next(status);
   }
   //// LOADING METHODS ////
+
+
+  //// SWITCH METHODS ////
+
+  setSwitchStatus(status: boolean) {
+    this.switchStatus.next(status);
+  }
+  //// SWITCH METHODS ////
+
+
 }

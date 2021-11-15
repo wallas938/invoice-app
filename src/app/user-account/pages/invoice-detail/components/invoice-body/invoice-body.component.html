@@ -1,4 +1,4 @@
-<div class="invoice__body">
+<div class="invoice__body" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <div class="top-part">
     <div class="invoice-identity">
       <p><span class="hashtag">#</span>{{ currentInvoice!.invoiceCode }}</p>

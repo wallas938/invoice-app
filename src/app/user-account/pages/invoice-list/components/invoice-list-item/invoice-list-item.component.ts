@@ -11,6 +11,7 @@ import { InvoiceService } from '../../../../services/invoice.service';
 export class InvoiceListItemComponent implements OnInit {
 
   @Input() invoice!: InvoiceGetDto;
+  @Input() isDarkTheme!: boolean;
   @Output() detail = new EventEmitter<string>();
 
   constructor(private invoiceService: InvoiceService,

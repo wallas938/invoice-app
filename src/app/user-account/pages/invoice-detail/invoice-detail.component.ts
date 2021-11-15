@@ -17,7 +17,8 @@ import { InvoiceService } from '../../services/invoice.service';
   styleUrls: ['./invoice-detail.component.scss']
 })
 export class InvoiceDetailComponent implements OnInit {
-  currentInvoice: InvoiceGetDto | undefined
+  currentInvoice: InvoiceGetDto | undefined;
+  isDarkTheme: boolean = false;
   constructor(private storeService: StoreService,
     private invoiceService: InvoiceService,
     private _router: Router,
@@ -29,6 +30,11 @@ export class InvoiceDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.storeService.switchStatus$
+      .subscribe((status: boolean) => {
+        this.isDarkTheme = status;
+      });
+
     this.route.data.subscribe(
       (resolverData: Data) => {
         let { invoice }: any = resolverData['invoiceDetail'];

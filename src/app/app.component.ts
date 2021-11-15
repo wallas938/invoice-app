@@ -39,6 +39,7 @@ export class AppComponent {
   displayStatus: boolean = false;
   deletePromptDisplay: boolean = false;
   isLoading: boolean = false;
+  isDarkTheme: boolean = false;
   currentInvoice: InvoiceGetDto | undefined
   constructor(private storeService: StoreService,
     private invoiceService: InvoiceService,
@@ -49,6 +50,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.storeService.switchStatus$
+    .subscribe((status: boolean) => {
+      this.isDarkTheme = status;
+    });
 
     this.storeService.isConnected$
       .subscribe((isConnected) => {

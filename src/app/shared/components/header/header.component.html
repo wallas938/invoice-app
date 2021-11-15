@@ -1,9 +1,9 @@
-<header id="header">
+<header id="header" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
     <div class="logo">
         <img src="assets/logo.svg" alt="invoice app logo">
     </div>
     <img *ngIf="isConnected" (click)="logout()"  src="assets/logout.png" alt="logout button" id="logout">
-    <img *ngIf="isConnected" class="switch-theme" src="assets/icon-moon.svg" alt="moon icon for switching to dark mode">
+    <img *ngIf="isConnected" (click)="switchTheme()" class="switch-theme" [src]="isDarkTheme ? lightIcon : darkIcon" alt="moon icon for switching to dark mode">
     <div *ngIf="isConnected" class="user-profile-image">
       <img [src]="profileImage" alt="user profile image" >
     </div>

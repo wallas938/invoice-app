@@ -1,7 +1,8 @@
-<div id="invoice-app">
+<div id="invoice-app" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <div class="global-backdrop" (click)="closeModals()" *ngIf="isConnected && deletePromptDisplay" @formBackDropState></div>
   <app-delete-prompt
   [invoiceCode]="currentInvoice!.invoiceCode"
+  [isDarkTheme]="isDarkTheme"
   *ngIf="deletePromptDisplay"
   (confirmInvoiceDeletion)="onConfirmDeletion($event)"><!-- deletePromptDisplay -->
 </app-delete-prompt>

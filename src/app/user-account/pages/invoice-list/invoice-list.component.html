@@ -1,41 +1,51 @@
-<header>
-  <div>
-    <h1>Invoices</h1>
-    <p *ngIf="invoices?.length;else noInvoiceText" class="invoice__count" >
-      <span class="hide-for-mobile">There are</span>
-      {{ invoices?.length }}
-      <span class="hide-for-mobile">total</span> invoices</p>
-      <ng-template #noInvoiceText><p class="invoice__count">No invoices</p></ng-template>
-  </div>
-  <div class="filter">
-    <app-filter [showFilter]="showFilter" (filter)="onFilter($event)"></app-filter>
-    <div (click)="onToggle()">
-      <span>Filter</span> <span class="hide-for-mobile">by status</span>
+<section id="invoice-list" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
+  <header>
+    <div>
+      <h1>Invoices</h1>
+      <p *ngIf="invoices?.length;else noInvoiceText" class="invoice__count" >
+        <span class="hide-for-mobile">There are</span>
+        {{ invoices?.length }}
+        <span class="hide-for-mobile">total</span> invoices</p>
+        <ng-template #noInvoiceText><p class="invoice__count">No invoices</p></ng-template>
     </div>
-    <div (click)="onToggle()" [ngClass]="{ 'filter-arrow-up': showFilter, 'filter-arrow-down': !showFilter}"></div>
-    <!-- <img [src]="showFilter ? 'assets/icon-arrow-up.svg' : 'assets/icon-arrow-down.svg'" alt="icon of an arrow"> -->
-  </div>
-  <div class="new-invoice" (click)="openInvoiceForm()">
-    <span class="new-invoice__icon-plus">
-      <img src="assets/icon-plus.svg" alt="icon of a plus">
-    </span>
-    <div class="new-invoice__text">
-      <span>New </span>
-      <span class="show-flex">Invoice</span>
+    <div class="filter">
+      <app-filter
+        [showFilter]="showFilter"
+        [isDarkTheme]="isDarkTheme"
+        (filter)="onFilter($event)">
+      </app-filter>
+      <div (click)="onToggle()">
+        <span>Filter</span> <span class="hide-for-mobile">by status</span>
+      </div>
+      <div (click)="onToggle()" [ngClass]="{ 'filter-arrow-up': showFilter, 'filter-arrow-down': !showFilter}"></div>
+      <!-- <img [src]="showFilter ? 'assets/icon-arrow-up.svg' : 'assets/icon-arrow-down.svg'" alt="icon of an arrow"> -->
     </div>
-  </div>
-</header>
-<section class="main">
-  <div *ngIf="invoices?.length === 0 && !isLoading" class="no-invoice">
-    <img src="assets/illustration-empty.svg" alt="an image of a woman talking throughout a megaphone">
-    <div class="no-invoice__text">
-      <h1>There is nothing here</h1>
-      <p>Create an invoice by clicking the
-        New button and get started</p>
+    <div class="new-invoice" (click)="openInvoiceForm()">
+      <span class="new-invoice__icon-plus">
+        <img src="assets/icon-plus.svg" alt="icon of a plus">
+      </span>
+      <div class="new-invoice__text">
+        <span>New </span>
+        <span class="show-flex">Invoice</span>
+      </div>
     </div>
-  </div>
-  <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
-    <app-invoice-list-item *ngFor="let invoice of invoices" [invoice]="invoice" (detail)="getInvoice($event)">
-    </app-invoice-list-item>
-  </div>
+  </header>
+  <section class="main">
+    <div *ngIf="invoices?.length === 0 && !isLoading" class="no-invoice">
+      <img src="assets/illustration-empty.svg" alt="an image of a woman talking throughout a megaphone">
+      <div class="no-invoice__text">
+        <h1>There is nothing here</h1>
+        <p>Create an invoice by clicking the
+          New button and get started</p>
+      </div>
+    </div>
+    <div *ngIf="invoices?.length !== 0 && !isLoading" class="invoices">
+      <app-invoice-list-item *ngFor="let invoice of invoices"
+        [invoice]="invoice"
+        [isDarkTheme]="isDarkTheme"
+        (detail)="getInvoice($event)">
+      </app-invoice-list-item>
+    </div>
+  </section>
 </section>
+

@@ -1,4 +1,4 @@
-<div class="invoice">
+<div class="invoice" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <span class="invoice-code" (click)="navigateToDetail(invoice._id)">
     <span class="hashtag">#</span>{{invoice?.invoiceCode}}
   </span>

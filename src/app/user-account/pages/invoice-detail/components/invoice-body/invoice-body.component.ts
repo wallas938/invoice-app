@@ -8,6 +8,7 @@ import { InvoiceGetDto } from 'src/app/models/invoice';
 })
 export class InvoiceBodyComponent implements OnInit {
   @Input() currentInvoice: InvoiceGetDto | undefined;
+  @Input() isDarkTheme!: boolean;
   @Output() edit: EventEmitter<string> = new EventEmitter()
   constructor() { }
 
