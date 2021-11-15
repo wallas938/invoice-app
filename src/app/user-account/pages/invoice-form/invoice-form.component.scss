@@ -6,12 +6,12 @@
 
 section#invoice-form {
   padding-top: 2.666rem;
-  background-color: #FFF;
   position: absolute;
   width: 100%;
   z-index: 5;
   left: 0;
   top: 0;
+  transition: all 250ms ease-in-out;
   /* transform: translateX(0px);
   transition: transform ease-in 350; */
 
@@ -26,18 +26,10 @@ section#invoice-form {
     }
   }
 
-  &>p>a:hover {
-    color: $violet-2;
-  }
-
   h1 {
     font-size: 2rem;
     margin-bottom: 2.75rem;
     padding: 0 1.83rem;
-  }
-
-  h1 .hashtag {
-    color: $violet-gray;
   }
 
   small {
@@ -231,10 +223,6 @@ section#invoice-form {
         margin-bottom: unset;
       }
 
-      input:focus {
-        border: 1px solid $violet-2;
-      }
-
       small {
         margin-bottom: unset;
         color: $red;
@@ -283,10 +271,7 @@ section#invoice-form {
       }
 
       .row__field.total>input {
-        border: none;
-        background-color: transparent;
         padding-left: unset;
-        color: $violet-gray;
         pointer-events: none;
       }
 
@@ -315,21 +300,13 @@ section#invoice-form {
     text-align: center;
     padding: 1.333333rem 0;
     margin: 0 2rem 7.333333rem 2rem;
-    border: 1px solid transparent;
     border-radius: 2rem;
     font-weight: 700;
-    background-color: $light-bg-2;
 
     .new-item-btn {
       border: none;
-      color: $blue-violet;
       font-size: 1rem;
-      background-color: transparent;
     }
-  }
-
-  .item-cta:hover {
-    background-color: $blue-gray-light;
   }
 
   .errors-container {
@@ -341,7 +318,6 @@ section#invoice-form {
     display: flex;
     justify-content: flex-end;
     padding: 1.833333rem 2rem;
-    background-color: #fff;
     border-radius: 0px 0px 20px 0px;
     box-shadow: 0px 0px 80px 30px rgba(0, 0, 0, .1);
 
@@ -350,9 +326,129 @@ section#invoice-form {
     }
 
     .save {
+      margin-left: 0.66rem;
+    }
+
+    .btn-draft {
+      margin-left: 0.66rem;
+    }
+  }
+}
+
+.light-theme {
+  background-color: #FFF;
+
+  &>p>a:hover {
+    color: $violet-2;
+  }
+
+  h1>.hashtag {
+    color: $violet-gray;
+  }
+
+  .input-group {
+
+    &__title {
+      color: $violet-1;
+    }
+
+    &__fields {
+
+      .fields__field {
+
+        label {
+          color: $blue-violet;
+        }
+
+        input {
+          border: 1px solid $blue-gray-light;
+        }
+
+        .select-wrapper {
+          border: 1px solid $blue-gray-light;
+          background-color: #FFF;
+
+          select {
+            background-color: #fff;
+          }
+        }
+
+        .select-wrapper:hover {
+          border: 1px solid $violet-1;
+        }
+
+        .date-wrapper {
+          border: 1px solid $blue-gray-light;
+          background-color: #FFF;
+        }
+      }
+    }
+  }
+
+  .item-fields {
+    .row.item-name {
+
+      label {
+        color: $blue-violet;
+      }
+
+      input {
+        border: 1px solid $blue-gray-light;
+      }
+
+      input:focus {
+        border: 1px solid $violet-2;
+      }
+
+    }
+
+    .row.item-data {
+      .row__field {
+        label {
+          color: $blue-violet;
+        }
+
+        input {
+          border: 1px solid $blue-gray-light;
+        }
+
+        input:focus {
+          border: 1px solid $violet-2;
+        }
+      }
+
+      .row__field.total>input {
+        border: none;
+        background-color: transparent;
+        color: $violet-gray;
+      }
+    }
+  }
+
+  .item-cta {
+    border: 1px solid transparent;
+    background-color: $light-bg-2;
+
+    .new-item-btn {
+      border: none;
+      color: $blue-violet;
+      background-color: transparent;
+    }
+  }
+
+  .item-cta:hover {
+    background-color: $blue-gray-light;
+  }
+
+  .form-cta {
+    background-color: #fff;
+
+    button {
+    }
+
+    .save {
       background-color: $violet-1;
       color: #fff;
-      margin-left: 0.66rem;
     }
 
     .save:hover {
@@ -362,7 +458,6 @@ section#invoice-form {
     .btn-draft {
       background-color: #373B53;
       color: $violet-gray;
-      margin-left: 0.66rem;
     }
 
     .btn-draft:hover {
@@ -376,6 +471,181 @@ section#invoice-form {
 
     .discard:hover {
       background-color: $blue-gray-light;
+    }
+  }
+}
+
+.dark-theme {
+  background-color: $black-3;
+
+  &>p>a {
+    color: #FFF;
+  }
+
+  &>p>a:hover {
+    color: $red;
+  }
+
+  h1 {
+    color: #FFF;
+  }
+
+  h1>.hashtag {
+    color: $violet-gray;
+  }
+
+  .input-group {
+    &__title {
+      color: $violet-1;
+    }
+
+    &__fields {
+
+      .fields__field {
+
+        label {
+          color: $blue-gray-light;
+        }
+
+        input {
+          background-color: $black-1;
+          color: #FFF;
+          border: 1px solid $dark-blue;
+        }
+
+        .select-wrapper {
+          border: 1px solid $dark-blue;
+          background-color: $black-1;
+
+          select {
+            color: $blue-gray-light;
+            background-color: $black-1;
+            border: 1px solid $dark-blue;
+          }
+
+          select>option {
+            color: $blue-gray-light;
+            background-color: $dark-blue;
+            border: 1px solid $black-1;
+          }
+        }
+
+        .select-wrapper:hover {
+          border: 1px solid $violet-1;
+        }
+
+        .date-wrapper {
+          background-color: $black-1;
+          border: 1px solid $dark-blue;
+
+          input[type='date'] {
+            color: #FFF;
+          }
+        }
+      }
+    }
+  }
+
+  .item-fields {
+
+
+    .row.item-name {
+
+      label {
+        color: $blue-gray-light;
+      }
+
+      input {
+        background-color: $black-1;
+        border: 1px solid $dark-blue;
+        color: #FFF;
+      }
+
+      input:focus {
+        border: 1px solid $violet-1;
+      }
+    }
+
+    .row.item-data {
+
+      .row__field>label {
+        color: $blue-gray-light;
+      }
+
+      .row__field>input {
+        background-color: $black-1;
+        border: 1px solid $dark-blue;
+        color: #FFF;
+      }
+
+      .row__field>input:focus {
+        border: 1px solid $violet-1;
+      }
+
+      .row__field.total>input {
+        color: $blue-gray-light;
+      }
+    }
+  }
+
+  .item-cta {
+    border: 1px solid transparent;
+    background-color: $dark-blue;
+    transition: all 250ms ease-in-out;
+
+    .new-item-btn {
+      border: none;
+      color: $blue-gray-light;
+      background-color: transparent;
+      transition: all 250ms ease-in-out;
+    }
+  }
+
+  .item-cta:hover {
+    background-color: $black-1;
+
+    .new-item-btn {
+      color: #FFF;
+    }
+  }
+
+  .form-cta {
+    background-color: transparent;
+
+    .save {
+      background-color: $violet-1;
+      color: #fff;
+    }
+
+    .save:hover {
+      background-color: $violet-2;
+    }
+
+    .btn-draft {
+      background-color: #373B53;
+      color: $blue-gray-light;
+    }
+
+    .btn-draft:hover {
+      background-color: $black-1;
+    }
+
+    .discard {
+      color: $violet-1;
+      background-color: #F9FAFE;
+    }
+
+    .discard:hover {
+      background-color: $blue-gray-light;
+    }
+
+    .discard--edit {
+      color: $blue-gray-light;
+      background-color: $dark-blue;
+    }
+
+    .discard--edit:hover {
+      background-color: $black-1;
     }
   }
 }

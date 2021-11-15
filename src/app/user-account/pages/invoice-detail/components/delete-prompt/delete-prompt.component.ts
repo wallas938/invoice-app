@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class DeletePromptComponent implements OnInit {
 
   @Input() invoiceCode!: string;
+  @Input() isDarkTheme!: boolean;
   @Output() confirmInvoiceDeletion = new EventEmitter<boolean>();
   constructor() { }
 

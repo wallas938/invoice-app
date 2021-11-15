@@ -1,5 +1,5 @@
 <!-- <section click-stop-propagation [@formState]="displayStatus" id="invoice-form"> -->
-<section @formState id="invoice-form">
+<section @formState id="invoice-form" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <p (click)="closeInvoiceForm()">
     <a>Go back</a> <!-- retirer a partir de 768px -->
   </p>
@@ -176,7 +176,7 @@
 
     <!-- FORM CTA -->
     <div class="form-cta" [ngStyle]="{ justifyContent: editionMode && 'flex-end' }">
-      <button class="discard" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()"
+      <button [ngClass]="{'discard--edit': editionMode, 'discard': !editionMode}" [ngStyle]="{ marginRight: editionMode && 0 }" (click)="closeInvoiceForm()"
         type="button">{{ editionMode ? 'Cancel' : 'Discard' }}</button>
       <button (click)="saveAsDraft()" *ngIf="!editionMode" class="btn-draft" type="button">Save as Draft</button>
       <button class="save" type="submit"

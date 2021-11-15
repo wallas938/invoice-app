@@ -34,6 +34,7 @@ export class InvoiceFormComponent implements OnInit {
   @ViewChildren("focusField") focusFields!: QueryList<ElementRef>;
   displayStatus: boolean = false;
   editionMode: boolean = false;
+  isDarkTheme: boolean = false;
   currentFocusedInput: number = 0;
   formGlobalError: string = 'All fields must be completed!';
   itemsErrorMessage: string = 'Each item must be completed!';
@@ -109,6 +110,11 @@ export class InvoiceFormComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.storeService.switchStatus$
+      .subscribe((status: boolean) => {
+        this.isDarkTheme = status;
+      });
+
     this.getFormsItems()?.valueChanges
       .subscribe((_) => {
         //** Display errors when one or more fields of an item is missing */

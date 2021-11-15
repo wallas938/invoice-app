@@ -16,17 +16,14 @@
 // Form Elements
 @mixin input-group-title {
   font-weight: 700;
-  color: $violet-1;
   margin-bottom: 2.333rem;
 }
 
 @mixin label-for-mobile {
-  color: $blue-violet;
   font-weight: 500;
 }
 
 @mixin input-for-mobile {
-  border: 1px solid $blue-gray-light;
   padding: 1.666666rem;
   font-weight: 700;
   height: 4rem;
@@ -72,13 +69,11 @@
   cursor: inherit;
   line-height: inherit;
   outline: none;
-  background-color: #fff;
   height: 3.5rem;
 }
 
 @mixin selectWrapper {
   position: relative;
-  border: 1px solid $blue-gray-light;
   border-radius: 4px;
   padding: 0 1.45rem;
   height: 4rem;
@@ -87,8 +82,7 @@
   font-size: 1rem;
   cursor: pointer;
   line-height: 1.1;
-  background-color: #FFF;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  /* background-image: linear-gradient(to top, #f9f9f9, #fff 33%); */
 }
 
 @mixin dateInput {
@@ -104,7 +98,6 @@
   padding: 0 1em 0 0;
   line-height: inherit;
   font-family: inherit;
-  padding: 1.666666rem;
 }
 
 @mixin dateWrapper {
@@ -117,7 +110,5 @@
   border-radius: 4px;
   padding: 0 1.45rem;
   align-items: center;
-  background-color: #FFF;
-  border: 1px solid $blue-gray-light;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  /* background-image: linear-gradient(to top, #f9f9f9, #fff 33%); */
 }

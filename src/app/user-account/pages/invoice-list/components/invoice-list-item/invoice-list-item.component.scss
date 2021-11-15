@@ -4,7 +4,7 @@
 .invoice {
   display: grid;
   padding: 2rem;
-  background-color: #fff;
+  transition: all 250ms ease-in-out;
   border-radius: 0.666666rem;
   margin: 0 auto 1.333333rem auto;
   grid-template-rows: auto auto auto;
@@ -14,29 +14,17 @@
     "dueDate     status"
     "total       status";
 
-  &:hover {
-    border: 1px solid $violet-1;
-  }
-
   .invoice-code {
     cursor: pointer;
   }
 
   .invoice-code:hover {
     cursor: pointer;
-    color: #9277FF;
   }
 
   .invoice-code,
   .total {
     font-weight: 700;
-    color: black;
-  }
-
-  .client-name,
-  .due-date,
-  .hashtag {
-    color: #858BB2;
   }
 
   .invoice-code {
@@ -84,6 +72,55 @@
 
 }
 
+.light-theme {
+  background-color: #fff;
+
+  &:hover {
+    border: 1px solid $violet-1;
+  }
+
+  .invoice-code:hover {
+    color: $violet-2;
+  }
+
+  .invoice-code,
+  .total {
+    color: black;
+  }
+
+  .client-name,
+  .due-date,
+  .hashtag {
+    color: #858BB2;
+  }
+}
+
+.dark-theme {
+  background-color: $black-1;
+
+  &:hover {
+    border: 1px solid $blue-violet;
+  }
+
+  .invoice-code,
+  .total,
+  .client-name {
+    color: #FFF;
+  }
+
+  .invoice-code:hover {
+    color: $red-blurred;
+  }
+
+  .hashtag {
+    color: $red;
+  }
+
+  .due-date {
+    color: $blue-gray-light;
+  }
+}
+
 @media screen and (min-width: $tablet-min) {
   .invoice {
     padding: 1.333333rem 2rem;
@@ -92,6 +129,7 @@
     align-items: center;
     margin: 0 auto 1.333333rem auto;
     width: 56rem;
+
     .invoice-code {
       grid-area: unset;
       margin-bottom: unset;

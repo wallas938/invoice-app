@@ -8,7 +8,6 @@
   flex-direction: column;
   height: 100%;
   position: relative;
-
   div.global-backdrop {
     position: absolute;
     left: 0;
@@ -27,6 +26,7 @@
     padding-left: 2rem;
     padding-right: 2rem;
     position: relative;
+    transition: all 250ms ease-in-out;
 
     div.main-backdrop,
     .global-loading {
@@ -40,6 +40,18 @@
       z-index: 2;
       background-color: rgba($color: (#000), $alpha: 0.5);
     }
+  }
+}
+
+.light-theme {
+  .main-container {
+    background-color: #fff;
+  }
+}
+
+.dark-theme {
+  .main-container {
+    background-color: $black-3;
   }
 }
 

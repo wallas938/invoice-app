@@ -1,14 +1,16 @@
-<section id="invoice-detail">
+<section id="invoice-detail" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <div class="invoice container">
     <p><a class="back" [routerLink]="['..']">Go back</a></p>
     <app-invoice-header
       [currentInvoice]="currentInvoice"
+      [isDarkTheme]="isDarkTheme"
       (edit)="onEdit($event)"
       (delete)="onShowPromptForDelete()"
       (markAsPaid)="onMarkAsPaid($event)">
     </app-invoice-header>
     <app-invoice-body
       [currentInvoice]="currentInvoice"
+      [isDarkTheme]="isDarkTheme"
       (edit)="onEdit($event)">
     </app-invoice-body>
   </div>

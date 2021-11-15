@@ -5,20 +5,14 @@
 @import '../../../../sass/mixins';
 
 #invoice-detail {
-  background-color: $light-bg;
-
+  transition: all 250ms ease-in-out;
   .invoice {
     >p {
       margin-bottom: 2.666666rem;
     }
 
     a.back {
-      color: $black-2;
       font-weight: 700;
-    }
-
-    a.back:hover {
-      color:$blue-violet;
     }
 
     a.back::before {
@@ -32,7 +26,6 @@
     align-items: center;
     justify-content: flex-end;
     padding: 1.75rem 2rem;
-    background-color: #fff;
 
     &>button {
       font-weight: 700;
@@ -46,13 +39,46 @@
       margin-right: 0.666666rem;
     }
 
+    &>.edit {
+      width: 6.083333rem;
+    }
+
+    &>.delete {
+      width: 7.416666rem;
+    }
+
+    &>.delete:hover {
+      width: 7.416666rem;
+    }
+
+    &>.mark-as-paid {
+      width: 10.916666rem;
+    }
+
+    &>.mark-as-paid:hover {
+    }
+  }
+}
+
+.light-theme {
+  background-color: $light-bg;
+  a.back {
+    color: $black-2;
+  }
+
+  a.back:hover {
+    color:$blue-violet;
+  }
+
+  .invoice__cta-mobile {
+    background-color: #fff;
+
     &>button:not(:first-child) {
       color: #FFF;
     }
 
     &>.edit {
       color: $blue-violet;
-      width: 6.083333rem;
       background-color: #F9FAFE;
     }
 
@@ -61,17 +87,14 @@
     }
 
     &>.delete {
-      width: 7.416666rem;
       background-color: $red;
     }
 
     &>.delete:hover {
-      width: 7.416666rem;
       background-color: $red-blurred;
     }
 
     &>.mark-as-paid {
-      width: 10.916666rem;
       background-color: $violet-1;
     }
 
@@ -80,6 +103,52 @@
     }
   }
 }
+
+.dark-theme {
+  background-color: $black-3;
+  a.back {
+    color: #FFF;
+  }
+
+  a.back:hover {
+    color: $red;
+  }
+
+  .invoice__cta-mobile {
+    background-color: $black-1;
+
+    &>button:not(:first-child) {
+      color: #FFF;
+    }
+
+    &>.edit {
+      color: $blue-gray-light;
+      background-color: $dark-blue;
+    }
+
+    &>.edit:hover {
+      color: rgba($color: $blue-gray-light, $alpha: .7);
+      background-color: #FFF;
+    }
+
+    &>.delete {
+      background-color: $red;
+    }
+
+    &>.delete:hover {
+      background-color: $red-blurred;
+    }
+
+    &>.mark-as-paid {
+      background-color: $violet-1;
+    }
+
+    &>.mark-as-paid:hover {
+      background-color: $violet-2;
+    }
+  }
+}
+
 
 @media screen and (min-width: $tablet-min) {
   #invoice-detail {}

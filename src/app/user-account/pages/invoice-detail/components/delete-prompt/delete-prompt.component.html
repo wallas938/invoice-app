@@ -1,4 +1,4 @@
-<div class="delete-prompt">
+<div class="delete-prompt" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <h1>Confirm Deletion</h1>
   <p>Are you sure you want to delete invoice #{{invoiceCode}}? This action cannot be undone.</p>
   <div class="prompt__cta">

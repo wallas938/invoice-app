@@ -1,4 +1,4 @@
-<div class="invoice__header">
+<div class="invoice__header" [ngClass]="isDarkTheme ? 'dark-theme': 'light-theme'">
   <div class="header__status">
     <span>Status</span>
     <div class="status-design" [ngClass]="{

@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class FilterComponent implements OnInit {
 
   @Input() showFilter!: boolean;
+  @Input() isDarkTheme!: boolean;
   @Output() filter = new EventEmitter<any>();
 
   draft: boolean = false;
@@ -17,6 +18,7 @@ export class FilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.isDarkTheme);
   }
 
   onFilter(filter: string) {
