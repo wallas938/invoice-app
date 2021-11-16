@@ -44,12 +44,78 @@
   .header__status>span {
     color: #858BB2;
   }
+  .invoice__cta {
+    background-color: #fff;
+
+    &>button:not(:first-child) {
+      color: #FFF;
+    }
+
+    &>.edit {
+      color: $blue-violet;
+      background-color: #F9FAFE;
+    }
+
+    &>.edit:hover {
+      background-color: $blue-gray-light;
+    }
+
+    &>.delete {
+      background-color: $red;
+    }
+
+    &>.delete:hover {
+      background-color: $red-blurred;
+    }
+
+    &>.mark-as-paid {
+      background-color: $violet-1;
+    }
+
+    &>.mark-as-paid:hover {
+      background-color: $violet-2;
+    }
+  }
 }
 
 .dark-theme {
   background-color: $black-1;
   .header__status>span {
     color: $blue-gray-light;
+  }
+
+  .invoice__cta {
+    background-color: $black-1;
+
+    &>.edit {
+      color: $blue-gray-light;
+      background-color: $dark-blue;
+    }
+
+    &>.edit:hover {
+      color: rgba($color: $blue-gray-light, $alpha: .7);
+      background-color: #FFF;
+    }
+
+    &>.delete, &>.mark-as-paid {
+      color: #FFF;
+    }
+
+    &>.delete {
+      background-color: $red;
+    }
+
+    &>.delete:hover {
+      background-color: $red-blurred;
+    }
+
+    &>.mark-as-paid {
+      background-color: $violet-1;
+    }
+
+    &>.mark-as-paid:hover {
+      background-color: $violet-2;
+    }
   }
 
 }
@@ -88,36 +154,16 @@
       margin-right: 0.666666rem;
     }
 
-    .invoice__cta>button:not(:first-child) {
-      color: #FFF;
-    }
-
     .invoice__cta>.edit {
-      color: $blue-violet;
       width: 6.083333rem;
-      background-color: #F9FAFE;
-    }
-
-    .invoice__cta>.edit:hover {
-      background-color: $blue-gray-light;
     }
 
     .invoice__cta>.delete {
       width: 7.416666rem;
-      background-color: $red;
-    }
-
-    .invoice__cta>.delete:hover {
-      background-color: $red-blurred;
     }
 
     .invoice__cta>.mark-as-paid {
       width: 10.916666rem;
-      background-color: $violet-1;
-    }
-
-    .invoice__cta>.mark-as-paid:hover {
-      background-color: $violet-2;
     }
   }
 
