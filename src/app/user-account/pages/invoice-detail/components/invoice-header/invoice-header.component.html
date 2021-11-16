@@ -4,18 +4,20 @@
     <div class="status-design" [ngClass]="{
                 'paid': currentInvoice?.status === 'Paid',
                 'pending': currentInvoice?.status === 'Pending',
-                'draft': currentInvoice?.status === 'Draft' }">
+                'dark-draft': currentInvoice?.status === 'Draft' && isDarkTheme,
+              'draft': currentInvoice?.status === 'Draft' }">
       <span class="bullet" [ngStyle]="{
         backgroundColor: currentInvoice?.status === 'Paid' ? '#33D69F' :
-        currentInvoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
+        currentInvoice?.status === 'Pending' ? '#FF8F00' : currentInvoice?.status === 'Draft' && isDarkTheme ? '#FFF' :'#373B53'
       }">
-    </span>
+      </span>
       <span>{{ currentInvoice?.status }}</span>
     </div>
   </div>
   <div class="invoice__cta hide-for-mobile">
     <button class="edit" (click)="onEdit(currentInvoice!._id)">Edit</button>
     <button class="delete" (click)="onShowPromptForDelete()">Delete</button>
-    <button class="mark-as-paid" *ngIf="currentInvoice!.status !== 'Paid'" (click)="onMarkAsPaid(currentInvoice!._id)">Mark as Paid</button>
+    <button class="mark-as-paid" *ngIf="currentInvoice!.status !== 'Paid'"
+      (click)="onMarkAsPaid(currentInvoice!._id)">Mark as Paid</button>
   </div>
 </div>

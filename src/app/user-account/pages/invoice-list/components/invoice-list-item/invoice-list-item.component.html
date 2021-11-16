@@ -14,10 +14,11 @@
   <div class="status" [ngClass]="{
               'paid': invoice?.status === 'Paid',
               'pending': invoice?.status === 'Pending',
+              'dark-draft': invoice?.status === 'Draft' && isDarkTheme,
               'draft': invoice?.status === 'Draft' }">
     <span class="status__bullet-point" [ngStyle]="{
         backgroundColor: invoice?.status === 'Paid' ? '#33D69F' :
-        invoice?.status === 'Pending' ? '#FF8F00' : '#373B53'
+        invoice?.status === 'Pending' ? '#FF8F00' : invoice?.status === 'Draft' && isDarkTheme ? '#FFF' :'#373B53'
       }">
     </span>
     <span class="status__text">{{ invoice?.status }}</span>

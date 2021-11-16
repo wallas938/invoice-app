@@ -59,6 +59,11 @@
   color: #373B53 !important;
 }
 
+.dark-draft {
+  background-color: rgba($color: $blue-gray-light, $alpha: 5.71%) !important;
+  color: #FFF !important;
+}
+
 .focus {
   border: 1px solid $violet-2 !important;
 }

@@ -4,7 +4,6 @@
 .invoice__body {
   padding: 1.6rem;
   border-radius: 0.666666rem;
-  margin-bottom: 3.333333rem;
   transition: all 250ms ease-in-out;
 
   .top-part {
@@ -366,9 +365,15 @@
   .items {
     background-color: $dark-blue;
 
+    .head>span {
+      color: $blue-gray-light;
+    }
+
     .item {
 
-      &>div>.name {
+      &>div>.name,
+      &>div>.qty,
+      &>div>.price {
         color: #FFF;
       }
 
@@ -377,11 +382,11 @@
       }
 
       &>div>.total {
-        color:#FFF;
+        color: #FFF;
       }
 
       &>span {
-        color:#FFF;
+        color: #FFF;
         font-weight: 700;
       }
     }
@@ -450,7 +455,6 @@
 
         >span,
         p:not(.name) {
-          color: $blue-violet;
           font-weight: 500;
         }
 
@@ -468,7 +472,6 @@
         }
 
         >p.name {
-          color: $black-2;
           font-weight: 700;
           font-size: 1.25rem;
         }
@@ -480,14 +483,12 @@
         padding-bottom: unset;
 
         >span {
-          color: $blue-violet;
           font-weight: 500;
           display: inline-block;
           margin-bottom: 1rem;
         }
 
         >p {
-          color: $black-2;
           font-weight: 700;
           font-size: 1.25rem;
         }
@@ -498,13 +499,11 @@
 
         >span {
           display: inline-block;
-          color: $blue-violet;
           font-weight: 500;
           margin-bottom: 1rem;
         }
 
         >p {
-          color: $black-2;
           font-weight: 700;
           font-size: 1.25rem;
         }
@@ -522,7 +521,6 @@
           "h-item-name h-qty h-price h-total";
 
         span {
-          color: $blue-violet;
           font-weight: 500;
           font-size: 0.916666rem;
           display: inline-block;
@@ -570,7 +568,6 @@
 
         &>div>.qty,
         &>div>.price {
-          color: $blue-violet;
           font-weight: 700;
         }
 

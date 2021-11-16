@@ -6,8 +6,9 @@
 #invoice-app {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   position: relative;
+
   div.global-backdrop {
     position: absolute;
     left: 0;
@@ -45,7 +46,7 @@
 
 .light-theme {
   .main-container {
-    background-color: #fff;
+    background-color: $light-bg;
   }
 }
 
@@ -70,7 +71,6 @@
 @media screen and (min-width: $desktop-min) {
   #invoice-app {
     flex-direction: row;
-
     .main-container {
       padding-top: 6rem;
       padding-left: 25rem;

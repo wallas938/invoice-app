@@ -6,6 +6,8 @@
 
 #invoice-detail {
   transition: all 250ms ease-in-out;
+  padding-bottom: 12.25rem;
+
   .invoice {
     >p {
       margin-bottom: 2.666666rem;
@@ -26,6 +28,11 @@
     align-items: center;
     justify-content: flex-end;
     padding: 1.75rem 2rem;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     &>button {
       font-weight: 700;
@@ -55,19 +62,19 @@
       width: 10.916666rem;
     }
 
-    &>.mark-as-paid:hover {
-    }
+    &>.mark-as-paid:hover {}
   }
 }
 
 .light-theme {
   background-color: $light-bg;
+
   a.back {
     color: $black-2;
   }
 
   a.back:hover {
-    color:$blue-violet;
+    color: $blue-violet;
   }
 
   .invoice__cta-mobile {
@@ -106,6 +113,7 @@
 
 .dark-theme {
   background-color: $black-3;
+
   a.back {
     color: #FFF;
   }
@@ -151,7 +159,9 @@
 
 
 @media screen and (min-width: $tablet-min) {
-  #invoice-detail {}
+  #invoice-detail {
+    padding-bottom:unset;
+  }
 }
 
 @media screen and (min-width: $desktop-min) {
