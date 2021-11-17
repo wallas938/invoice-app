@@ -443,8 +443,7 @@ section#invoice-form {
   .form-cta {
     background-color: #fff;
 
-    button {
-    }
+    button {}
 
     .save {
       background-color: $violet-1;
@@ -578,6 +577,11 @@ section#invoice-form {
         color: #FFF;
       }
 
+      .row__field>input#total {
+        background-color: transparent;
+        border: none;
+      }
+
       .row__field>input:focus {
         border: 1px solid $violet-1;
       }
@@ -652,10 +656,10 @@ section#invoice-form {
 
 @media screen and (min-width: $tablet-min) {
   section#invoice-form {
-    padding-top: 4.666666rem;
-    width: 51.333333rem;
     height: 100%;
     overflow-y: scroll;
+    width: 51.333333rem;
+    padding-top: 4.666666rem;
     border-radius: 0px 20px 20px 0px;
 
     &>p {
@@ -768,13 +772,11 @@ section#invoice-form {
 
       .row.item-name {
         flex-direction: column;
-        width: min-content;
-
 
         input {
           @include input-for-mobile;
           margin-right: 1.333333rem;
-          width: clamp(17.833333rem, 27.866vw, 18.583333rem);
+          width: 17.833333rem;
         }
 
         small {
@@ -812,8 +814,8 @@ section#invoice-form {
         }
 
         .row__field.total>input {
-          width: 30px;
-          margin-right: 3.166666rem;
+          width: 5.7rem;
+          margin-right: unset;
         }
 
         >button {
