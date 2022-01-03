@@ -28,6 +28,7 @@
   .input-group {
     &__title {
       @include input-group-title;
+      color: $violet-1;
     }
 
     &__fields {
@@ -38,11 +39,13 @@
         label {
           @include label-for-mobile;
           margin-bottom: 1.333333rem;
+          color: $blue-violet;
         }
 
         input {
           @include input-for-mobile;
           margin-bottom: 2rem;
+          border: 1px solid $blue-gray-light;
         }
 
         small {
@@ -136,6 +139,9 @@
       color: #fff;
       margin-left: 0.66rem;
 
+      &:hover {
+        background-color: $violet-2;
+      }
     }
 
     .clear-form {
