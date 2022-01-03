@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.cacheService.removeToken();
       this.authService.setUserConnectionStatus(false);
-
+      this.switchService.setSwitchStatus(false);
       this.router.navigate(['/home']);
     }, 400);
   }
